@@ -14,4 +14,5 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
 ## CONTINOUS DEVELOPMENT
+
 I intend to add a sign up and a log in page and then a home page where users can view tons of movies exactly like netflix (without the movie player), I'll make it the link to the trailer. This file will be updated going forward.

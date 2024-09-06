@@ -1,0 +1,28 @@
+
+
+.card{
+  --cardBlue: #192144;
+  --cardRed: #200f18;;
+  --mid: #1e162a;
+  /* background-color: red; */
+  background-image: linear-gradient(to right bottom, var(--cardBlue) , var(--mid), var(--cardRed));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1em;
+  padding: 1.5em 1em;
+  border-radius: 10px;
+  width: 100%;
+  /* max-width: 750px; */
+}
+@media screen and (min-width: 960px) {
+  .card{
+    max-width: 400px;
+  }
+}
+
+/* @media screen and (min-width: 1050px) {
+  .card{
+    max-width: 200px;
+  }
+} */

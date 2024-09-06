@@ -43,8 +43,8 @@ function Movies() {
   const imageOne = groupOne.map((i) => (
     <Image
       className="item"
-      key={i["id"]}
-      src={i["url"]}
+      key=""
+      src=""
       alt="test"
       width={90}
       height={89}
@@ -54,8 +54,8 @@ function Movies() {
   const imageTwo = groupTwo.map((i) => (
     <Image
       className="item"
-      key={i["title"]}
-      src={i["image"]}
+      key= ""
+      src=""
       alt="test"
       width={90}
       height={89}

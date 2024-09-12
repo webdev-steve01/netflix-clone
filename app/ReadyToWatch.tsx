@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import next from "./assets/right-arrow-svgrepo-com.svg";
+import next from "../public/right-arrow-svgrepo-com.svg";
 
 
 function ReadyToWatch() {

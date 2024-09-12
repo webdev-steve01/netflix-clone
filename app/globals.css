@@ -27,7 +27,7 @@
   /* background: linear-gradient(to bottom, hsla(0, 0%, 0%, 0.8),hsla(0, 0%, 0%, 0.4) ); */
   z-index: -1;
   background-color: black;
-  background-image: url('./assets/hero.jpg');
+  background-image: url('../public/hero.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

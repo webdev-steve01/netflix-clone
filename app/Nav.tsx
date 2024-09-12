@@ -1,4 +1,4 @@
-import Logo from "./assets/netflix-2-logo-svgrepo-com.svg";
+import Logo from "../public/netflix-2-logo-svgrepo-com.svg";
 import Image from "next/image";
 import Button from "./Button";
 

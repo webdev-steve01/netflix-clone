@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import cancel from './assets/cancel-close-cross-svgrepo-com.svg'
+import cancel from '../public/cancel-close-cross-svgrepo-com.svg'
 import Image from "next/image";
-import open from './assets/plus-svgrepo-com.svg'
+import open from '../public/plus-svgrepo-com.svg'
 // import { close } from "inspector/promises";
 
 type props = {

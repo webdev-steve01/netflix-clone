@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import plus from "./assets/plus-svgrepo-com (1).svg"
+import plus from "@public/plus-svgrepo-com (1).svg"
 import Image from "next/image";
 import QA from "./QA";
 

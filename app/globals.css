@@ -16,7 +16,6 @@
   height: 80vh;
   background: linear-gradient(to bottom, hsla(0, 0%, 0%, 0.9) 10%,hsla(0, 0%, 0%, 0.4),hsla(0, 0%, 0%, 0.9) );
   z-index: -1;
-  /* background-image: url('./assets/hero.jpg'); */
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -24,7 +23,6 @@
 }
 .hero-container{
   height: 80vh;
-  /* background: linear-gradient(to bottom, hsla(0, 0%, 0%, 0.8),hsla(0, 0%, 0%, 0.4) ); */
   z-index: -1;
   background-color: black;
   background-image: url('../public/hero.jpg');
@@ -37,19 +35,15 @@
   height: 100%;
 }
 .nav{
-  /* border: 1px solid red; */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* max-width: 1000px; */
   margin: 0 auto;
   background-color: transparent;
-  /* background: linear-gradient(to bottom, rgb(19, 19, 19),hsla(19, 19%, 19%, 0.9)); */
   position: absolute;
   top: 0;
   max-height: 50px;
   width: 90%;
-  /* margin:0 1em; */
   left: 3%;
   right: 3%;
 }
@@ -191,11 +185,9 @@ select{
 }
 
 .skeleton{
-  /* border: 1px solid rgb(23, 22, 22); */
   background-color: var(--grey);
   min-height: 150px;
   animation: skeleton-loading 1s linear infinite alternate;
-  /* border: 1px solid red; */
 }
 .red-button{
   background-color: #e50914;
@@ -203,9 +195,6 @@ select{
 }
 .footer-list{
   width: 100%;
-  /* max-width: 1500px; */
-  /* border: 1px solid red; */
-  /* margin: 0 auto; */
 }
 
 .footer-link{
@@ -241,7 +230,6 @@ select{
   gap: 1em;
 }
 .closed{
-  /* max-height:70px; */
   overflow-y: hidden;
   padding: 1em .5em;
 }
@@ -272,21 +260,18 @@ select{
 }
 .select{
   position: relative;
-  /* border: 1px solid red; */
   width: 150px;
 }
 .select::after{
   content: '';
   width: 10px;
   height: 10px;
-  /* background-color:red; */
   position: absolute;
   border-right: 1px solid grey;
   border-bottom: 1px solid grey;
   transform: rotate(45deg);
   top: 30%;
   right: 10px;
-  /* bottom: 0; */
 }
 .credit{
   color: #a0a0a0;
@@ -326,7 +311,6 @@ select{
 @media screen and (min-width: 960px) {
   .input-filter{
     width: 150px;
-    /* border: 1px solid red; */
   }
   .dropdown-flex{
     flex-direction: row;
@@ -338,7 +322,6 @@ select{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    /* border: 1px solid red; */
     justify-content: center;
   }
 }

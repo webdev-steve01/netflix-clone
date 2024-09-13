@@ -4,6 +4,7 @@
 
 
 *{
+  /* border: 1px solid red; */
   box-sizing: border-box;
 }
 :root{
@@ -308,6 +309,15 @@ select{
   }
   .hero-writing{
     font-size: 2em;
+  }
+  .signup-hero{
+    background-image: url('../public/hero.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .signup{
+     background: linear-gradient(to bottom, hsla(0, 0%, 0%, 0.9) 10%,hsla(0, 0%, 0%, 0.4),hsla(0, 0%, 0%, 0.9) );
   }
 }
 

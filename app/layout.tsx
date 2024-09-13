@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <link rel="shortcut icon" href="netflix-svgrepo-com.svg" type="image/x-icon" />
       <body className={inter.className}>
-        <Nav />
+        
         <section>{children}</section>
       </body>
     </html>

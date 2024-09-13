@@ -1,76 +1,55 @@
-"use client";
+
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
-interface Moviedata {
-  albumId: string;
-  id: number;
-  title: string;
-  url: string;
-  thumbnailUrl: string;
-}
+async function Movies() {
+  type Moviedata = {
+    adult: boolean;
+    backdrop_path: string;
+    genre_ids: Array<Number>;
+    id: number;
+    original_language: string;
+    original_title: string;
+    overview: string;
+    popularity: number;
+    poster_path: string;
+    release_date: string;
+    title: string;
+    video: boolean;
+    vote_average: number;
+    vote_count: number;
+  };
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhOTU2M2ZmYTM0NjJiMThmMzViNjJlYTQ2ZmM5M2FkNCIsIm5iZiI6MTcyNjIxNTcxNS4xOTQ1NjgsInN1YiI6IjY2ZDY0NjhiNmM0MjFkZGMzNDZhYzFhZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2Za6gRawWvOOs7GtHkRdWEG9Ava6m3Iv7oE0oi7w_zQ",
+    },
+  };
 
-let array: Array<Moviedata> = [];
-
-function Movies() {
-  const [movies, setMovies] = useState([]);
-  // let arrays: any;
-  // const getData = fetch("https://freetestapi.com/api/v1/movies", {
-  //   method: "GET",
-  // });
-  // const res = (await getData).json()
-  // const holder;
-  useEffect(() => {
-    fetch("https://via.placeholder.com/600/77179", {
-      method: "GET"
-      // headers: {
-      //   "x-rapidapi-key": "f4f3078597msh7d473156cbe39d8p17bf60jsnf468aa2a5965",
-      //   "x-rapidapi-host": "imdb-top-100-movies.p.rapidapi.com",
-      // },
-    })
-      .then((res) => res.json())
-      .then((movie) => setMovies(movie))
-      .catch((error) => console.error("error fetchig data", error));
-  }, []);
-
-
-
-
-  const groupOne = Array(movies).slice(0, 5)
-  const groupTwo = Array(movies).slice(6, 11)
-  console.log(groupOne[0]);
-  
-  const imageOne = groupOne.map((i) => (
-    <Image
-      className="item"
-      key=""
-      src=""
-      alt="test"
-      width={90}
-      height={89}
-      loading="lazy"
-    />
-  ));
-  const imageTwo = groupTwo.map((i) => (
-    <Image
-      className="item"
-      key= ""
-      src=""
-      alt="test"
-      width={90}
-      height={89}
-      loading="lazy"
-    />
-  ));
+  let data = await fetch(
+    "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc",
+    options
+  );
+  let post = await data.json();
+  let movies = post.results;
+  const filtered_movies = movies.slice(0, 10);
+  const innerHtml = filtered_movies.map((movie: Moviedata, id: number) => {
+    return (
+        <div key={id} className="skeleton">
+          <Image src={movie.poster_path} alt={movie.title} width={200} height={300} />
+      </div>
+    )
+  })
 
   return (
     <>
-      <section className="image-list skeleton py-4 my-2">
-        <section className="media-group">
-          {/* {imageOne} */}
-        </section>
-        <section className="media-group">
-          {imageTwo}
+      <section className="image-list py-4 my-2">
+        <section className="media-group skeleton">
+          <div className="flex overflow-auto bg-black">
+            {innerHtml}
+          </div>
         </section>
       </section>
     </>

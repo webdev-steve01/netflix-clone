@@ -1,3 +1,4 @@
+// "use client";
 import Image from "next/image";
 import FirstSection from "./FirstSection";
 import SectionTwo from "./SectionTwo";
@@ -6,6 +7,7 @@ import FAQsSection from "./FAQsSection";
 import LastSection from "./LastSection";
 import Footer from "./Footer";
 import Nav from "./Nav";
+
 
 export default function Home() {
   return (

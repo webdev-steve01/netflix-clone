@@ -27,7 +27,7 @@ function SignInFooter() {
       </p>
         <p className="underline">Questions? contact us.</p>
         <section className="py-1 flex flex-wrap underline">{footerElement}</section>
-      <section className="select">
+      <section className="select my-4">
         <select
           title="lang"
           name="lang"

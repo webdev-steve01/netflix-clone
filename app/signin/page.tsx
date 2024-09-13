@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import logo from "@/public/netflix-2-logo-svgrepo-com.svg";
 import Image from "next/image";

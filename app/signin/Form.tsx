@@ -1,24 +1,40 @@
+"use client";
 import { useState } from "react";
 import React from 'react';
 import InputForm from "../InputForm";
+import { signIn } from "next-auth/react";
+import { redirect } from "next/dist/server/api-utils";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
+import { useRouter } from "next/navigation";
+
 
 function Form() {
-    const [code, setCode] = useState(false);
-    const [prevUser, setPrevUser] = useState(true);
+  const [code, setCode] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("")
+  const router = useRouter()
     const handleClick = () => {
       if (code) {
         setCode(false);
       } else {
         setCode(true);
       }
-    };
+  };
+  const signIn = () => {
+    signInWithEmailAndPassword(auth, email, password).then(() => {
+      router.push('../')
+    }).catch(err => console.log(err))
+  }
   return (
     <>
       <form action="" className="flex flex-col gap-1">
-        <InputForm
+        <input
+          className="bg-[hsla(218,28%,15%,0.8)] py-3 px-2 w-full focus-within:outline-white rounded-md m-0"
           type="text"
-          label="signInEmail"
+          id="signInEmail"
           name="email"
+          onChange={(e) => setEmail(e.target.value)}
           placeholder={
             code
               ? "input email to get code(currently unavailable)"
@@ -28,14 +44,21 @@ function Form() {
         {code ? (
           <></>
         ) : (
-          <InputForm
+          <input
+            className="bg-[hsla(218,28%,15%,0.8)] py-3 px-2 w-full focus-within:outline-white rounded-md m-0"
             type="password"
-            label="signInPassword"
+            id="signInPassword"
             name="password"
+            onChange={(e) => setPassword(e.target.value)}
             placeholder="input password"
           />
         )}
-        <button className="button rounded-[5px] py-1" type="button">
+        <button
+          onClick={signIn}
+          disabled={!email || !password}
+          className="button rounded-[5px] py-1"
+          type="button"
+        >
           <p className=" m-auto">{code ? "sign in with code" : "sign in"}</p>
         </button>
         <p className="text-[#b8b8b9] text-center">OR</p>

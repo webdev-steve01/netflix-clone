@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Not netflix nigeria😉",
-  description: "A clone of netflix",
+  description: "Notflix",
 };
 
 export default function RootLayout({

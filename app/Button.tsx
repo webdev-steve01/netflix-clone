@@ -8,7 +8,7 @@ interface Props {
 function Button(props: Props) {
   return (
     <>
-      <Link href={''} className='button px-2 py-1 rounded-lg'>{props.text}</Link>
+      <Link href="/signup" className='button px-2 py-1 rounded-lg'>{props.text}</Link>
     </>
   );
 }

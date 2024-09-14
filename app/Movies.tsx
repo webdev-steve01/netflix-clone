@@ -1,8 +1,14 @@
-
+"use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-
-async function Movies() {
+import next from "@/public/next-svgrepo-com.svg";
+import back from "@/public/back-svgrepo-com.svg";
+function Movies() {
+  const [film, setFilm] = useState("movie");
+  const [response, setResponse] = useState([])
+  const handleClick = (e: any) => {
+    setFilm(e.target.value)
+  }
   type Moviedata = {
     adult: boolean;
     backdrop_path: string;
@@ -27,29 +33,79 @@ async function Movies() {
         "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhOTU2M2ZmYTM0NjJiMThmMzViNjJlYTQ2ZmM5M2FkNCIsIm5iZiI6MTcyNjIxNTcxNS4xOTQ1NjgsInN1YiI6IjY2ZDY0NjhiNmM0MjFkZGMzNDZhYzFhZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2Za6gRawWvOOs7GtHkRdWEG9Ava6m3Iv7oE0oi7w_zQ",
     },
   };
-
-  let data = await fetch(
-    "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc",
-    options
-  );
-  let post = await data.json();
-  let movies = post.results;
-  const filtered_movies = movies.slice(0, 10);
-  const innerHtml = filtered_movies.map((movie: Moviedata, id: number) => {
-    return (
-        <div key={id} className="skeleton">
-          <Image src={movie.poster_path} alt={movie.title} width={200} height={300} />
-      </div>
-    )
-  })
+  useEffect(() => {
+    
+    const fetchData = async (film: string) => {
+  
+      let data = await fetch(
+        `https://api.themoviedb.org/3/discover/${film}?include_adult=true&include_video=false&language=en-US&page=1&sort_by=popularity.desc`,
+        options
+      );
+      let post = await data.json();
+      let movies = post.results;
+      const filtered_movies = movies.slice(0, 10);
+      setResponse(filtered_movies)
+    }
+    fetchData(film)
+  }, [film])
+    const innerHtml = response.map((movie: Moviedata, id: number) => {
+      return (
+        <div key={id} className="poster-holder skeleton">
+          <Image
+            src={`https://image.tmdb.org/t/p/w185/${movie.poster_path}`}
+            alt={movie.title}
+            width={400}
+            height={300}
+            className="poster"
+          />
+        </div>
+      );
+    });
 
   return (
     <>
+      <section className="dropdown-flex flex flex-col gap-4">
+        <section className="input-filter text-black flex-grow flex-shrink-0">
+          <section className="caret">
+            <select
+              className="dropdown px-3 py-4 rounded-lg"
+              title="country"
+              name="country"
+              id="country"
+            >
+              <option value="Nigeria">Nigeria</option>
+              <option value="Global">Global</option>
+            </select>
+          </section>
+        </section>
+        <section className="input-filter text-black flex-grow flex-shrink-0">
+          <section className="caret">
+            <select
+              className="dropdown px-3 py-4 rounded-lg"
+              title="film"
+              name="film"
+              id="film"
+              onChange={handleClick}
+            >
+              <option value="movie">Movies</option>
+              <option value="tv">Tv series</option>
+            </select>
+          </section>
+        </section>
+      </section>
       <section className="image-list py-4 my-2">
-        <section className="media-group skeleton">
-          <div className="flex overflow-auto bg-black">
-            {innerHtml}
-          </div>
+        <section className="">
+          <section className="media-group m-[auto] relative">
+            <p className="switchLeft absolute left-[5px] bottom-[50%] rounded-full p-2 bg-white">
+              <Image src={back} alt="" width={25} />
+            </p>
+            <div className="movie-holder overflow-auto bg-black]">
+              {innerHtml}
+            </div>
+            <p className="switchRight absolute right-[5px] bottom-[50%] rounded-full p-2 bg-white">
+              <Image src={next} alt="" width={25} />
+            </p>
+          </section>
         </section>
       </section>
     </>

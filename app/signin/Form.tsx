@@ -13,6 +13,7 @@ function Form() {
   const [code, setCode] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
   const router = useRouter()
     const handleClick = () => {
       if (code) {
@@ -24,11 +25,20 @@ function Form() {
   const signIn = () => {
     signInWithEmailAndPassword(auth, email, password).then(() => {
       router.push('../')
-    }).catch(err => console.log(err))
+    }).catch(err => {
+      console.log(err);
+      if (err == "FirebaseError: Firebase: Error (auth/invalid-credential).") {
+        setError("invalid email/password");
+      }
+      
+    })
   }
   return (
     <>
       <form action="" className="flex flex-col gap-1">
+        <p className="text-red-700 my-[-10px]">
+          {error}
+        </p>
         <input
           className="bg-[hsla(218,28%,15%,0.8)] py-3 px-2 w-full focus-within:outline-white rounded-md m-0"
           type="text"

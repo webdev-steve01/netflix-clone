@@ -38,7 +38,6 @@ function SignInFooter() {
         </select>
       </section>
       </section> */}
-      I just wan test something
     </section>
   );
 }

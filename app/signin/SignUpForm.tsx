@@ -10,21 +10,44 @@ import { redirect } from "next/navigation";
 function SignUpForm() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
   const router = useRouter();
-  const signUp = () => {
+  const signUp = (e: any) => {
+    e.preventDefault()
     createUserWithEmailAndPassword(auth, email, password).then(() => {
       router.push('../')
-    }).catch((err) => console.log(err))
+    }).catch((err) => {
+      console.log(err);
+      const error: any = document.getElementById("error")
+      if (err == "FirebaseError: Firebase: Error (auth/missing-password).") {
+        setError("Password required")
+      }
+      if (
+        err == "FirebaseError: Firebase: Error (auth/email-already-in-use)."
+      ) {
+        setError("email already registered")
+      }
+      if (err == "FirebaseError: Firebase: Error (auth/invalid-email).") {
+        setError("invalid email");
+      }
+      if (err == "FirebaseError: Firebase: Password should be at least 6") {
+        error.innerText = "password must be at least 6 characters long";
+      }
+    })
   }
   return (
     <>
       <form action="" className="flex flex-col gap-1">
+        <p id="error" className="my-[-10px] text-red-700">
+          {error}
+        </p>
         <input
           className="bg-[hsla(218,28%,15%,0.8)] py-3 px-2 w-full focus-within:outline-white rounded-md m-0"
           type="text"
           name="first name"
           id="First name"
           placeholder="First name"
+          required
           // onChange={}
         />
         <input
@@ -32,6 +55,7 @@ function SignUpForm() {
           type="text"
           id="signInLastName"
           name="last name"
+          required
           placeholder="input last name"
         />
         <input
@@ -47,13 +71,13 @@ function SignUpForm() {
           type="password"
           id="signInPassword"
           name="password"
-          placeholder="input password"
+          placeholder="input password (must be over 6 characters long)"
           onChange={(e) => setPassword(e.target.value)}
         />
         <button
           className="button rounded-[5px] py-1"
-          type="button"
-          onClick={signUp}
+          type="submit"
+          onClick={(e) => signUp(e)}
         >
           <p className=" m-auto">sign Up</p>
         </button>

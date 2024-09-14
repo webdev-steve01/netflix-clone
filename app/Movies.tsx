@@ -10,11 +10,11 @@ import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import "swiper/css";
 
 // import styles bundle
-import 'swiper/css/bundle';
+import "swiper/css/bundle";
 import Script from "next/script";
 function Movies() {
   const [film, setFilm] = useState("movie");
-  const [response, setResponse] = useState([])
+  const [response, setResponse] = useState([]);
   const [slides, setSlides] = useState(0);
   const setSlidesPerview = () => {
     setSlides(
@@ -23,10 +23,10 @@ function Movies() {
         : window.innerWidth <= 720
         ? 3
         : window.innerWidth <= 1100
-            ? 4
-            : window.innerWidth >1100
-              ? 5 : 0
-              
+        ? 4
+        : window.innerWidth > 1100
+        ? 5
+        : 0
     );
   };
   useEffect(() => {
@@ -41,8 +41,8 @@ function Movies() {
     };
   }, []);
   const handleClick = (e: any) => {
-    setFilm(e.target.value)
-  }
+    setFilm(e.target.value);
+  };
   type Moviedata = {
     adult: boolean;
     backdrop_path: string;
@@ -68,9 +68,7 @@ function Movies() {
     },
   };
   useEffect(() => {
-    
     const fetchData = async (film: string) => {
-  
       let data = await fetch(
         `https://api.themoviedb.org/3/discover/${film}?include_adult=true&include_video=false&language=en-US&page=1&sort_by=popularity.desc`,
         options
@@ -78,25 +76,25 @@ function Movies() {
       let post = await data.json();
       let movies = post.results;
       const filtered_movies = movies.slice(0, 10);
-      setResponse(filtered_movies)
-    }
-    fetchData(film)
-  }, [film])
-    const innerHtml = response.map((movie: Moviedata, id: number) => {
-      return (
-        <div key={id} className="poster-holder skeleton">
-          <SwiperSlide>
-            <Image
-              src={`https://image.tmdb.org/t/p/w185/${movie.poster_path}`}
-              alt={movie.title}
-              width={400}
-              height={300}
-              className="poster swiper-slide"
-            />
-          </SwiperSlide>
-        </div>
-      );
-    });
+      setResponse(filtered_movies);
+    };
+    fetchData(film);
+  }, [film]);
+  const innerHtml = response.map((movie: Moviedata, id: number) => {
+    return (
+      <div key={movie.id} className="poster-holder skeleton">
+        <SwiperSlide>
+          <Image
+            src={`https://image.tmdb.org/t/p/w185/${movie.poster_path}`}
+            alt={movie.title}
+            width={400}
+            height={300}
+            className="poster swiper-slide"
+          />
+        </SwiperSlide>
+      </div>
+    );
+  });
 
   return (
     <>

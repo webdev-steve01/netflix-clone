@@ -8,33 +8,48 @@ import { auth } from "../firebase";
 import { redirect } from "next/navigation";
 
 function SignUpForm() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [fname, setFname] = useState("");
+  const [lname, setLname] = useState("");
   const router = useRouter();
+
+  const handleFirstName = (e: any) => {
+    setFname(e.target.value);
+    console.log(fname);
+  };
+  const handleLastName = (e: any) => {
+    setLname(e.target.value);
+  };
   const signUp = (e: any) => {
-    e.preventDefault()
-    createUserWithEmailAndPassword(auth, email, password).then(() => {
-      router.push('../')
-    }).catch((err) => {
-      console.log(err);
-      const error: any = document.getElementById("error")
-      if (err == "FirebaseError: Firebase: Error (auth/missing-password).") {
-        setError("Password required")
-      }
-      if (
-        err == "FirebaseError: Firebase: Error (auth/email-already-in-use)."
-      ) {
-        setError("email already registered")
-      }
-      if (err == "FirebaseError: Firebase: Error (auth/invalid-email).") {
-        setError("invalid email");
-      }
-      if (err == "FirebaseError: Firebase: Password should be at least 6") {
-        error.innerText = "password must be at least 6 characters long";
-      }
-    })
-  }
+    e.preventDefault();
+    if (fname || lname === "") {
+      setError("first name and last name required");
+    }
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        router.push("../");
+      })
+      .catch((err) => {
+        console.log(err);
+        const error: any = document.getElementById("error");
+        if (err == "FirebaseError: Firebase: Error (auth/missing-password).") {
+          setError("Password required");
+        }
+        if (
+          err == "FirebaseError: Firebase: Error (auth/email-already-in-use)."
+        ) {
+          setError("email already registered");
+        }
+        if (err == "FirebaseError: Firebase: Error (auth/invalid-email).") {
+          setError("invalid email");
+        }
+        if (err == "FirebaseError: Firebase: Password should be at least 6") {
+          error.innerText = "password must be at least 6 characters long";
+        }
+      });
+  };
   return (
     <>
       <form action="" className="flex flex-col gap-1">
@@ -45,18 +60,19 @@ function SignUpForm() {
           className="bg-[hsla(218,28%,15%,0.8)] py-3 px-2 w-full focus-within:outline-white rounded-md m-0"
           type="text"
           name="first name"
-          id="First name"
+          id="First-name"
           placeholder="First name"
           required
-          // onChange={}
+          onChange={(e) => handleFirstName(e)}
         />
         <input
           className="bg-[hsla(218,28%,15%,0.8)] py-3 px-2 w-full focus-within:outline-white rounded-md m-0"
           type="text"
           id="signInLastName"
-          name="last name"
+          name="last-name"
           required
           placeholder="input last name"
+          onChange={(e) => handleLastName(e)}
         />
         <input
           className="bg-[hsla(218,28%,15%,0.8)] py-3 px-2 w-full focus-within:outline-white rounded-md m-0"

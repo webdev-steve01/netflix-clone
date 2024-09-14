@@ -332,10 +332,14 @@ select{
 .poster{
   /* height: 100%; */
   min-width:150px;
+  max-width: 150px;
 }
 /* .poste-holder:hover, .poster:hover{
   transform: scaleY(1.5);
 } */
+ .switchLeft, .switchRight{
+  z-index: 10000;
+ }
 
 @media screen and (min-width: 960px) {
   .input-filter{

@@ -1,11 +1,45 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import next from "@/public/next-svgrepo-com.svg";
-import back from "@/public/back-svgrepo-com.svg";
+import next from "@/public/caret-right-sm-svgrepo-com.svg";
+import back from "@/public/caret-left-sm-svgrepo-com.svg";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+
+// Import Swiper styles
+import "swiper/css";
+
+// import styles bundle
+import 'swiper/css/bundle';
+import Script from "next/script";
 function Movies() {
   const [film, setFilm] = useState("movie");
   const [response, setResponse] = useState([])
+  const [slides, setSlides] = useState(0);
+  const setSlidesPerview = () => {
+    setSlides(
+      window.innerWidth <= 550
+        ? 2
+        : window.innerWidth <= 720
+        ? 3
+        : window.innerWidth <= 1100
+            ? 4
+            : window.innerWidth >1100
+              ? 5 : 0
+              
+    );
+  };
+  useEffect(() => {
+    //Initially set the amount of slides on page load
+    setSlidesPerview();
+    // Add the event listner on component mount
+    window.addEventListener("resize", setSlidesPerview);
+
+    // Remove the listner when component unmounts
+    return () => {
+      window.removeEventListener("resize", setSlidesPerview);
+    };
+  }, []);
   const handleClick = (e: any) => {
     setFilm(e.target.value)
   }
@@ -51,13 +85,15 @@ function Movies() {
     const innerHtml = response.map((movie: Moviedata, id: number) => {
       return (
         <div key={id} className="poster-holder skeleton">
-          <Image
-            src={`https://image.tmdb.org/t/p/w185/${movie.poster_path}`}
-            alt={movie.title}
-            width={400}
-            height={300}
-            className="poster"
-          />
+          <SwiperSlide>
+            <Image
+              src={`https://image.tmdb.org/t/p/w185/${movie.poster_path}`}
+              alt={movie.title}
+              width={400}
+              height={300}
+              className="poster swiper-slide"
+            />
+          </SwiperSlide>
         </div>
       );
     });
@@ -99,9 +135,22 @@ function Movies() {
             <p className="switchLeft absolute left-[5px] bottom-[50%] rounded-full p-2 bg-white">
               <Image src={back} alt="" width={25} />
             </p>
-            <div className="movie-holder overflow-auto bg-black]">
+            <Swiper
+              className="movie-holder swiper-wrapper overflow-auto bg-black]"
+              modules={[Navigation, Pagination, A11y]}
+              spaceBetween={16}
+              slidesPerView={slides}
+              // pagination
+              // loop
+              navigation={{
+                nextEl: ".switchRight",
+                prevEl: ".switchLeft",
+              }}
+              onSwiper={(swipe: any) => console.log(swipe)}
+              onSlideChange={() => console.log("slide change")}
+            >
               {innerHtml}
-            </div>
+            </Swiper>
             <p className="switchRight absolute right-[5px] bottom-[50%] rounded-full p-2 bg-white">
               <Image src={next} alt="" width={25} />
             </p>

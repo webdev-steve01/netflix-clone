@@ -24,7 +24,7 @@ function Form() {
   };
   const signIn = () => {
     signInWithEmailAndPassword(auth, email, password).then(() => {
-      router.push('../')
+      router.push('../dashboard')
     }).catch(err => {
       console.log(err);
       if (err == "FirebaseError: Firebase: Error (auth/invalid-credential).") {

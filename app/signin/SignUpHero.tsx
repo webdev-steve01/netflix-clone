@@ -15,7 +15,7 @@ const SignUpHero = () => {
   return (
     <div className="grid gap-5 px-2 max-w-[500px] mx-auto bg-[hsla(0,0%,0%,0.8)] py-4 rounded-lg">
       <h1 className="text-white font-bold text-2xl">Sign In</h1>
-      {prevUser? <Form />: <SignUpForm />}
+      {prevUser? <Form />: <SignUpForm setPrevUser={setPrevUser} />}
       <section className="link">
         <p className="text-[#b3b3b3]">
           {prevUser ? "New to netflix?": "Already have an account?"}

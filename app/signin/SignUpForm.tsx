@@ -6,8 +6,10 @@ import { useRouter } from "next/navigation";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { redirect } from "next/navigation";
-
-function SignUpForm() {
+type props = {
+  setPrevUser: Function;
+}
+function SignUpForm(props: props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -24,31 +26,33 @@ function SignUpForm() {
   };
   const signUp = (e: any) => {
     e.preventDefault();
-    if (fname || lname === "") {
-      setError("first name and last name required");
+    if (fname || lname !== null) {
+      createUserWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          // router.push("../dashboard");
+        {props.setPrevUser(true)}
+        })
+        .catch((err) => {
+          console.log(err);
+          const error: any = document.getElementById("error");
+          if (err == "FirebaseError: Firebase: Error (auth/missing-password).") {
+            setError("Password required");
+          }
+          if (
+            err == "FirebaseError: Firebase: Error (auth/email-already-in-use)."
+          ) {
+            setError("email already registered");
+          }
+          if (err == "FirebaseError: Firebase: Error (auth/invalid-email).") {
+            setError("invalid email");
+          }
+          if (err == "FirebaseError: Firebase: Password should be at least 6") {
+            error.innerText = "password must be at least 6 characters long";
+          } else {
+            setError("first name and last name required");
+          }
+        });
     }
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        router.push("../");
-      })
-      .catch((err) => {
-        console.log(err);
-        const error: any = document.getElementById("error");
-        if (err == "FirebaseError: Firebase: Error (auth/missing-password).") {
-          setError("Password required");
-        }
-        if (
-          err == "FirebaseError: Firebase: Error (auth/email-already-in-use)."
-        ) {
-          setError("email already registered");
-        }
-        if (err == "FirebaseError: Firebase: Error (auth/invalid-email).") {
-          setError("invalid email");
-        }
-        if (err == "FirebaseError: Firebase: Password should be at least 6") {
-          error.innerText = "password must be at least 6 characters long";
-        }
-      });
   };
   return (
     <>

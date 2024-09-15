@@ -122,7 +122,7 @@ function Movies() {
               onChange={handleClick}
             >
               <option value="movie">Movies</option>
-              <option value="tv">Tv series</option>
+              <option value="tv">Tv shows</option>
             </select>
           </section>
         </section>

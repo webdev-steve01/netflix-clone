@@ -117,7 +117,7 @@ body{
 .field{
   border: none;
   color: white;
-  margin-top: -10px;
+  /* margin-top: -10px; */
 }
 .field:focus-within{
   outline: none;
@@ -342,6 +342,11 @@ select{
  }
 
 @media screen and (min-width: 960px) {
+  .form-flex{
+    /* border: 1px solid red; */
+    flex-direction: row;
+    gap: 1em;
+  }
   .input-filter{
     width: 150px;
   }

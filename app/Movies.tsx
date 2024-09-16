@@ -4,8 +4,7 @@ import Image from "next/image";
 import next from "@/public/caret-right-sm-svgrepo-com.svg";
 import back from "@/public/caret-left-sm-svgrepo-com.svg";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
-
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules"
 // Import Swiper styles
 import "swiper/css";
 
@@ -63,8 +62,7 @@ function Movies() {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhOTU2M2ZmYTM0NjJiMThmMzViNjJlYTQ2ZmM5M2FkNCIsIm5iZiI6MTcyNjIxNTcxNS4xOTQ1NjgsInN1YiI6IjY2ZDY0NjhiNmM0MjFkZGMzNDZhYzFhZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2Za6gRawWvOOs7GtHkRdWEG9Ava6m3Iv7oE0oi7w_zQ",
+      Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`,
     },
   };
   useEffect(() => {

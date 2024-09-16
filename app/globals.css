@@ -370,3 +370,8 @@ select{
     flex-wrap: nowrap;
   }
 }
+
+.test .poster{
+  /* height: 700px;
+  width: 600px; */
+}

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import React from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Suspense } from "react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 // Import Swiper styles
 import "swiper/css";
@@ -60,17 +61,17 @@ function DashboardNav() {
         >
           <div className="h-full netflix-overlay flex items-end">
             <div className=" py-6 px-4 flex">
-              <Image
-                src={`https://image.tmdb.org/t/p/w500/${test.poster_path}`}
-                alt={test.title}
-                width={700}
-                height={700}
-                className="poster  w-full"
-              />
+              <Suspense fallback={<div className="h-150 w-200 skeleton"></div>}>
+                <Image
+                  src={`https://image.tmdb.org/t/p/w500/${test.poster_path}`}
+                  alt={test.title}
+                  width={700}
+                  height={700}
+                  className="poster  w-full"
+                />
+              </Suspense>
               <article className="text-xs max-w-[700px] max-h-[100px] flex flex-col gap-2 py-2">
-                <h1 className="text-[20px]">
-                  {test.title}
-                </h1>
+                <h1 className="text-[20px]">{test.title}</h1>
                 <p>{test.overview}</p>
               </article>
             </div>

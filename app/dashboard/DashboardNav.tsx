@@ -4,13 +4,16 @@ import React from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Suspense } from "react";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import { Navigation, A11y, Autoplay } from "swiper/modules";
 // Import Swiper styles
 import "swiper/css";
+import "swiper/css/autoplay";
+// import { Result } from "postcss";
+// import { console } from "inspector";
 // import Movies from '../Movies';
 
 function DashboardNav() {
-  type result = {
+  type results = {
     adult: boolean;
     backdrop_path: string;
     genre_ids: Array<number>;
@@ -31,7 +34,7 @@ function DashboardNav() {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhOTU2M2ZmYTM0NjJiMThmMzViNjJlYTQ2ZmM5M2FkNCIsIm5iZiI6MTcyNjIxNTcxNS4xOTQ1NjgsInN1YiI6IjY2ZDY0NjhiNmM0MjFkZGMzNDZhYzFhZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2Za6gRawWvOOs7GtHkRdWEG9Ava6m3Iv7oE0oi7w_zQ`,
+      Authorization: `Bearer ${process.env.API_KEY}`,
     },
   };
   useEffect(() => {
@@ -48,13 +51,13 @@ function DashboardNav() {
     fetchData();
   }, []);
   console.log("hey");
-  const test = array.map((test: result, i) => {
+  const test = array.map((test: results, i) => {
     return (
       <SwiperSlide key={i}>
         <section
           className="w-full h-[100vh]  bg-purple-500"
           style={{
-            background: `url(https://image.tmdb.org/t/p/w1280/${test.poster_path})`,
+            background: `url(https://image.tmdb.org/t/p/w1280/${test.backdrop_path})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -67,12 +70,12 @@ function DashboardNav() {
                   alt={test.title}
                   width={700}
                   height={700}
-                  className="poster  w-full"
+                  className="poster rounded  w-full"
                 />
               </Suspense>
-              <article className="text-xs max-w-[700px] max-h-[100px] flex flex-col gap-2 py-2">
+              <article className=" max-w-[500px] max-h-[200px] overflow-hidden flex flex-col gap-2">
                 <h1 className="text-[20px]">{test.title}</h1>
-                <p>{test.overview}</p>
+                <p className="article">{test.overview}</p>
               </article>
             </div>
           </div>
@@ -80,12 +83,9 @@ function DashboardNav() {
       </SwiperSlide>
     );
   });
-  console.log(array);
-
-  // console.log(random);
 
   return (
-    <Swiper autoplay>
+    <Swiper modules={[Autoplay]} autoplay={{ delay: 10000 }} loop>
       <div className="border border-solid border-red text-white test">
         {test}
       </div>

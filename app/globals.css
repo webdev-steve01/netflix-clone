@@ -374,3 +374,8 @@ select{
 .netflix-overlay{
   background: linear-gradient(to bottom, hsla(0, 0%, 0%, 0.5), hsla(0, 0%, 0%, 0.2), hsla(0, 0%, 0%, 0.8));
 }
+.article{
+  font-size: 10px;
+  line-height: 18px;
+  text-overflow: ellipsis;
+}

@@ -379,3 +379,9 @@ select{
   line-height: 18px;
   text-overflow: ellipsis;
 }
+@media screen and (min-width: 600px) {
+  .article{
+    font-size: 15px;
+    line-height: 20px;
+  }
+}

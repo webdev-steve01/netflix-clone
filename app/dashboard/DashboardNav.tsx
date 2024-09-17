@@ -4,13 +4,11 @@ import React from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Suspense } from "react";
-import { Navigation, A11y, Autoplay } from "swiper/modules";
+import { Autoplay, EffectFade, Mousewheel } from "swiper/modules";
+import "swiper/css/effect-fade";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/autoplay";
-// import { Result } from "postcss";
-// import { console } from "inspector";
-// import Movies from '../Movies';
 
 function DashboardNav() {
   type results = {
@@ -73,7 +71,7 @@ function DashboardNav() {
                   className="poster rounded  w-full"
                 />
               </Suspense>
-              <article className=" max-w-[500px] max-h-[200px] overflow-hidden flex flex-col gap-2">
+              <article className="article max-w-[500px] max-h-[200px] overflow-hidden self-end py-4 flex flex-col gap-2">
                 <h1 className="text-[20px]">{test.title}</h1>
                 <p className="article">{test.overview}</p>
               </article>
@@ -85,7 +83,14 @@ function DashboardNav() {
   });
 
   return (
-    <Swiper modules={[Autoplay]} autoplay={{ delay: 10000 }} loop>
+    <Swiper
+      modules={[Autoplay, EffectFade, Mousewheel]}
+      autoplay={{delay: 5000}}
+      loop
+      effect="fade"
+      speed={300}
+      // preventInteractionOnTransition
+    >
       <div className="border border-solid border-red text-white test">
         {test}
       </div>

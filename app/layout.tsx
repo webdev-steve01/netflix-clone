@@ -5,6 +5,7 @@ import "./globals.css";
 import { getServerSession } from "next-auth";;
 import Main from "./signin/Main";
 import SessionProvider from "./SessionProvider";
+// import Transition from "./Transition";
 
 
 
@@ -25,10 +26,9 @@ export default function RootLayout({
     <html lang="en">
       <link rel="shortcut icon" href="netflix-svgrepo-com.svg" type="image/x-icon" />
       <body className={inter.className}>
+        {/* <Nav/> */}
         <section>
-          <SessionProvider>
-            {children}
-          </SessionProvider>
+            <main>{children}</main>
         </section>
       </body>
     </html>

@@ -49,7 +49,7 @@ function DashboardNav() {
   console.log("hey");
   const test = array.map((test: result, i) => {
     return (
-      <SwiperSlide>
+      <SwiperSlide key={i}>
         <section
           className="w-full h-[100vh]  bg-purple-500"
           style={{
@@ -61,7 +61,6 @@ function DashboardNav() {
           <div className="h-full netflix-overlay flex items-end">
             <div className=" py-6 px-4 flex">
               <Image
-                key={i}
                 src={`https://image.tmdb.org/t/p/w500/${test.poster_path}`}
                 alt={test.title}
                 width={700}

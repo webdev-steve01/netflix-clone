@@ -371,7 +371,6 @@ select{
   }
 }
 
-.test .poster{
-  /* height: 700px;
-  width: 600px; */
+.netflix-overlay{
+  background: linear-gradient(to bottom, hsla(0, 0%, 0%, 0.5), hsla(0, 0%, 0%, 0.2), hsla(0, 0%, 0%, 0.8));
 }

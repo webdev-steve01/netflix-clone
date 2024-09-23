@@ -2,15 +2,17 @@
 import { useEffect, useState } from "react";
 import React from "react";
 import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { Suspense } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Mousewheel } from "swiper/modules";
-import "swiper/css/effect-fade";
-// Import Swiper styles
 import "swiper/css";
+import "swiper/css/effect-fade";
 import "swiper/css/autoplay";
+import TvSeries from "./TvSeries";
+
 
 function DashboardNav() {
+const [array, setArray] = useState([]);
   type results = {
     adult: boolean;
     backdrop_path: string;
@@ -27,7 +29,7 @@ function DashboardNav() {
     vote_average: number;
     vote_count: 137;
   };
-  const [array, setArray] = useState([]);
+  // setArray([])
   const options = {
     method: "GET",
     headers: {
@@ -36,15 +38,12 @@ function DashboardNav() {
     },
   };
   useEffect(() => {
+    const number: number = Math.floor(Math.random() * 10)
     const fetchData = async () => {
-      let data = await fetch(
-        `https://api.themoviedb.org/3/discover/movie?include_adult=true&include_video=false&language=en-US&page=1&sort_by=popularity.desc`,
+      await fetch(
+        `https://api.themoviedb.org/3/discover/movie?include_adult=true&include_video=false&language=en-US&page=${number}&sort_by=popularity.desc`,
         options
-      );
-      let post = await data.json();
-      let movies = post.results;
-      setArray(movies);
-      console.log(movies);
+      ).then(res => res.json()).then(res => setArray(res.results))
     };
     fetchData();
   }, []);
@@ -83,18 +82,30 @@ function DashboardNav() {
   });
 
   return (
-    <Swiper
-      modules={[Autoplay, EffectFade, Mousewheel]}
-      autoplay={{delay: 5000}}
-      loop
-      effect="fade"
-      speed={300}
-      // preventInteractionOnTransition
-    >
-      <div className="border border-solid border-red text-white test">
-        {test}
-      </div>
-    </Swiper>
+    <>
+      <section className="header h-[100vh] skeleton">
+        <Swiper
+          modules={[Autoplay, EffectFade, Mousewheel]}
+          autoplay={{delay: 5000}}
+          loop
+          effect="fade"
+          speed={300}
+          // preventInteractionOnTransition
+        >
+          <div className="border border-solid border-red text-white test">
+            {test}
+          </div>
+        </Swiper>
+      </section>
+      <section className="">
+        <section className="row-one text-white">
+
+          <section className="rows px-6">
+            <TvSeries />
+          </section>
+        </section>
+      </section>
+    </>
   );
 }
 

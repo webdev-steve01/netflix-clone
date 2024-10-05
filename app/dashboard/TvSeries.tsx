@@ -69,16 +69,6 @@ function TvSeries() {
     };
     fetchData();
   }, []);
-  const scroll: any = document.getElementById("carousel");
-  const handleLeft = (e: any) => {
-    scroll.style.scrollBehavior = "smooth";
-    scroll.scrollLeft += 300;
-  };
-  const handleRight = () => {
-    scroll.style.scrollBehavior = "smooth";
-    scroll.scrollLeft -= 300;
-  };
-
   const element = array.map((element: results, i) => {
     return (
       <div key={i}>
@@ -99,10 +89,10 @@ function TvSeries() {
   return (
     <>
       <section className="text-white py-4">
-        <p className="py-2">Tv shows</p>
+        <p className="py-2">Tvs shows</p>
         <div className="relative">
           <div
-            onClick={handleRight}
+            // onClick={handleRight}
             className="left absolute left-0 h-[50px] top-1/3 b flex items-center bg-white rounded border"
           >
             <Image src={back} alt="" width={20} height={20} />
@@ -116,7 +106,7 @@ function TvSeries() {
             </div>
           </div>
           <div
-            onClick={(e) => handleLeft(e)}
+            // onClick={(e) => handleLeft(e)}
             className="next absolute h-[50px] top-1/3 bg-white rounded flex items-center   border right-0 next"
           >
             <Image src={next} height={20} width={20} alt="" />

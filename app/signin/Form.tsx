@@ -40,7 +40,7 @@ function Form() {
           {error}
         </p>
         <input
-          className="bg-[hsla(218,28%,15%,0.8)] py-3 px-2 w-full focus-within:outline-white rounded-md m-0"
+          className="bg-[hsla(218,28%,15%,0.8)] py-3 px-2 w-full focus-within:outline-white rounded-md m-0 text-white"
           type="text"
           id="signInEmail"
           name="email"
@@ -55,7 +55,7 @@ function Form() {
           <></>
         ) : (
           <input
-            className="bg-[hsla(218,28%,15%,0.8)] py-3 px-2 w-full focus-within:outline-white rounded-md m-0"
+            className="bg-[hsla(218,28%,15%,0.8)] py-3 px-2 w-full focus-within:outline-white rounded-md m-0 text-white"
             type="password"
             id="signInPassword"
             name="password"

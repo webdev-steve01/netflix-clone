@@ -337,6 +337,13 @@ select {
   /* height: 100%; */
   min-width: 150px;
   max-width: 150px;
+  transform: scale(1);
+}
+.backdrop {
+  /* background-color: #0f0f0f; */
+}
+.backdrop::-webkit-scrollbar {
+  width: 0px;
 }
 /* .poste-holder:hover, .poster:hover{
   transform: scaleY(1.5);
@@ -398,11 +405,10 @@ select {
 .shows {
   position: relative;
 }
-.rows{
+.rows {
   /* display: flex;
   justify-content: center; */
   /* background-color: red; */
-
 }
 .shows::after {
   content: "";
@@ -424,10 +430,18 @@ select {
   z-index: 100;
   left: 0;
 }
-.left, .right{
+.left,
+.right {
   z-index: 100;
   /* background-color: red; */
 }
-.next{
-  z-index:100;
+
+.next {
+  z-index: 100;
+}
+.carousel::-webkit-scrollbar {
+  width: 5px;
+}
+.action {
+  z-index: 9999;
 }

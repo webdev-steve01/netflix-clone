@@ -8,7 +8,7 @@ import { auth } from "../firebase";
 import { redirect } from "next/navigation";
 type props = {
   setPrevUser: Function;
-}
+};
 function SignUpForm(props: props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,33 +26,30 @@ function SignUpForm(props: props) {
   };
   const signUp = (e: any) => {
     e.preventDefault();
-    if (fname || lname !== null) {
-      createUserWithEmailAndPassword(auth, email, password)
-        .then(() => {
-          // router.push("../dashboard");
-        {props.setPrevUser(true)}
-        })
-        .catch((err) => {
-          console.log(err);
-          const error: any = document.getElementById("error");
-          if (err == "FirebaseError: Firebase: Error (auth/missing-password).") {
-            setError("Password required");
-          }
-          if (
-            err == "FirebaseError: Firebase: Error (auth/email-already-in-use)."
-          ) {
-            setError("email already registered");
-          }
-          if (err == "FirebaseError: Firebase: Error (auth/invalid-email).") {
-            setError("invalid email");
-          }
-          if (err == "FirebaseError: Firebase: Password should be at least 6") {
-            error.innerText = "password must be at least 6 characters long";
-          } else {
-            setError("first name and last name required");
-          }
-        });
-    }
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        {
+          props.setPrevUser(true);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        const error: any = document.getElementById("error");
+        if (err == "FirebaseError: Firebase: Error (auth/missing-password).") {
+          setError("Password required");
+        }
+        if (
+          err == "FirebaseError: Firebase: Error (auth/email-already-in-use)."
+        ) {
+          setError("email already registered");
+        }
+        if (err == "FirebaseError: Firebase: Error (auth/invalid-email).") {
+          setError("invalid email");
+        }
+        if (err == "FirebaseError: Firebase: Password should be at least 6") {
+          error.innerText = "password must be at least 6 characters long";
+        }
+      });
   };
   return (
     <>
@@ -61,25 +58,7 @@ function SignUpForm(props: props) {
           {error}
         </p>
         <input
-          className="bg-[hsla(218,28%,15%,0.8)] py-3 px-2 w-full focus-within:outline-white rounded-md m-0"
-          type="text"
-          name="first name"
-          id="First-name"
-          placeholder="First name"
-          required
-          onChange={(e) => handleFirstName(e)}
-        />
-        <input
-          className="bg-[hsla(218,28%,15%,0.8)] py-3 px-2 w-full focus-within:outline-white rounded-md m-0"
-          type="text"
-          id="signInLastName"
-          name="last-name"
-          required
-          placeholder="input last name"
-          onChange={(e) => handleLastName(e)}
-        />
-        <input
-          className="bg-[hsla(218,28%,15%,0.8)] py-3 px-2 w-full focus-within:outline-white rounded-md m-0"
+          className="bg-[hsla(218,28%,15%,0.8)] py-3 px-2 w-full focus-within:outline-white rounded-md m-0 text-white"
           type="email"
           id="signInEmail"
           name="email"
@@ -87,7 +66,7 @@ function SignUpForm(props: props) {
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
-          className="bg-[hsla(218,28%,15%,0.8)] py-3 px-2 w-full focus-within:outline-white rounded-md m-0"
+          className="bg-[hsla(218,28%,15%,0.8)] py-3 px-2 w-full focus-within:outline-white rounded-md m-0 text-white"
           type="password"
           id="signInPassword"
           name="password"

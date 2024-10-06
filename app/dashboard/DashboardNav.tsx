@@ -7,6 +7,7 @@ import "swiper/css/effect-fade";
 import "swiper/css/autoplay";
 import TvSeries from "./TvSeries";
 import Action from "./Action";
+import SciFi from "./SciFi";
 
 async function DashboardNav() {
   // const [array, setArray] = useState([]);
@@ -104,6 +105,20 @@ async function DashboardNav() {
         <section className="row-one text-white">
           <section className="rows px-6">
             <TvSeries />
+          </section>
+        </section>
+      </section>
+      <section className="">
+        <section className="row-one text-white">
+          <section className="rows px-6">
+            <Action />
+          </section>
+        </section>
+      </section>
+      <section className="">
+        <section className="row-one text-white">
+          <section className="rows px-6">
+            <SciFi />
           </section>
         </section>
       </section>

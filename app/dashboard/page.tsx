@@ -6,9 +6,9 @@ import DashboardNav from "./DashboardNav";
 
 function page() {
   return (
-    <div className='font-bold text-2xl text-white'>
+    <div className="font-bold text-2xl text-white">
       <DashboardNav />
-      <Action />
+      {/* <Action /> */}
     </div>
   );
 }

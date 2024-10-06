@@ -89,7 +89,7 @@ function TvSeries() {
   return (
     <>
       <section className="text-white py-4">
-        <p className="py-2">Tvs shows</p>
+        <p className="py-2">Tv shows</p>
         <div className="relative">
           <div
             // onClick={handleRight}

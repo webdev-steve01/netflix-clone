@@ -1,7 +1,11 @@
+"use client";
 import Image from "next/image";
 import next from "@/public/caret-right-sm-svgrepo-com.svg";
 import back from "@/public/caret-left-sm-svgrepo-com.svg";
-async function Action() {
+import { useEffect, useState } from "react";
+
+async function SciFi() {
+  const [page, setPage] = useState(1);
   type results = {
     adult: boolean;
     backdrop_path: string;
@@ -51,13 +55,17 @@ async function Action() {
     },
   };
 
+  const holder =
+    "https://api.themoviedb.org/3/discover/movie?include_adult=true&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc";
+
   let data = await fetch(
-    "https://api.themoviedb.org/3/discover/movie?include_adult=true&include_video=false&language=en-US&page=3&sort_by=popularity.desc",
+    `https://api.themoviedb.org/3/discover/movie?include_adult=true&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc`,
     options
   );
   let posts = await data.json();
   const array: Array<any> = await posts.results;
-  const actionMovies = await array.filter((i) => i.genre_ids.includes(28));
+  const actionMovies = array.filter((i) => i.genre_ids.includes(878));
+  const totalItems = actionMovies.length;
   const element = actionMovies.map((element: results, i: any) => {
     return (
       <div key={i}>
@@ -68,7 +76,7 @@ async function Action() {
               alt=""
               height={200}
               width={150}
-              className="children-poster min-w-[120px] rounded-lg"
+              className="children-poster skeleton min-w-[120px] rounded-lg"
             />
           </section>
         </section>
@@ -78,7 +86,7 @@ async function Action() {
   return (
     <>
       <section className="text-white py-4">
-        <p className="py-2">Action</p>
+        <p className="py-2">Sci-Fi</p>
         <div className="relative">
           <div
             // onClick={handleRight}
@@ -106,4 +114,4 @@ async function Action() {
   );
 }
 
-export default Action;
+export default SciFi;

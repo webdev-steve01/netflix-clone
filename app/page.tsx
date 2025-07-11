@@ -1,12 +1,12 @@
 // "use client";
 import Image from "next/image";
-import FirstSection from "./FirstSection";
-import SectionTwo from "./SectionTwo";
-import ThirdSection from "./ThirdSection";
-import FAQsSection from "./FAQsSection";
-import LastSection from "./LastSection";
-import Footer from "./Footer";
-import Nav from "./Nav";
+import FirstSection from "../components/sections/FirstSection";
+import SectionTwo from "../components/sections/SectionTwo";
+import ThirdSection from "../components/sections/ThirdSection";
+import FAQsSection from "../components/sections/FAQsSection";
+import LastSection from "../components/sections/LastSection";
+import Footer from "../components/sections/Footer";
+import Nav from "../components/sections/Nav";
 
 
 export default function Home() {

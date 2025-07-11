@@ -1,13 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from 'react';
-import InputForm from "../InputForm";
-import { signIn } from "next-auth/react";
-import { redirect } from "next/dist/server/api-utils";
+import InputForm from "../../components/utilities/InputForm";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth } from "../../utils/firebase";
 import { useRouter } from "next/navigation";
-
 
 function Form() {
   const [code, setCode] = useState(false);
@@ -15,6 +12,14 @@ function Form() {
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
   const router = useRouter()
+  useEffect(() => {
+  const storedEmail = localStorage.getItem("email");
+  if (storedEmail) {
+    setEmail(storedEmail);
+    localStorage.clear
+  }
+}, []);
+
     const handleClick = () => {
       if (code) {
         setCode(false);
@@ -23,6 +28,10 @@ function Form() {
       }
   };
   const signIn = () => {
+    if(email === null || password === null){
+      alert("email or password can not be empty")
+      return
+    }
     signInWithEmailAndPassword(auth, email, password).then(() => {
       router.push('../dashboard')
     }).catch(err => {
@@ -44,6 +53,7 @@ function Form() {
           type="text"
           id="signInEmail"
           name="email"
+          value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder={
             code
@@ -71,14 +81,14 @@ function Form() {
         >
           <p className=" m-auto">{code ? "sign in with code" : "sign in"}</p>
         </button>
-        <p className="text-[#b8b8b9] text-center">OR</p>
-        <button
+        {/* <p className="text-[#b8b8b9] text-center">OR</p> */}
+        {/* <button
           type="button"
           className="bg-[hsla(340,8%,23%,0.8)] py-[5px] rounded-[5px] text-white"
           onClick={handleClick}
-        >
-          {code ? "use password" : "use code"}
-        </button>
+        > */}
+          {/* {code ? "use password" : "use code"} */}
+        {/* </button> */}
         <p className="text-white text-center">forgot password?</p>
         <div className="flex">
           <input

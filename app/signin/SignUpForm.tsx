@@ -1,10 +1,11 @@
 "use client";
 import { useState } from "react";
 import React from "react";
-import InputForm from "../InputForm";
+import InputForm from "../../components/utilities/InputForm";
 import { useRouter } from "next/navigation";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth, db } from "../../utils/firebase";
+import { addDoc, collection } from "firebase/firestore";
 import { redirect } from "next/navigation";
 type props = {
   setPrevUser: Function;
@@ -13,23 +14,32 @@ function SignUpForm(props: props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [fname, setFname] = useState("");
-  const [lname, setLname] = useState("");
+  const [username, setUsername] = useState("");
   const router = useRouter();
 
-  const handleFirstName = (e: any) => {
-    setFname(e.target.value);
-    console.log(fname);
+  const handleAdd = async () => {
+    try {
+      await addDoc(collection(db, "users"), {
+        name: username,
+        email,
+        createdAt: new Date(),
+      });
+      console.log("document added successfully")
+    } catch (error) {
+      console.error("error adding document",error);
+    }
   };
-  const handleLastName = (e: any) => {
-    setLname(e.target.value);
-  };
-  const signUp = (e: any) => {
+
+  const signUp = async (e: any) => {
     e.preventDefault();
-    createUserWithEmailAndPassword(auth, email, password)
+    if(!email || !username || !password){
+      alert("Fill all fields please")
+    }
+    await createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
         {
           props.setPrevUser(true);
+          handleAdd()
         }
       })
       .catch((err) => {
@@ -59,10 +69,18 @@ function SignUpForm(props: props) {
         </p>
         <input
           className="bg-[hsla(218,28%,15%,0.8)] py-3 px-2 w-full focus-within:outline-white rounded-md m-0 text-white"
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Stephen Paul"
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          className="bg-[hsla(218,28%,15%,0.8)] py-3 px-2 w-full focus-within:outline-white rounded-md m-0 text-white"
           type="email"
           id="signInEmail"
           name="email"
-          placeholder="input email"
+          placeholder="sylv****@gmail.com"
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
@@ -70,7 +88,7 @@ function SignUpForm(props: props) {
           type="password"
           id="signInPassword"
           name="password"
-          placeholder="input password (must be over 6 characters long)"
+          placeholder="******"
           onChange={(e) => setPassword(e.target.value)}
         />
         <button

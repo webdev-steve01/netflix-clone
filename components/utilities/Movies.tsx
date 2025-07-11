@@ -4,7 +4,7 @@ import Image from "next/image";
 import next from "@/public/caret-right-sm-svgrepo-com.svg";
 import back from "@/public/caret-left-sm-svgrepo-com.svg";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules"
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 // Import Swiper styles
 import "swiper/css";
 
@@ -68,7 +68,7 @@ function Movies() {
   useEffect(() => {
     const fetchData = async (film: string) => {
       let data = await fetch(
-        `https://api.themoviedb.org/3/discover/${film}?include_adult=true&include_video=false&language=en-US&page=1&sort_by=popularity.desc`,
+        `https://api.themoviedb.org/3/discover/${film}?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc`,
         options
       );
       let post = await data.json();
@@ -78,21 +78,34 @@ function Movies() {
     };
     fetchData(film);
   }, [film]);
-  const innerHtml = response.map((movie: Moviedata, id: number) => {
-    return (
-      <div key={movie.id} className="poster-holder skeleton">
-        <SwiperSlide>
-          <Image
-            src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
-            alt={movie.title}
-            width={400}
-            height={300}
-            className="poster swiper-slide"
-          />
-        </SwiperSlide>
-      </div>
-    );
-  });
+
+  const skeletonSlides = Array.from({ length: slides || 5 }, (_, index) => (
+    <div
+      key={`skeleton-${index}`}
+      className="poster-holder skeleton animate-pulse"
+    >
+      <SwiperSlide>
+        <div className="w-[400px] h-[300px] bg-gray-300 rounded-lg" />
+      </SwiperSlide>
+    </div>
+  ));
+
+  const innerHtml =
+    response.length === 0
+      ? skeletonSlides
+      : response.map((movie: Moviedata) => (
+          <div key={movie.id} className="poster-holder skeleton">
+            <SwiperSlide>
+              <Image
+                src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
+                alt={movie.title}
+                width={400}
+                height={300}
+                className="poster swiper-slide bg-gray-600"
+              />
+            </SwiperSlide>
+          </div>
+        ));
 
   return (
     <>

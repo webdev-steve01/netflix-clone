@@ -2,7 +2,7 @@
 import React, {useEffect} from "react";
 import Image from "next/image";
 import next from "../public/right-arrow-svgrepo-com.svg";
-import ReadyToWatch from "./ReadyToWatch";
+import ReadyToWatch from "../utilities/ReadyToWatch";
 export default function FirstSection() {
   const handleClick = () => {
     const text = document.getElementById("email");

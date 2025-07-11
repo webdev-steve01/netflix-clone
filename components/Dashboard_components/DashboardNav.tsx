@@ -6,11 +6,9 @@ import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/autoplay";
 import TvSeries from "./TvSeries";
-import Action from "./Action";
-import SciFi from "./SciFi";
+import Film from "./Film";
 
 async function DashboardNav() {
-  // const [array, setArray] = useState([]);
   type results = {
     adult: boolean;
     backdrop_path: string;
@@ -35,18 +33,7 @@ async function DashboardNav() {
       Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhOTU2M2ZmYTM0NjJiMThmMzViNjJlYTQ2ZmM5M2FkNCIsIm5iZiI6MTcyNjIxNTcxNS4xOTQ1NjgsInN1YiI6IjY2ZDY0NjhiNmM0MjFkZGMzNDZhYzFhZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2Za6gRawWvOOs7GtHkRdWEG9Ava6m3Iv7oE0oi7w_zQ`,
     },
   };
-  // useEffect(() => {
-  //   const number: number = Math.floor(Math.random() * 5);
-  //   const fetchData = async () => {
-  //     await fetch(
-  //       `https://api.themoviedb.org/3/discover/movie?include_adult=true&include_video=false&language=en-US&page=${number}&sort_by=popularity.desc`,
-  //       options
-  //     )
-  //       .then((res) => res.json())
-  //       .then((res) => setArray(res.results));
-  //   };
-  //   fetchData();
-  // }, []);
+
   let data = await fetch(
     "https://api.themoviedb.org/3/discover/movie?include_adult=true&include_video=false&language=en-US&page=3&sort_by=popularity.desc",
     options
@@ -101,26 +88,12 @@ async function DashboardNav() {
           </div>
         </div>
       </section>
-      <section className="">
-        <section className="row-one text-white">
-          <section className="rows px-6">
-            <TvSeries />
-          </section>
-        </section>
-      </section>
-      <section className="">
-        <section className="row-one text-white">
-          <section className="rows px-6">
-            <Action />
-          </section>
-        </section>
-      </section>
-      <section className="">
-        <section className="row-one text-white">
-          <section className="rows px-6">
-            <SciFi />
-          </section>
-        </section>
+
+      <section className="px-4">
+        <TvSeries />
+        <Film genre={35} genre_title="Comedy" />
+        <Film genre={878} genre_title="Sci-Fi" />
+        <Film genre={28} genre_title="Action" />
       </section>
     </>
   );

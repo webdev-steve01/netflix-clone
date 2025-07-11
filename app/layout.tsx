@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Nav from "./Nav";
+import Nav from "../components/sections/Nav";
 import "./globals.css";
 import { getServerSession } from "next-auth";;
 import Main from "./signin/Main";

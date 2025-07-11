@@ -1,14 +1,26 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Image from "next/image";
-import next from "../public/right-arrow-svgrepo-com.svg";
-
+import next from "@/public/right-arrow-svgrepo-com.svg";
+import { useRouter } from "next/navigation";
 function ReadyToWatch() {
+  const [email, setEmail] = useState("");
+  const router = useRouter()
+  const handleRoute = (e: React.FormEvent, text: string) => {
+    e.preventDefault()
+    if (!text) {
+      alert("input email");
+      return;
+    }
+    localStorage.setItem("email", text);
+    router.push("./signin")
+  };
   return (
     <>
       <p className="soft-text">
         Ready to watch? enter your email to create or restart your membership
       </p>
-      <form action="" className="form form-flex flex flex-col">
+      <form action="" onSubmit={e => handleRoute(e, email)} className="form form-flex flex flex-col">
         <section className="input flex flex-col gap-0">
           <input
             className="field bg-transparent border-red border-solid border m-0 py-2"
@@ -16,11 +28,13 @@ function ReadyToWatch() {
             type="email"
             name=""
             id="email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
             placeholder="input email"
           />
         </section>
         <section className="button-section">
-          <button type="button" className="button px-5 py-3 rounded-md">
+          <button type="submit" className="button px-5 py-3 rounded-md">
             Get started{" "}
             <span className="next w-5 h-5">
               <Image className="img" src={next} alt="" priority />

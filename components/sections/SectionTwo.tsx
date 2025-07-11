@@ -1,8 +1,8 @@
 // "use client";
 import { useState } from "react";
 import { use } from "react";
-import Dropdown from "./Dropdown";
-import Movies from "./Movies";
+import Dropdown from "../utilities/Dropdown";
+import Movies from "../utilities/Movies";
 
 function SectionTwo() {
     // const [film, setFilm] = useState("movies");

@@ -1,9 +1,8 @@
-import React from 'react';
-import Card from './Card';
-import TV from '../public/tv-screen-television-svgrepo-com.svg'
-import download from '../public/download-square-svgrepo-com.svg';
-import telescope from '../public/telescope-svgrepo-com.svg';
-import profile from '../public/multiple-user-profile-images-svgrepo-com.svg'
+import Card from '../utilities/Card';
+import TV from '@/public/tv-screen-television-svgrepo-com.svg'
+import download from '@/public/download-square-svgrepo-com.svg';
+import telescope from '@/public/telescope-svgrepo-com.svg';
+import profile from '@/public/multiple-user-profile-images-svgrepo-com.svg'
 
 function ThirdSection() {
   // console.error('test')

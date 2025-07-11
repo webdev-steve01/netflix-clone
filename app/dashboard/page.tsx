@@ -1,8 +1,4 @@
-// import Home from "./Home";
-// import dashboar
-
-import Action from "./Action";
-import DashboardNav from "./DashboardNav";
+import DashboardNav from "../../components/Dashboard_components/DashboardNav";
 
 function page() {
   return (

@@ -1,12 +1,14 @@
 import Image from "next/image";
+// import { Suspense } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Mousewheel } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/autoplay";
+import Link from "next/link";
 import Film from "./Film";
+import SearchBar from "./SearchBar";
 import DashNav from "./DashNav";
-const token = process.env.TMDB_BEARER_TOKEN;
 
 async function DashboardNav() {
   type results = {
@@ -30,7 +32,7 @@ async function DashboardNav() {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhOTU2M2ZmYTM0NjJiMThmMzViNjJlYTQ2ZmM5M2FkNCIsIm5iZiI6MTcyNjIxNTcxNS4xOTQ1NjgsInN1YiI6IjY2ZDY0NjhiNmM0MjFkZGMzNDZhYzFhZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2Za6gRawWvOOs7GtHkRdWEG9Ava6m3Iv7oE0oi7w_zQ`,
     },
   };
 
@@ -51,6 +53,7 @@ async function DashboardNav() {
             backgroundPosition: "center",
           }}
         >
+
           <div className="h-full netflix-overlay border border-black px-4 py-2 flex items-end">
             <div className=" py-2 m-0">
               <Image
@@ -73,7 +76,7 @@ async function DashboardNav() {
 
   return (
     <>
-      <DashNav />
+    <DashNav />
       <section className="header h-[80vh] skeleton">
         <div
           // modules={[Autoplay, EffectFade, Mousewheel]}

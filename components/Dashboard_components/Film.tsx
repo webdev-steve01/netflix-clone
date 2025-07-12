@@ -5,8 +5,6 @@ import back from "@/public/caret-left-sm-svgrepo-com.svg";
 import { Results } from "@/utils/interfaces";
 import dynamic from "next/dynamic";
 const MovieCard = dynamic(() => import("./MovieCard"), { ssr: false });
-const token = process.env.TMDB_BEARER_TOKEN;
-
 type Prop = {
   genre: number;
   genre_title: string;
@@ -26,7 +24,7 @@ export default async function Film({
       method: "GET",
       headers: {
         accept: "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhOTU2M2ZmYTM0NjJiMThmMzViNjJlYTQ2ZmM5M2FkNCIsIm5iZiI6MTcyNjIxNTcxNS4xOTQ1NjgsInN1YiI6IjY2ZDY0NjhiNmM0MjFkZGMzNDZhYzFhZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2Za6gRawWvOOs7GtHkRdWEG9Ava6m3Iv7oE0oi7w_zQ`,
       },
       cache: "no-store", // optional
     }

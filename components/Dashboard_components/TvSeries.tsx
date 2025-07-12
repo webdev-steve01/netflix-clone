@@ -24,31 +24,7 @@ function TvSeries() {
     vote_average: number;
     vote_count: 137;
   };
-  // const [slides, setSlides] = useState(0);
-  // const setSlidesPerview = () => {
-  //   setSlides(
-  //     window.innerWidth <= 550
-  //       ? 3
-  //       : window.innerWidth <= 720
-  //       ? 3
-  //       : window.innerWidth <= 1100
-  //       ? 4
-  //       : window.innerWidth > 1100
-  //       ? 7
-  //       : 0
-  //   );
-  // };
-  // useEffect(() => {
-  //   //Initially set the amount of slides on page load
-  //   setSlidesPerview();
-  //   // Add the event listner on component mount
-  //   window.addEventListener("resize", setSlidesPerview);
-
-  //   // Remove the listner when component unmounts
-  //   return () => {
-  //     window.removeEventListener("resize", setSlidesPerview);
-  //   };
-  // }, []);
+  
   const options = {
     method: "GET",
     headers: {
@@ -58,7 +34,6 @@ function TvSeries() {
   };
 
   useEffect(() => {
-    const number: number = Math.floor(Math.random() * 10);
     const fetchData = async () => {
       await fetch(
         `https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc`,

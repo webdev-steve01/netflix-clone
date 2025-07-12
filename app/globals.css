@@ -252,6 +252,9 @@ select {
   position: relative;
   width: 150px;
 }
+.no-scroll::-webkit-scrollbar{
+  display: none;
+}
 .select::after {
   content: "";
   width: 10px;

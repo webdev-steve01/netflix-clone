@@ -11,6 +11,7 @@ function Form() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
   const router = useRouter()
   useEffect(() => {
   const storedEmail = localStorage.getItem("email");
@@ -20,28 +21,52 @@ function Form() {
   }
 }, []);
 
-    const handleClick = () => {
-      if (code) {
-        setCode(false);
-      } else {
-        setCode(true);
-      }
-  };
-  const signIn = () => {
-    if(email === null || password === null){
-      alert("email or password can not be empty")
-      return
-    }
-    signInWithEmailAndPassword(auth, email, password).then(() => {
-      router.push('../dashboard')
-    }).catch(err => {
-      console.log(err);
-      if (err == "FirebaseError: Firebase: Error (auth/invalid-credential).") {
-        setError("invalid email/password");
-      }
-      
-    })
+const signIn = () => {
+  if (email === null || password === null) {
+    alert("email or password can not be empty");
+    return;
   }
+
+  setLoading(true);
+
+  signInWithEmailAndPassword(auth, email, password)
+    .then(() => {
+      router.push('../dashboard');
+    })
+    .catch((err) => {
+      console.log(err);
+      const errorCode = err.code;
+
+      switch (errorCode) {
+        case "auth/invalid-email":
+          setError("Invalid email format.");
+          break;
+        case "auth/user-disabled":
+          setError("This user account has been disabled.");
+          break;
+        case "auth/user-not-found":
+          setError("No user found with this email.");
+          break;
+        case "auth/wrong-password":
+          setError("Incorrect password.");
+          break;
+        case "auth/invalid-credential":
+          setError("Invalid email or password.");
+          break;
+        case "auth/too-many-requests":
+          setError("Too many failed attempts. Please try again later.");
+          break;
+        case "auth/network-request-failed":
+          setError("Network error. Check your internet connection.");
+          break;
+        default:
+          setError("An unexpected error occurred. Please try again.");
+      }
+
+      setLoading(false);
+    });
+};
+
   return (
     <>
       <form action="" className="flex flex-col gap-1">
@@ -79,7 +104,7 @@ function Form() {
           className="button rounded-[5px] py-1"
           type="button"
         >
-          <p className=" m-auto">{code ? "sign in with code" : "sign in"}</p>
+          <p className=" m-auto">{loading ? "loading..." : "sign in"}</p>
         </button>
         {/* <p className="text-[#b8b8b9] text-center">OR</p> */}
         {/* <button
@@ -102,6 +127,23 @@ function Form() {
           </label>
         </div>
       </form>
+
+{loading && <div className="absolute inset-0 z-50 bg-black/50 h-screen w-screen flex items-center justify-center">
+  <div className="loader">
+      <div className="bar1"></div>
+      <div className="bar2"></div>
+      <div className="bar3"></div>
+      <div className="bar4"></div>
+      <div className="bar5"></div>
+      <div className="bar6"></div>
+      <div className="bar7"></div>
+      <div className="bar8"></div>
+      <div className="bar9"></div>
+      <div className="bar10"></div>
+      <div className="bar11"></div>
+      <div className="bar12"></div>
+  </div>
+</div>}
     </>
   );
 }

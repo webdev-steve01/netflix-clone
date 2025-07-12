@@ -26,7 +26,6 @@ export default async function Film({
         accept: "application/json",
         Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhOTU2M2ZmYTM0NjJiMThmMzViNjJlYTQ2ZmM5M2FkNCIsIm5iZiI6MTcyNjIxNTcxNS4xOTQ1NjgsInN1YiI6IjY2ZDY0NjhiNmM0MjFkZGMzNDZhYzFhZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2Za6gRawWvOOs7GtHkRdWEG9Ava6m3Iv7oE0oi7w_zQ`,
       },
-      cache: "no-store", // optional
     }
   );
 
@@ -37,7 +36,7 @@ export default async function Film({
     <section className="text-white py-4 no-select">
       <p className="py-2 text-[1.2em] font-semibold">{genre_title}</p>
       <div className="relative">
-        <div className="left absolute left-0 h-[50px] top-1/3 flex items-center bg-white rounded border z-0">
+        <div className="left absolute left-0 h-[50px] w-[50px] top-1/3 flex items-center justify-center bg-[#C9CEBD]/90 rounded-full z-0">
           <Image src={back} alt="" width={20} height={20} />
         </div>
         <div className="overflow-hidden relative rounded back">
@@ -52,7 +51,7 @@ export default async function Film({
             ))}
           </div>
         </div>
-        <div className="next absolute z-10 h-[50px] top-1/3 bg-white rounded flex items-center border right-0">
+        <div className="next absolute z-10 h-[50px] top-1/3 bg-[#C9CEBD]/75 w-[50px] flex items-center justify-center rounded-full right-0">
           <Image src={next} height={20} width={20} alt="" />
         </div>
       </div>

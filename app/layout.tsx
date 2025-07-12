@@ -8,8 +8,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Not netflix nigeria😉",
-  description: "Notflix",
+  title: "NewFlix",
+  description: "Keep track of latest movies",
 };
 
 export default function RootLayout({

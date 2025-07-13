@@ -537,7 +537,7 @@ select {
 }
 
 @media screen and (max-width: 1000px){
-  .next,.left, .right{
+  .next,.left, .right, .front{
     display: none;
   }
 }

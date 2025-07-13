@@ -70,14 +70,14 @@ function Movies() {
     response.length === 0
       ? skeletonSlides
       : response.map((movie: Moviedata) => (
-          <div key={movie.id} className="poster-holder skeleton">
-            <SwiperSlide className="rounded-lg overflow-hidden">
+          <div key={movie.id} className="poster-holder film- skeleton">
+            <SwiperSlide className="rounded-lg overflow-hidden ">
               <Image
                 src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
                 alt={movie.title}
                 width={400}
                 height={300}
-                className="children-poster rounded-lg skeleton swiper-slide bg-gray-600"
+                className="children-poster  rounded-lg skeleton swiper-slide bg-gray-600"
               />
             </SwiperSlide>
           </div>
@@ -117,7 +117,7 @@ function Movies() {
       <section className="image-list py-4 my-2">
         <section className="">
           <section className="media-group m-[auto] relative">
-            <p className="switchLeft absolute left-[5px] bottom-[50%] rounded-full p-2 bg-white">
+            <p className="switchLeft absolute left-[5px] bottom-[50%] hidden lg:block rounded-full p-2 bg-white">
               <Image src={back} alt="" width={25} />
             </p>
             <Swiper
@@ -130,7 +130,7 @@ function Movies() {
               spaceBetween: 8,
             },
             
-            400: {
+            375: {
               slidesPerView: 3,
               spaceBetween: 12,
             },
@@ -170,7 +170,7 @@ function Movies() {
             >
               {innerHtml}
             </Swiper>
-            <p className="switchRight absolute right-[5px] bottom-[50%] rounded-full p-2 bg-white">
+            <p className="switchRight absolute right-[5px] hidden lg:block bottom-[50%] rounded-full p-2 bg-white">
               <Image src={next} alt="" width={25} />
             </p>
           </section>

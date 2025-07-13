@@ -544,10 +544,21 @@ select {
 
 body{
   overflow-x: hidden;
+  user-select: none;
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 900px) {
   .film-card{
-    width: 150px;
+    width: 200px;
   }
 }
+
+@media screen and (max-width: 400px) {
+  
+  .film-card{
+    width: 100px;
+    aspect-ratio: 16 / 9;
+    height: 185px;
+  }
+}
+

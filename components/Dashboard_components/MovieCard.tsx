@@ -17,7 +17,7 @@ export default function MovieCard({ movie, type }: { movie: Results, type: strin
           alt={movie.title}
           height={40}
           width={800}
-          className="children-poster skeleton min-w-[120px] rounded-lg"
+          className="children-poster skeleton  rounded-lg"
         />
       </div>
 

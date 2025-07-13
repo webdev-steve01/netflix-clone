@@ -15,30 +15,6 @@ function Movies() {
   const [film, setFilm] = useState("movie");
   const [response, setResponse] = useState([]);
   const [slides, setSlides] = useState(0);
-  const setSlidesPerview = () => {
-    setSlides(
-      window.innerWidth <= 550
-        ? 2
-        : window.innerWidth <= 720
-        ? 3
-        : window.innerWidth <= 1100
-        ? 4
-        : window.innerWidth > 1100
-        ? 5
-        : 0
-    );
-  };
-  useEffect(() => {
-    //Initially set the amount of slides on page load
-    setSlidesPerview();
-    // Add the event listner on component mount
-    window.addEventListener("resize", setSlidesPerview);
-
-    // Remove the listner when component unmounts
-    return () => {
-      window.removeEventListener("resize", setSlidesPerview);
-    };
-  }, []);
   const handleClick = (e: any) => {
     setFilm(e.target.value);
   };
@@ -95,13 +71,13 @@ function Movies() {
       ? skeletonSlides
       : response.map((movie: Moviedata) => (
           <div key={movie.id} className="poster-holder skeleton">
-            <SwiperSlide>
+            <SwiperSlide className="rounded-lg overflow-hidden">
               <Image
                 src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
                 alt={movie.title}
                 width={400}
                 height={300}
-                className="poster swiper-slide bg-gray-600"
+                className="children-poster rounded-lg skeleton swiper-slide bg-gray-600"
               />
             </SwiperSlide>
           </div>
@@ -148,7 +124,41 @@ function Movies() {
               className="movie-holder swiper-wrapper overflow-auto bg-black]"
               modules={[Navigation, Pagination, A11y]}
               spaceBetween={16}
-              slidesPerView={slides}
+                  breakpoints={{
+            320: {
+              slidesPerView: 2,
+              spaceBetween: 8,
+            },
+            
+            400: {
+              slidesPerView: 3,
+              spaceBetween: 12,
+            },
+            700: {
+              slidesPerView: 4,
+              spaceBetween: 14,
+            },
+            768: {
+              slidesPerView: 5,
+              spaceBetween: 16,
+            },
+            1024: {
+              slidesPerView: 7,
+              spaceBetween: 20,
+            },
+            1280: {
+              slidesPerView: 9,
+              spaceBetween: 24,
+            },
+            1440: {
+              slidesPerView: 9,
+              spaceBetween: 28,
+            },
+            1600: {
+              slidesPerView:9,
+              spaceBetween: 32,
+            },
+          }}
               // pagination
               // loop
               navigation={{

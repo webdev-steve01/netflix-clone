@@ -4,6 +4,7 @@ import logo from "@/public/netflix-2-logo-svgrepo-com.svg";
 import Image from "next/image";
 import SignUpHero from "./SignUpHero";
 import SignInFooter from "./SignInFooter";
+import Footer from "@/components/sections/Footer";
 
 function Main() {
   return (
@@ -18,7 +19,7 @@ function Main() {
           </div>
         </section>
       </section>
-      <SignInFooter />
+      <Footer />
     </section>
   );
 }

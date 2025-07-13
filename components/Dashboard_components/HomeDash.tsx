@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Results } from "@/utils/interfaces";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -14,13 +13,11 @@ interface prop {
 }
 
 export default function HomeDash({ array }: prop) {
-    const router = useRouter(); 
   const test = array.map((test: Results, i: number) => {
     return (
       <SwiperSlide key={i} className="p-0 m-0">
         <section
           className="w-[100vw] h-[80vh] "
-
           style={{
             background: `url(https://image.tmdb.org/t/p/w1280/${test.backdrop_path})`,
             backgroundSize: "cover",
@@ -28,7 +25,7 @@ export default function HomeDash({ array }: prop) {
             backgroundRepeat: "no-repeat",
           }}
         >
-          <div className="h-full netflix-overlay px-4 py-2 flex gap-[4em] items-end">
+          <div className="h-full netflix-overlay px-4  flex gap-[4em] items-end">
             <div className=" py-2 m-0">
               <Image
                 src={`https://image.tmdb.org/t/p/w1280/${test.poster_path}`}

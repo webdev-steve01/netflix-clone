@@ -1,12 +1,9 @@
 "use client";
 import { useState } from "react";
 import React from "react";
-import InputForm from "../../components/utilities/InputForm";
-import { useRouter } from "next/navigation";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../utils/firebase";
 import { addDoc, collection } from "firebase/firestore";
-import { redirect } from "next/navigation";
 type props = {
   setPrevUser: Function;
 };
@@ -15,7 +12,9 @@ function SignUpForm(props: props) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [username, setUsername] = useState("");
-  const router = useRouter();
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleAdd = async () => {
     try {
@@ -24,40 +23,56 @@ function SignUpForm(props: props) {
         email,
         createdAt: new Date(),
       });
-      console.log("document added successfully")
+      console.log("document added successfully");
     } catch (error) {
-      console.error("error adding document",error);
+      console.error("error adding document", error);
     }
   };
 
   const signUp = async (e: any) => {
     e.preventDefault();
-    if(!email || !username || !password){
-      alert("Fill all fields please")
+    if (!email || !username || !password) {
+      alert("Fill all fields please");
+      return;
     }
+    setLoading(true);
     await createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
         {
           props.setPrevUser(true);
-          handleAdd()
+          handleAdd();
         }
       })
       .catch((err) => {
-        console.log(err);
-        const error: any = document.getElementById("error");
-        if (err == "FirebaseError: Firebase: Error (auth/missing-password).") {
-          setError("Password required");
-        }
-        if (
-          err == "FirebaseError: Firebase: Error (auth/email-already-in-use)."
-        ) {
-          setError("email already registered");
-        }
-        if (err == "FirebaseError: Firebase: Error (auth/invalid-email).") {
-          setError("invalid email");
-        }
-        if (err == "FirebaseError: Firebase: Password should be at least 6") {
-          error.innerText = "password must be at least 6 characters long";
+        switch (err.code) {
+          case "auth/missing-password":
+            setError("Password required");
+            setPasswordError(true);
+            setEmailError(false);
+            break;
+
+          case "auth/email-already-in-use":
+            setError("Email already registered");
+            setEmailError(true);
+            setPasswordError(false);
+            break;
+
+          case "auth/invalid-email":
+            setError("Invalid email");
+            setPasswordError(false);
+            setEmailError(true);
+            break;
+
+          case "auth/weak-password":
+            setError("Password should be at least 6 characters");
+            setPasswordError(true);
+            setEmailError(false);
+            break;
+
+          default:
+            setError("An unknown error occurred");
+            console.error(err); // helpful for debugging
+            break;
         }
       });
   };
@@ -68,7 +83,7 @@ function SignUpForm(props: props) {
           {error}
         </p>
         <input
-          className="bg-[hsla(218,28%,15%,0.8)] py-3 px-2 w-full focus-within:outline-white rounded-md m-0 text-white"
+          className="bg-[hsla(218,28%,15%,0.8)] py-3 px-2 w-full focus-within:outline-none rounded-md m-0 text-white"
           type="text"
           id="username"
           name="username"
@@ -76,7 +91,9 @@ function SignUpForm(props: props) {
           onChange={(e) => setUsername(e.target.value)}
         />
         <input
-          className="bg-[hsla(218,28%,15%,0.8)] py-3 px-2 w-full focus-within:outline-white rounded-md m-0 text-white"
+          className={`bg-[hsla(218,28%,15%,0.8)] py-3 px-2 w-full focus-within:outline-none rounded-md m-0 text-white ${
+            emailError ? "border-red-600 border" : ""
+          }`}
           type="email"
           id="signInEmail"
           name="email"
@@ -84,7 +101,9 @@ function SignUpForm(props: props) {
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
-          className="bg-[hsla(218,28%,15%,0.8)] py-3 px-2 w-full focus-within:outline-white rounded-md m-0 text-white"
+          className={`bg-[hsla(218,28%,15%,0.8)] py-3 px-2 w-full focus-within:outline-none rounded-md m-0 text-white ${
+            passwordError ? "border border-red-600" : "border-none"
+          }`}
           type="password"
           id="signInPassword"
           name="password"
@@ -96,7 +115,7 @@ function SignUpForm(props: props) {
           type="submit"
           onClick={(e) => signUp(e)}
         >
-          <p className=" m-auto">sign Up</p>
+          <p className=" m-auto">{loading ? "loading..." : "Sign up"}</p>
         </button>
         <p className="text-white text-center">forgot password?</p>
         <div className="flex">
@@ -111,6 +130,25 @@ function SignUpForm(props: props) {
           </label>
         </div>
       </form>
+
+      {loading && (
+        <div className="absolute inset-0 z-50 bg-black/50 h-screen w-screen flex items-center justify-center">
+          <div className="loader">
+            <div className="bar1"></div>
+            <div className="bar2"></div>
+            <div className="bar3"></div>
+            <div className="bar4"></div>
+            <div className="bar5"></div>
+            <div className="bar6"></div>
+            <div className="bar7"></div>
+            <div className="bar8"></div>
+            <div className="bar9"></div>
+            <div className="bar10"></div>
+            <div className="bar11"></div>
+            <div className="bar12"></div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

@@ -48,7 +48,7 @@ export default function MovieModal({
 
 
   const modalContent = !details ? (
-    <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-[9999]">
+    <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-[9999] select-none">
       <p className="text-white">Loading...</p>
     </div>
   ) : (
@@ -63,7 +63,7 @@ export default function MovieModal({
         <section
           className="w-full h-[270px]"
           style={{
-            background: `url(https://image.tmdb.org/t/p/w500${details.backdrop_path})`,
+            background: `url(https://image.tmdb.org/t/p/w1280/${details.backdrop_path})`,
             backgroundSize: "cover",
             backgroundPosition: "top",
             backgroundRepeat: "no-repeat",

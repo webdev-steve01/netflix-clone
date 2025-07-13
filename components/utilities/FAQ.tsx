@@ -64,7 +64,7 @@ function FAQ() {
     )
   })
   return (
-    <section className="faq max-w-[900px] mx-auto">
+    <section className="faq max-w-[1200px] mx-auto">
       {/* <section className="closed px-4">
         <section className=" text py-5 flex justify-between align-middle">
           <div className="">What is netflix</div>

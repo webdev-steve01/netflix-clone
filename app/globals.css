@@ -1,6 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+@import 'swiper/css/autoplay';
+
 
 * {
   /* border: 1px solid red; */
@@ -56,6 +61,7 @@ html{
 body {
   position: relative;
   background-color: black;
+  overflow-x: hidden;
 }
 .nav-image {
   width: 100px;
@@ -329,7 +335,8 @@ select {
   /* height: 100%; */
   min-width: 150px;
   max-width: 150px;
-  transform: scale(1);
+  margin: 1em 0;
+  /* transform: scale(1); */
 }
 .backdrop {
   /* background-color: #0f0f0f; */
@@ -391,7 +398,7 @@ select {
 @media screen and (min-width: 600px) {
   .article {
     font-size: 15px;
-    line-height: 20px;
+    line-height: 25px;
   }
 }
 .shows {
@@ -532,5 +539,15 @@ select {
 @media screen and (max-width: 1000px){
   .next,.left, .right{
     display: none;
+  }
+}
+
+body{
+  overflow-x: hidden;
+}
+
+@media screen and (max-width: 375px) {
+  .film-card{
+    width: 150px;
   }
 }

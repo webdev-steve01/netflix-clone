@@ -23,7 +23,7 @@ export default function RootLayout({
       <body className={inter.className}>
         {/* <Nav/> */}
         <section>
-            <main>{children}</main>
+            <main className="w-screen">{children}</main>
         </section>
       </body>
     </html>

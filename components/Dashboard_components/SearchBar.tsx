@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import search from "@/public/search-svgrepo-com.svg";
 import { useDebounce } from "@/hooks/UseDebounce";
 import { Results } from "@/utils/interfaces";
+import Link from "next/link";
 // import { p } from "framer-motion/client"
 
 function SearchBar() {
@@ -62,22 +63,24 @@ function SearchBar() {
       </div>
 
       {searchItem && (
-        <div className="no-scroll max-w-[550px] absolute flex flex-col gap-2 top-full mt-2 w-full bg-[#0C0502] p-2 rounded-md z-50 max-h-[300px] overflow-y-auto">
+        <div className="no-scroll max-w-[550px] absolute flex flex-col gap-2 top-full mt-2 w-full bg-[#0C0502] p-2 rounded-md z-50 max-h-[500px] overflow-y-auto">
           {results
             ?.filter(
               (value) => value.poster_path && (value.title || value.name)
             ) // 👈 filter valid entries
             .map((value: Results, index: number) => (
-              <div className="flex" key={index}>
-                <Image
-                  src={`https://image.tmdb.org/t/p/w500/${value.poster_path}`}
-                  width={100}
-                  height={100}
-                  alt={value.name || value.title}
-                  className="rounded-lg"
-                />
-                <p>{value.title || value.name}</p>
-              </div>
+              <Link key={index} href={`./${value.id}`}>
+                <div className="flex">
+                  <Image
+                    src={`https://image.tmdb.org/t/p/w500/${value.poster_path}`}
+                    width={100}
+                    height={100}
+                    alt={value.name || value.title}
+                    className="rounded-lg"
+                  />
+                  <p>{value.title || value.name}</p>
+                </div>
+              </Link>
             ))}
         </div>
       )}

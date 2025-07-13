@@ -12,7 +12,7 @@ function ReadyToWatch() {
       alert("input email");
       return;
     }
-    localStorage.setItem("email", text);
+    sessionStorage.setItem("email", text);
     router.push("./signin")
   };
   return (

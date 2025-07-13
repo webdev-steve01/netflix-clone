@@ -9,25 +9,10 @@ import Link from "next/link";
 import Film from "./Film";
 import SearchBar from "./SearchBar";
 import DashNav from "./DashNav";
+import HomeDash from "./HomeDash";
 
 async function DashboardNav() {
-  type results = {
-    adult: boolean;
-    backdrop_path: string;
-    genre_ids: Array<number>;
-    id: number;
-    original_language: string;
-    original_title: string;
-    overview: string;
-    popularity: number;
-    poster_path: string;
-    release_date: string;
-    title: string;
-    video: boolean;
-    vote_average: number;
-    vote_count: 137;
-  };
-  // setArray([])
+
   const options = {
     method: "GET",
     headers: {
@@ -38,43 +23,13 @@ async function DashboardNav() {
   };
 
   let data = await fetch(
-    "https://api.themoviedb.org/3/discover/movie?include_adult=true&include_video=false&language=en-US&page=3&sort_by=popularity.desc",
+    "https://api.themoviedb.org/3/trending/all/week?language=en-US",
     options
   );
   let posts = await data.json();
-  const array = await posts.results;
-  const test = array.map((test: results, i: number) => {
-    return (
-      <div key={i}>
-        <section
-          className="w-[100vw] h-[80vh]  "
-          style={{
-            background: `url(https://image.tmdb.org/t/p/w1280/${test.backdrop_path})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat"
-          }}
-        >
-
-          <div className="h-full netflix-overlay border border-black px-4 py-2 flex items-end">
-            <div className=" py-2 m-0">
-              <Image
-                src={`https://image.tmdb.org/t/p/original/${test.poster_path}`}
-                alt={test.title}
-                width={50}
-                height={50}
-                className="rounded poster  w-full m-0"
-              />
-              <article className="article max-w-[500px] max-h-[200px] m-0 overflow-hidden py-4 gap-2">
-                <h1 className="text-[20px]">{test.title}</h1>
-                <p className="article line-clamp-5">{test.overview}</p>
-              </article>
-            </div>
-          </div>
-        </section>
-      </div>
-    );
-  });
+  const filtered = posts.results.filter(
+  (item: any) => item.media_type === "movie" || item.media_type === "tv"
+);
 
   return (
     <>
@@ -89,8 +44,8 @@ async function DashboardNav() {
           // preventInteractionOnTransition
           className="backdrop overflow-auto"
         >
-          <div className="border border-solid border-red text-white test flex flex-shrink-0">
-            {test}
+          <div className=" text-white test flex flex-shrink-0">
+            <HomeDash array={filtered} />
           </div>
         </div>
       </section>

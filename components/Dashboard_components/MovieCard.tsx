@@ -11,12 +11,12 @@ export default function MovieCard({ movie, type }: { movie: Results, type: strin
 
   return (
     <>
-      <div onClick={() => setShowModal(true)} className="cursor-pointer">
+      <div onClick={() => setShowModal(true)} className="cursor-pointer  film-card">
         <Image
           src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
           alt={movie.title}
-          height={200}
-          width={150}
+          height={40}
+          width={800}
           className="children-poster skeleton min-w-[120px] rounded-lg"
         />
       </div>

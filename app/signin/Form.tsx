@@ -14,10 +14,10 @@ function Form() {
   const [loading, setLoading] = useState(false)
   const router = useRouter()
   useEffect(() => {
-  const storedEmail = localStorage.getItem("email");
+  const storedEmail = sessionStorage.getItem("email");
   if (storedEmail) {
     setEmail(storedEmail);
-    localStorage.clear
+    localStorage.clear()
   }
 }, []);
 

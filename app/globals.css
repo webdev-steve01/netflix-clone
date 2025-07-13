@@ -182,7 +182,7 @@ select {
 
 .skeleton {
   background-color: var(--grey);
-  min-height: 150px;
+  min-height: 184.5px;
   animation: skeleton-loading 1s linear infinite alternate;
 }
 .red-button {

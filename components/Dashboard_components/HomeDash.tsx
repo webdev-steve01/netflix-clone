@@ -32,10 +32,10 @@ export default function HomeDash({ array }: prop) {
                 alt={test.title}
                 width={200}
                 height={50}
-                className="rounded-lg w-[150px] lg:w-[250px]"
+                className="rounded-lg w-[150px] lg:w-[200px]"
               />
-              <Link className="rounded-lg bg-[#F7DAD9] md:text-[1.2em] font-serif text-black transition-all duration-300 hover:bg-black hover:text-white max-w-[150px] py-2 flex justify-center" href={`./${test.id}`}><p>More Info </p> </Link>
-              <article className="max-w-[700px] max-h-[200px] lg:text-[1.2em] m-0 overflow-hidden gap-2">
+              <Link className="rounded-lg bg-[#F7DAD9] md:text-[1.5em] font-serif text-black transition-all duration-300 hover:bg-black hover:text-white max-w-[150px] py-2 flex justify-center" href={`./${test.id}`}><p>More Info </p> </Link>
+              <article className="max-w-[700px] max-h-[200px] lg:text-[1.5em] m-0 overflow-hidden gap-2">
                 <h1 className="text-[1.2em] m-0  font-semibold">{test.title || test.name}</h1>
                 <p className="text-ellipsis text-[0.9em]/5 lg:text-[0.9em]/8 w-[90%] line-clamp-4">{test.overview}</p>
               </article>

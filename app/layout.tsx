@@ -30,7 +30,7 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <main className="lg:text-[1.2em]">{children}</main>
+        <main className="">{children}</main>
       </body>
     </html>
   );

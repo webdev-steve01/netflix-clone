@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Open_Sans } from "next/font/google";
 import "./globals.css";
 
-
-
-
-const inter = Inter({ subsets: ["latin"] });
+// ✅ Rename `inter` to match the font name
+const openSans = Open_Sans({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"], // optional: add needed weights
+  display: "swap",
+  variable: "--font-open-sans", // optional: useful with Tailwind
+});
 
 export const metadata: Metadata = {
   title: "NewFlix",
@@ -18,13 +21,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <link rel="shortcut icon" href="netflix-svgrepo-com.svg" type="image/x-icon" />
-      <body className={inter.className}>
-        {/* <Nav/> */}
-        <section>
-            <main>{children}</main>
-        </section>
+    <html lang="en" className={openSans.className}>
+      <head>
+        <link
+          rel="shortcut icon"
+          href="/netflix-svgrepo-com.svg"
+          type="image/x-icon"
+        />
+      </head>
+      <body>
+        <main className="lg:text-[1.2em]">{children}</main>
       </body>
     </html>
   );

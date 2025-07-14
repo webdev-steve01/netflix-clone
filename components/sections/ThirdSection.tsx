@@ -9,7 +9,7 @@ function ThirdSection() {
   return (
     <section className="Third-section">
       <h1 className='title'>More reasons to join</h1>
-      <section className="card-container m-auto">
+      <section className="flex flex-col card-flexed justify-between m-auto">
         <Card
           cardHeader="Enjoy your TV"
           cardText="Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray players, and more."

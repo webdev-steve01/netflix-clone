@@ -53,9 +53,9 @@ async function DashboardNav() {
       <section className="px-4">
         {/* <TvSeries /> */}
         <Film genre={28} genre_title="No-Brakes Action" type="movie" />
-        <Film genre={12} genre_title="Adventure Escapes" type="movie" />
         <Film genre={16} genre_title="Something for the Kids" type="tv" />
         <Film genre={35} genre_title="Comedy One-Watches" type="movie" />
+        <Film genre={12} genre_title="Adventure Escapes" type="movie" />
         <Film
           genre={80}
           genre_title="Criminal Minds & Street Codes"

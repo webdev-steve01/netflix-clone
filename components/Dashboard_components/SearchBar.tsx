@@ -48,7 +48,7 @@ function SearchBar() {
     // return controller.abort();/
   }, [debounce]);
   return (
-    <div className="flex  items-center border gap-0 p-0 w-full max-w-[600px] rounded-lg px-2 relative">
+    <div className="flex  items-center border gap-0 p-0 w-full max-w-[600px] rounded-lg px-2 mx-4 relative">
       <input
         type="text"
         onChange={(e) => setSearchItem(e.target.value)}
@@ -63,8 +63,8 @@ function SearchBar() {
       </div>
 
       {searchItem && (
-        <div className="no-scroll max-w-[550px] absolute flex flex-col gap-2 top-full mt-2 w-full bg-[#0C0502] p-2 rounded-md z-50 max-h-[500px] overflow-y-auto">
-          {results
+        <div className="no-scroll max-w-[576px] absolute flex flex-col gap-2 top-full mt-2 w-full bg-[#0C0502] p-2 rounded-xl z-50 max-h-[500px] overflow-y-auto">
+          {results && results.length > 0 ? results
             ?.filter(
               (value) => value.poster_path && (value.title || value.name)
             ) // 👈 filter valid entries
@@ -81,7 +81,7 @@ function SearchBar() {
                   <p>{value.title || value.name}</p>
                 </div>
               </Link>
-            ))}
+            )): <p className="text-center text-[1.5em]">Title Not Found</p>}
         </div>
       )}
     </div>

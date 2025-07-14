@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Nav() {
   return (
     <>
-      <nav className="nav bottom-1 py-4">
+      <nav className="nav bottom-1 py-[2em]">
         <section className="nav-image">
           <Image className="img" src={Logo} alt="netflix" />
         </section>

@@ -21,23 +21,23 @@ export default function HomeDash({ array }: prop) {
           style={{
             background: `url(https://image.tmdb.org/t/p/w1280/${test.backdrop_path})`,
             backgroundSize: "cover",
-            backgroundPosition: "center",
+            backgroundPosition: "top",
             backgroundRepeat: "no-repeat",
           }}
         >
           <div className="h-full netflix-overlay px-4  flex gap-[4em] items-end">
-            <div className=" py-2 m-0">
+            <div className="flex gap-6 flex-col py-2 m-0">
               <Image
                 src={`https://image.tmdb.org/t/p/w1280/${test.poster_path}`}
                 alt={test.title}
                 width={200}
                 height={50}
-                className="rounded poster hidden lg:block  w-full m-0"
+                className="rounded-lg w-[150px] lg:w-[250px]"
               />
-              <Link className="rounded-lg bg-[#F7DAD9] text-black transition-all duration-300 hover:bg-black hover:text-white my-5 px-4 py-2" href={`./${test.id}`}>More Info  </Link>
-              <article className="article max-w-[500px] max-h-[200px] m-0 overflow-hidden py-2 gap-2">
-                <h1 className="text-[1.5em] py-2 font-semibold">{test.title || test.name}</h1>
-                <p className="article line-clamp-4">{test.overview}</p>
+              <Link className="rounded-lg bg-[#F7DAD9] md:text-[1.2em] font-serif text-black transition-all duration-300 hover:bg-black hover:text-white max-w-[150px] py-2 flex justify-center" href={`./${test.id}`}><p>More Info </p> </Link>
+              <article className="max-w-[700px] max-h-[200px] lg:text-[1.2em] m-0 overflow-hidden gap-2">
+                <h1 className="text-[1.2em] m-0  font-semibold">{test.title || test.name}</h1>
+                <p className="text-ellipsis text-[0.9em]/5 lg:text-[0.9em]/8 w-[90%] line-clamp-4">{test.overview}</p>
               </article>
             </div>
           </div>

@@ -34,10 +34,10 @@ function ReadyToWatch() {
           />
         </section>
         <section className="button-section">
-          <button type="submit" className="button px-5 py-3 rounded-md">
-            Get started{" "}
-            <span className="next w-5 h-5">
-              <Image className="img" src={next} alt="" priority />
+          <button type="submit" className="flex justify- bg-[#e50914] hover:bg-[#e60a15d9] px-5 py-3 text-[18px] items-center rounded-md">
+            <p>Get started{" "}</p>
+            <span className="next w-5">
+              <Image className="img"  src={next} alt="" priority />
             </span>
           </button>
         </section>

@@ -73,7 +73,7 @@ body {
   font-weight: 500;
 }
 .button:hover {
-  background-color: hsla(357, 92%, 47%, 0.85);
+  background-color: #e60a15d9;
 }
 .title {
   font-weight: 700;
@@ -182,7 +182,6 @@ select {
 
 .skeleton {
   background-color: var(--grey);
-  min-height: 184.5px;
   animation: skeleton-loading 1s linear infinite alternate;
 }
 .red-button {
@@ -240,12 +239,13 @@ select {
   gap: 0.5em;
 }
 .slide {
-  animation: slide 500ms ease;
+  animation: slide 100ms ease;
 }
 
 @keyframes slide {
   0% {
-    transform: translateY(-10px);
+    transform: translateY(-40px);
+    z-index: -10;
   }
   100% {
     transform: translateY(0px);
@@ -391,13 +391,12 @@ select {
   );
 }
 .article {
-  font-size: 10px;
-  line-height: 18px;
+
   text-overflow: ellipsis;
 }
 @media screen and (min-width: 600px) {
   .article {
-    font-size: 15px;
+    /* font-size: 15px; */
     line-height: 25px;
   }
 }
@@ -549,16 +548,23 @@ body{
 
 @media screen and (max-width: 900px) {
   .film-card{
-    width: 200px;
+    width: 100%;
   }
 }
 
 @media screen and (max-width: 400px) {
   
   .film-card{
-    width: 100px;
+    width: 110px;
+    /* margin: 0 ; */
     aspect-ratio: 16 / 9;
     height: 185px;
   }
 }
 
+@media screen and (min-width: 1372px) {
+  .card-flexed{
+    display: flex;
+    flex-direction: row;
+  }
+}

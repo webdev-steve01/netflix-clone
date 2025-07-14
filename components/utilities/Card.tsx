@@ -12,14 +12,14 @@ function Card({cardHeader, cardText, cardImageSrc}: cardProps) {
   return (
     <div className={styles.card}>
       <section className="top flex flex-col gap-4">
-        <h1 className='text-white cardHead'>
+        <h1 className='text-white text-[1.5em] xl:text-[1em] font-bold'>
           {cardHeader}
         </h1>
         <p>
           {cardText}
         </p>
       </section>
-      <section className="image flex justify-end">
+      <section className=" flex justify-end">
         <Image src={cardImageSrc} alt='svg' priority width={30} height={30}/>
       </section>
     </div>

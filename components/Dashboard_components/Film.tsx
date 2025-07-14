@@ -1,11 +1,5 @@
-// app/components/Film.tsx
-import Image from "next/image";
-import next from "@/public/caret-right-sm-svgrepo-com.svg";
-import back from "@/public/caret-left-sm-svgrepo-com.svg";
 import { Results } from "@/utils/interfaces";
-import dynamic from "next/dynamic";
 import FilmCarousel from "./FilmCarousel";
-const MovieCard = dynamic(() => import("./MovieCard"), { ssr: false });
 type Prop = {
   genre: number;
   genre_title: string;
@@ -35,7 +29,9 @@ export default async function Film({
 
   return (
     <section className="text-white py-4 no-select">
-      <p className="py-2 text-[1.2em] font-semibold">{genre_title}</p>
+      <p className="py-2 text-[1.2em] md:text-[1.5em]  font-semibold">
+        {genre_title}
+      </p>
       <FilmCarousel movies={movies} type={type} uid={genre} />
     </section>
   );

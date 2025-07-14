@@ -23,8 +23,7 @@ export default function MovieModal({
         {
           headers: {
             accept: "application/json",
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhOTU2M2ZmYTM0NjJiMThmMzViNjJlYTQ2ZmM5M2FkNCIsIm5iZiI6MTcyNjIxNTcxNS4xOTQ1NjgsInN1YiI6IjY2ZDY0NjhiNmM0MjFkZGMzNDZhYzFhZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2Za6gRawWvOOs7GtHkRdWEG9Ava6m3Iv7oE0oi7w_zQ`,
-
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhOTU2M2ZmYTM0NjJiMThmMzViNjJlYTQ2ZmM5M2FkNCIsIm5iZiI6MTcyNjIxNTcxNS4xOTQ1NjgsInN1YiI6IjY2ZDY0NjhiNmM0MjFkZGMzNDZhYzFhZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2Za6gRawWvOOs7GtHkRdWEG9Ava6m3Iv7oE0oi7w_zQ`,
           },
         }
       );
@@ -36,23 +35,21 @@ export default function MovieModal({
   }, [movieId, type]);
 
   useEffect(() => {
-  // Disable scroll on mount
-  document.body.style.overflow = "hidden";
+    // Disable scroll on mount
+    document.body.style.overflow = "hidden";
 
-  // Re-enable scroll on unmount
-  return () => {
-    document.body.style.overflow = "";
-
-  };
-}, []);
-
+    // Re-enable scroll on unmount
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
 
   const modalContent = !details ? (
-    <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-[9999] select-none">
+    <div className="fixed inset- text-[1.2em] md:text-[1.5em] lg:text-[1.9em] bg-black/50 flex justify-center items-center z-[9999] select-none">
       <p className="text-white">Loading...</p>
     </div>
   ) : (
-    <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[9999]">
+    <div className="fixed text-[1.4em] inset-0 bg-black/60 flex items-center justify-center z-[9999]">
       <div className="bg-[#0C0502] text-[white] rounded-lg overflow-hidden w-[90%] max-w-md max-h-[500px] relative">
         <button
           className="absolute top-2 right-2 text-red-500"
@@ -63,7 +60,11 @@ export default function MovieModal({
         <section
           className="w-full h-[270px]"
           style={{
-            background: `url(https://image.tmdb.org/t/p/w1280/${details.backdrop_path})`,
+            background: `${
+              details.backdrop_path
+                ? `url(https://image.tmdb.org/t/p/w1280/${details.backdrop_path})`
+                : "url(https://dummyimage.com/200x300/2c2c2c/ffffff&text=No+Image)"
+            }`,
             backgroundSize: "cover",
             backgroundPosition: "top",
             backgroundRepeat: "no-repeat",
@@ -75,7 +76,11 @@ export default function MovieModal({
               isAvailable
               onClick={() => alert("added!")}
             />
-            <MovieButton text="More Info" isAvailable onClick={() => router.push(`./${details.id}`)} />
+            <MovieButton
+              text="More Info"
+              isAvailable
+              onClick={() => router.push(`./${details.id}`)}
+            />
             <MovieButton
               text="Official Website"
               isAvailable={details.homepage !== ""}
@@ -88,7 +93,7 @@ export default function MovieModal({
           <h2 className="text-xl font-bold mb-2">
             {details.title || details.name}
           </h2>
-          <p className="text-sm line-clamp-4">{details.overview}</p>
+          <p className="text-[0.8em] line-clamp-4">{details.overview}</p>
         </section>
       </div>
     </div>

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { cache, useEffect, useState } from "react";
 import Image from "next/image";
 import next from "@/public/caret-right-sm-svgrepo-com.svg";
 import back from "@/public/caret-left-sm-svgrepo-com.svg";
@@ -55,13 +55,13 @@ function Movies() {
     fetchData(film);
   }, [film]);
 
-  const skeletonSlides = Array.from({ length: slides || 5 }, (_, index) => (
+  const skeletonSlides = Array.from({ length: slides || 10 }, (_, index) => (
     <div
       key={`skeleton-${index}`}
       className="poster-holder skeleton animate-pulse"
     >
       <SwiperSlide>
-        <div className="w-[400px] h-[300px] bg-gray-300 rounded-lg" />
+        <div className="w-[120px] h-[180px] md:w-[150px] md:h-[200px] lg:w-[200px] lg:h-[260px] bg-gray-600 animate-pulse rounded-lg" />
       </SwiperSlide>
     </div>
   ));
@@ -70,7 +70,7 @@ function Movies() {
     response.length === 0
       ? skeletonSlides
       : response.map((movie: Moviedata) => (
-          <div key={movie.id} className="poster-holder film- skeleton">
+          <div key={movie.id} className="poster-holder film- skeleton min-h-[184.5px] md:min-h-[200px] ">
             <SwiperSlide className="rounded-lg overflow-hidden ">
               <Image
                 src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}

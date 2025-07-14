@@ -28,7 +28,7 @@ export default async function Film({
   const movies: Results[] = data.results;
 
   return (
-    <section className="text-white py-4 no-select">
+    <section className="text-white  no-select">
       <p className="py-2 text-[1.2em] md:text-[1.5em]  font-semibold">
         {genre_title}
       </p>

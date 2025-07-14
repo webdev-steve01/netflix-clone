@@ -34,7 +34,7 @@ async function DashboardNav() {
   return (
     <>
     <DashNav />
-      <section className="header h-[80vh] skeleton">
+      <section className="header h-[80vh]">
         <div
           // modules={[Autoplay, EffectFade, Mousewheel]}
           // autoplay={{ delay: 5000 }}

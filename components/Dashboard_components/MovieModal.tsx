@@ -14,6 +14,7 @@ export default function MovieModal({
   type: string;
 }) {
   const [details, setDetails] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
@@ -29,6 +30,7 @@ export default function MovieModal({
       );
       const data = await res.json();
       setDetails(data);
+      setLoading(false)
     };
 
     fetchMovieDetails();
@@ -44,8 +46,8 @@ export default function MovieModal({
     };
   }, []);
 
-  const modalContent = !details ? (
-    <div className="fixed inset- text-[1.2em] md:text-[1.5em] lg:text-[1.9em] bg-black/50 flex justify-center items-center z-[9999] select-none">
+  const modalContent = !details || loading ? (
+    <div className="fixed inset- text-[1.2em] md:text-[1.5em] lg:text-[1.9em] bg-black/70 flex justify-center items-center z-[9999] select-none">
       <p className="text-white">Loading...</p>
     </div>
   ) : (

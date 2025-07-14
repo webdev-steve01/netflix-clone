@@ -28,7 +28,7 @@ export default function MovieCard({
               : "https://dummyimage.com/200x300/2c2c2c/ffffff&text=No+Image"
           }
           alt={movie.title}
-          height={40}
+          height={100}
           width={800}
           className="children-poster skeleton  rounded-lg"
         />

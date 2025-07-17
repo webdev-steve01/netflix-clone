@@ -5,6 +5,10 @@ import { Results } from "@/utils/interfaces";
 import Image from "next/image";
 import star from "@/public/star.svg";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "@/utils/firebase";
+import { useRouter } from "next/navigation";
+import Loader from "@/components/utilities/Loader";
 
 type Props = {
   param: string;
@@ -16,6 +20,8 @@ function MovieInfo({ param, type }: Props) {
   const [reviews, setReviews] = useState<any>();
   const [cast, setCast] = useState<any>();
   const [loading, setLoading] = useState(true);
+  const [authenticating, setAuthenticating] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     async function fetchData() {
@@ -52,7 +58,19 @@ function MovieInfo({ param, type }: Props) {
     fetchData();
   }, [param, type]);
 
-  if (loading) return <div className="text-white">Loading...</div>;
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        router.replace("/");
+      } else {
+        setAuthenticating(false);
+      }
+    });
+
+    return () => unsubscribe();
+  }, [router]);
+
+  if (loading || authenticating) return <p>Loading...</p>;
 
   if (!data) return <div className="text-red-500">No data found.</div>;
 
@@ -141,41 +159,42 @@ function MovieInfo({ param, type }: Props) {
         </ul>
       </section>
 
-   {/* Cast Carousel */}
-<section className="p-4 text-white max-w-[1200px] mt-10">
-  <h2 className="text-xl font-semibold mb-4">Cast</h2>
-  {cast?.length > 0 ? (
-    <Swiper
-      spaceBetween={15}
-      slidesPerView={"auto"}
-      className="!overflow-visible"
-    >
-      {cast.map((member: any, index: number) => (
-        <SwiperSlide
-          key={index}
-          className="!w-[120px] bg-[#1c1c1c] rounded-lg text-center text-sm p-2"
-        >
-          <Image
-            src={
-              member.profile_path
-                ? `https://image.tmdb.org/t/p/w185${member.profile_path}`
-                : "/no-image.png"
-            }
-            alt={member.name}
-            width={100}
-            height={150}
-            className="rounded-lg mx-auto mb-2 object-cover h-[150px] w-[100px]"
-          />
-          <p className="font-semibold">{member.name}</p>
-          <p className="text-xs text-gray-400">{member.character}</p>
-        </SwiperSlide>
-      ))}
-    </Swiper>
-  ) : (
-    <p className="text-sm text-gray-400">No cast information available.</p>
-  )}
-</section>
-
+      {/* Cast Carousel */}
+      <section className="p-4 text-white w-[100%] m-auto max-w-[1200px] mt-10">
+        <h2 className="text-xl font-semibold mb-4">Cast</h2>
+        {cast?.length > 0 ? (
+          <Swiper
+            spaceBetween={15}
+            slidesPerView={"auto"}
+            className="!overflow-auto"
+          >
+            {cast.map((member: any, index: number) => (
+              <SwiperSlide
+                key={index}
+                className="!w-[120px] bg-[#1c1c1c] rounded-lg text-center text-sm p-2"
+              >
+                <Image
+                  src={
+                    member.profile_path
+                      ? `https://image.tmdb.org/t/p/w185${member.profile_path}`
+                      : "/no-image.png"
+                  }
+                  alt={member.name}
+                  width={100}
+                  height={150}
+                  className="rounded-lg mx-auto mb-2 object-cover h-[150px] w-[100px]"
+                />
+                <p className="font-semibold">{member.name}</p>
+                <p className="text-xs text-gray-400">{member.character}</p>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        ) : (
+          <p className="text-sm text-gray-400">
+            No cast information available.
+          </p>
+        )}
+      </section>
 
       {/* Reviews */}
       <section className="p-4 text-white max-w-[1200px] mt-10">

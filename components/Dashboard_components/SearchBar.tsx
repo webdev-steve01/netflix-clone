@@ -69,13 +69,13 @@ function SearchBar() {
               (value) => value.poster_path && (value.title || value.name)
             ) // 👈 filter valid entries
             .map((value: Results, index: number) => (
-              <Link key={index} href={`./${value.id}`}>
+              <Link key={index} href={`./info/${value.media_type}/${value.id}`}>
                 <div className="flex">
                   <Image
                     src={`https://image.tmdb.org/t/p/w500/${value.poster_path}`}
                     width={100}
                     height={100}
-                    alt={value.name || value.title}
+                    alt={value.name || value.title || "poster"}
                     className="rounded-lg"
                   />
                   <p>{value.title || value.name}</p>

@@ -14,6 +14,7 @@ interface prop {
 
 export default function HomeDash({ array }: prop) {
   const test = array.map((test: Results, i: number) => {
+    console.log(test.media_type, test.name || test.title)
     return (
       <SwiperSlide key={i} className="p-0 m-0">
         <section
@@ -29,15 +30,24 @@ export default function HomeDash({ array }: prop) {
             <div className="flex gap-6 flex-col py-2 m-0">
               <Image
                 src={`https://image.tmdb.org/t/p/w1280/${test.poster_path}`}
-                alt={test.title}
+                alt={test.title || test.name || "poster"}
                 width={200}
                 height={50}
-                className="rounded-lg w-[150px] lg:w-[200px]"
+                className="rounded-lg w-[150px] hidden lg:block 0px]"
               />
-              <Link className="rounded-lg bg-[#F7DAD9] md:text-[1.2em] font-serif text-black transition-all duration-300 hover:bg-black hover:text-white max-w-[150px] py-2 flex justify-center" href={`./${test.id}`}><p>More Info </p> </Link>
+              <Link
+                className="rounded-lg bg-[#F7DAD9] md:text-[1.2em] font-serif text-black transition-all duration-300 hover:bg-black hover:text-white max-w-[150px] py-2 flex justify-center"
+                href={`/info/${test.name ? "tv": "movie"}/${test.id}`}
+              >
+                <p>More Info </p>{" "}
+              </Link>
               <article className="max-w-[700px] max-h-[200px] lg:text-[1.2em] m-0 overflow-hidden gap-2">
-                <h1 className="text-[1.2em] m-0  font-semibold">{test.title || test.name}</h1>
-                <p className="text-ellipsis text-[0.9em]/5 lg:text-[0.9em]/8 w-[90%] line-clamp-4">{test.overview}</p>
+                <h1 className="text-[1.2em] m-0  font-semibold">
+                  {test.title || test.name}
+                </h1>
+                <p className="text-ellipsis text-[0.9em]/5 lg:text-[0.9em]/8 w-[90%] line-clamp-3 ">
+                  {test.overview}
+                </p>
               </article>
             </div>
           </div>

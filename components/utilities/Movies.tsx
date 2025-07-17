@@ -5,15 +5,17 @@ import next from "@/public/caret-right-sm-svgrepo-com.svg";
 import back from "@/public/caret-left-sm-svgrepo-com.svg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import { options } from "@/utils/auth";
 // Import Swiper styles
 import "swiper/css";
 
 // import styles bundle
 import "swiper/css/bundle";
 import Script from "next/script";
+import { Results } from "@/utils/interfaces";
 function Movies() {
   const [film, setFilm] = useState("movie");
-  const [response, setResponse] = useState([]);
+  const [response, setResponse] = useState<Results[]>([]);
   const [slides, setSlides] = useState(0);
   const handleClick = (e: any) => {
     setFilm(e.target.value);
@@ -34,13 +36,6 @@ function Movies() {
     vote_average: number;
     vote_count: number;
   };
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhOTU2M2ZmYTM0NjJiMThmMzViNjJlYTQ2ZmM5M2FkNCIsIm5iZiI6MTcyNjIxNTcxNS4xOTQ1NjgsInN1YiI6IjY2ZDY0NjhiNmM0MjFkZGMzNDZhYzFhZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2Za6gRawWvOOs7GtHkRdWEG9Ava6m3Iv7oE0oi7w_zQ`,
-    },
-  };
   useEffect(() => {
     const fetchData = async (film: string) => {
       let data = await fetch(
@@ -48,8 +43,8 @@ function Movies() {
         options
       );
       let post = await data.json();
-      let movies = post.results;
-      const filtered_movies = movies.slice(0, 10);
+      let movies: Results[] = post.results;
+      const filtered_movies: Results[] = movies?.slice(0, 10);
       setResponse(filtered_movies);
     };
     fetchData(film);
@@ -67,9 +62,9 @@ function Movies() {
   ));
 
   const innerHtml =
-    response.length === 0
+    response?.length === 0
       ? skeletonSlides
-      : response.map((movie: Moviedata) => (
+      : response?.map((movie: Moviedata) => (
           <div key={movie.id} className="poster-holder film- skeleton min-h-[184.5px] md:min-h-[200px] ">
             <SwiperSlide className="rounded-lg overflow-hidden ">
               <Image

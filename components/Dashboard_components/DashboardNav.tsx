@@ -1,26 +1,11 @@
-import Image from "next/image";
-// import { Suspense } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectFade, Mousewheel } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/effect-fade";
-import "swiper/css/autoplay";
-import Link from "next/link";
 import Film from "./Film";
-import SearchBar from "./SearchBar";
 import DashNav from "./DashNav";
 import HomeDash from "./HomeDash";
+import { options } from "@/utils/auth";
 
 async function DashboardNav() {
 
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhOTU2M2ZmYTM0NjJiMThmMzViNjJlYTQ2ZmM5M2FkNCIsIm5iZiI6MTcyNjIxNTcxNS4xOTQ1NjgsInN1YiI6IjY2ZDY0NjhiNmM0MjFkZGMzNDZhYzFhZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2Za6gRawWvOOs7GtHkRdWEG9Ava6m3Iv7oE0oi7w_zQ`,
-    },
-    next: {revalidate: 60}
-  };
+
 
   let data = await fetch(
     "https://api.themoviedb.org/3/trending/all/week?language=en-US",
@@ -36,12 +21,6 @@ async function DashboardNav() {
     <DashNav />
       <section className="header h-[80vh]">
         <div
-          // modules={[Autoplay, EffectFade, Mousewheel]}
-          // autoplay={{ delay: 5000 }}
-          // loop
-          // effect="fade"
-          // speed={300}
-          // preventInteractionOnTransition
           className="backdrop overflow-auto"
         >
           <div className=" text-white test flex flex-shrink-0">

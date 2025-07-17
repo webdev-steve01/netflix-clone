@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import MovieButton from "./MovieButton";
 import { useRouter } from "next/navigation";
+import { options } from "@/utils/auth";
+import { Results } from "@/utils/interfaces";
 
 export default function MovieModal({
   movieId,
@@ -21,12 +23,7 @@ export default function MovieModal({
     const fetchMovieDetails = async () => {
       const res = await fetch(
         `https://api.themoviedb.org/3/${type}/${movieId}?language=en-US`,
-        {
-          headers: {
-            accept: "application/json",
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhOTU2M2ZmYTM0NjJiMThmMzViNjJlYTQ2ZmM5M2FkNCIsIm5iZiI6MTcyNjIxNTcxNS4xOTQ1NjgsInN1YiI6IjY2ZDY0NjhiNmM0MjFkZGMzNDZhYzFhZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2Za6gRawWvOOs7GtHkRdWEG9Ava6m3Iv7oE0oi7w_zQ`,
-          },
-        }
+       options
       );
       const data = await res.json();
       setDetails(data);
@@ -81,7 +78,7 @@ export default function MovieModal({
             <MovieButton
               text="More Info"
               isAvailable
-              onClick={() => router.push(`./${details.id}`)}
+              onClick={() => router.push(`./info/${details.name ? "tv" : "movie"}/${details.id}`)}
             />
             <MovieButton
               text="Official Website"

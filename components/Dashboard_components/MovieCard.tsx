@@ -27,7 +27,7 @@ export default function MovieCard({
               ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
               : "https://dummyimage.com/200x300/2c2c2c/ffffff&text=No+Image"
           }
-          alt={movie.title}
+          alt={movie.title || movie.name || "poster"}
           height={100}
           width={800}
           className="children-poster skeleton  rounded-lg"

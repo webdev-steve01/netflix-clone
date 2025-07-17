@@ -20,22 +20,6 @@ function Movies() {
   const handleClick = (e: any) => {
     setFilm(e.target.value);
   };
-  type Moviedata = {
-    adult: boolean;
-    backdrop_path: string;
-    genre_ids: Array<Number>;
-    id: number;
-    original_language: string;
-    original_title: string;
-    overview: string;
-    popularity: number;
-    poster_path: string;
-    release_date: string;
-    title: string;
-    video: boolean;
-    vote_average: number;
-    vote_count: number;
-  };
   useEffect(() => {
     const fetchData = async (film: string) => {
       let data = await fetch(
@@ -64,12 +48,12 @@ function Movies() {
   const innerHtml =
     response?.length === 0
       ? skeletonSlides
-      : response?.map((movie: Moviedata) => (
+      : response?.map((movie: Results) => (
           <div key={movie.id} className="poster-holder film- skeleton min-h-[184.5px] md:min-h-[200px] ">
             <SwiperSlide className="rounded-lg overflow-hidden ">
               <Image
                 src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
-                alt={movie.title}
+                alt={movie.title || movie.name || "poster"}
                 width={400}
                 height={300}
                 className="children-poster  rounded-lg skeleton swiper-slide bg-gray-600"

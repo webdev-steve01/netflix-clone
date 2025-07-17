@@ -4,25 +4,22 @@ import HomeDash from "./HomeDash";
 import { options } from "@/utils/auth";
 
 async function DashboardNav() {
-
-
-
   let data = await fetch(
     "https://api.themoviedb.org/3/trending/all/week?language=en-US",
     options
   );
   let posts = await data.json();
   const filtered = posts.results.filter(
-  (item: any) => item.media_type === "movie" || item.media_type === "tv"
-);
+    (item: any) => item.media_type === "movie" || item.media_type === "tv"
+  );
+
+  // console.log(filtered);
 
   return (
     <>
-    <DashNav />
+      <DashNav />
       <section className="header h-[80vh]">
-        <div
-          className="backdrop overflow-auto"
-        >
+        <div className="backdrop overflow-auto">
           <div className=" text-white test flex flex-shrink-0">
             <HomeDash array={filtered} />
           </div>
@@ -63,7 +60,7 @@ async function DashboardNav() {
         <Film genre={53} genre_title="Edge-of-Seat Thrillers" type="movie" />
         <Film genre={10752} genre_title="Gritty & War-Centered" type="movie" />
         <Film genre={37} genre_title="Old West & Gunfights" type="movie" />
-        <Film genre={10759} genre_title="TV That Punches (Action)" type="tv" />
+        <Film genre={10759} genre_title="TV That Punches" type="tv" />
         <Film
           genre={10762}
           genre_title="Cartoons for the Little Ones"

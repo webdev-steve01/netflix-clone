@@ -5,6 +5,7 @@ import search from "@/public/search-svgrepo-com.svg";
 import { useDebounce } from "@/hooks/UseDebounce";
 import { Results } from "@/utils/interfaces";
 import Link from "next/link";
+import { options } from "@/utils/auth";
 // import { p } from "framer-motion/client"
 
 function SearchBar() {
@@ -29,7 +30,7 @@ function SearchBar() {
             method: "GET",
             headers: {
               accept: "application/json",
-              Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhOTU2M2ZmYTM0NjJiMThmMzViNjJlYTQ2ZmM5M2FkNCIsIm5iZiI6MTcyNjIxNTcxNS4xOTQ1NjgsInN1YiI6IjY2ZDY0NjhiNmM0MjFkZGMzNDZhYzFhZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.2Za6gRawWvOOs7GtHkRdWEG9Ava6m3Iv7oE0oi7w_zQ`,
+              Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDB_BEARER_TOKEN}`,
             },
             cache: "no-store", //
             signal,
@@ -64,24 +65,31 @@ function SearchBar() {
 
       {searchItem && (
         <div className="no-scroll max-w-[576px] absolute flex flex-col gap-2 top-full mt-2 w-full bg-[#0C0502] p-2 rounded-xl z-50 max-h-[500px] overflow-y-auto">
-          {results && results.length > 0 ? results
-            ?.filter(
-              (value) => value.poster_path && (value.title || value.name)
-            ) // 👈 filter valid entries
-            .map((value: Results, index: number) => (
-              <Link key={index} href={`./info/${value.media_type}/${value.id}`}>
-                <div className="flex">
-                  <Image
-                    src={`https://image.tmdb.org/t/p/w500/${value.poster_path}`}
-                    width={100}
-                    height={100}
-                    alt={value.name || value.title || "poster"}
-                    className="rounded-lg"
-                  />
-                  <p>{value.title || value.name}</p>
-                </div>
-              </Link>
-            )): <p className="text-center text-[1.5em]">Title Not Found</p>}
+          {results && results.length > 0 ? (
+            results
+              ?.filter(
+                (value) => value.poster_path && (value.title || value.name)
+              ) // 👈 filter valid entries
+              .map((value: Results, index: number) => (
+                <Link
+                  key={index}
+                  href={`./info/${value.media_type}/${value.id}`}
+                >
+                  <div className="flex">
+                    <Image
+                      src={`https://image.tmdb.org/t/p/w500/${value.poster_path}`}
+                      width={100}
+                      height={100}
+                      alt={value.name || value.title || "poster"}
+                      className="rounded-lg"
+                    />
+                    <p>{value.title || value.name}</p>
+                  </div>
+                </Link>
+              ))
+          ) : (
+            <p className="text-center text-[1em]">Title Not Found</p>
+          )}
         </div>
       )}
     </div>

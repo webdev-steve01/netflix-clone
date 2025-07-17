@@ -9,6 +9,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/utils/firebase";
 import { useRouter } from "next/navigation";
 import Loader from "@/components/utilities/Loader";
+import InfoNav from "../../InfoNav";
 
 type Props = {
   param: string;
@@ -19,6 +20,7 @@ function MovieInfo({ param, type }: Props) {
   const [data, setData] = useState<Results>();
   const [reviews, setReviews] = useState<any>();
   const [cast, setCast] = useState<any>();
+  const [similarities, setSimilarities] = useState<Results[]>([])
   const [loading, setLoading] = useState(true);
   const [authenticating, setAuthenticating] = useState(true);
   const router = useRouter();
@@ -34,8 +36,10 @@ function MovieInfo({ param, type }: Props) {
           `https://api.themoviedb.org/3/${type}/${param}/reviews?language=en-US&page=1`,
           options
         );
+        const sim = await fetch(`https://api.themoviedb.org/3/${type}/${param}/similar?language=en-US&page=1`, options)
         const json = await res.json();
         const result = await rev.json();
+        const similar = await sim.json()
         const cast = await fetch(
           `https://api.themoviedb.org/3/${type}/${param}/credits?language=en-US`,
           options
@@ -45,9 +49,11 @@ function MovieInfo({ param, type }: Props) {
         setCast(Cast.cast);
 
         setData(json);
-        setReviews(result);
+        setReviews(result.results);
+        setSimilarities(similar.results)
         console.log(json);
         console.log(result.results);
+        console.log(similar);
       } catch (error) {
         console.error("Failed to fetch movie info:", error);
       } finally {
@@ -75,7 +81,7 @@ function MovieInfo({ param, type }: Props) {
   if (!data) return <div className="text-red-500">No data found.</div>;
 
   const rating = Math.ceil(data.vote_average / 2);
-  const ratingArray = Array(rating).fill(0);
+  // const ratingArray = Array(rating).fill(0);
 
   return (
     <section>
@@ -151,89 +157,15 @@ function MovieInfo({ param, type }: Props) {
           <li>
             Rating: {data.vote_average} / 10 &nbsp;
             <span className="inline-flex items-center">
-              {ratingArray.map((_, i) => (
+              {/* {ratingArray.map((_, i) => (
                 <Image key={i} src={star} alt="star" width={16} height={16} />
-              ))}
+              ))} */}
             </span>
           </li>
         </ul>
       </section>
 
-      {/* Cast Carousel */}
-      <section className="p-4 text-white w-[100%] m-auto max-w-[1200px] mt-10">
-        <h2 className="text-xl font-semibold mb-4">Cast</h2>
-        {cast?.length > 0 ? (
-          <Swiper
-            spaceBetween={15}
-            slidesPerView={"auto"}
-            className="!overflow-auto"
-          >
-            {cast.map((member: any, index: number) => (
-              <SwiperSlide
-                key={index}
-                className="!w-[120px] bg-[#1c1c1c] rounded-lg text-center text-sm p-2"
-              >
-                <Image
-                  src={
-                    member.profile_path
-                      ? `https://image.tmdb.org/t/p/w185${member.profile_path}`
-                      : "/no-image.png"
-                  }
-                  alt={member.name}
-                  width={100}
-                  height={150}
-                  className="rounded-lg mx-auto mb-2 object-cover h-[150px] w-[100px]"
-                />
-                <p className="font-semibold">{member.name}</p>
-                <p className="text-xs text-gray-400">{member.character}</p>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        ) : (
-          <p className="text-sm text-gray-400">
-            No cast information available.
-          </p>
-        )}
-      </section>
-
-      {/* Reviews */}
-      <section className="p-4 text-white max-w-[1200px] mt-10">
-        <h2 className="text-xl font-semibold mb-4">User Reviews</h2>
-        {reviews?.results?.length > 0 ? (
-          <ul className="space-y-6">
-            {reviews.results.map((review: any) => (
-              <li
-                key={review.id}
-                className="bg-[#1c1c1c] p-4 rounded-lg shadow-md"
-              >
-                <div className="mb-2 flex items-center justify-between">
-                  <span className="text-sm text-gray-300 font-semibold">
-                    {review.author}
-                  </span>
-                  <span className="text-xs text-gray-500">
-                    {new Date(review.created_at).toLocaleDateString()}
-                  </span>
-                </div>
-                <p className="text-sm leading-relaxed text-gray-100">
-                  {review.content.length > 500
-                    ? review.content.slice(0, 500) + "..."
-                    : review.content}
-                </p>
-                <a
-                  href={review.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-400 text-xs mt-2 inline-block hover:underline"
-                >
-                  Read Full Review
-                </a>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="text-sm text-gray-400">No reviews yet.</p>
-        )}
-      </section>
+      <InfoNav cast={cast} reviews={reviews} films={similarities} />
     </section>
   );
 }

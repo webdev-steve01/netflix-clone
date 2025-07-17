@@ -7,17 +7,20 @@ import { Autoplay, EffectFade, Mousewheel } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
+import { useRouter } from "next/navigation";
 
 interface prop {
   array: Results[];
 }
 
 export default function HomeDash({ array }: prop) {
-  const test = array.map((test: Results, i: number) => {
-    console.log(test.media_type, test.name || test.title)
+  const router = useRouter();
+  const body = array.map((test: Results, index: number) => {
+    // console.log(test.media_type, test.name || test.title)
     return (
-      <SwiperSlide key={i} className="p-0 m-0">
+      <SwiperSlide key={index} className="p-0 m-0">
         <section
+        key={index}
           className="w-[100vw] h-[80vh] "
           style={{
             background: `url(https://image.tmdb.org/t/p/w1280/${test.backdrop_path})`,
@@ -35,9 +38,12 @@ export default function HomeDash({ array }: prop) {
                 height={50}
                 className="rounded-lg w-[150px] hidden lg:block 0px]"
               />
+
               <Link
                 className="rounded-lg bg-[#F7DAD9] md:text-[1.2em] font-serif text-black transition-all duration-300 hover:bg-black hover:text-white max-w-[150px] py-2 flex justify-center"
-                href={`/info/${test.name ? "tv": "movie"}/${test.id}`}
+                href={`/info/${test.media_type === "movie" ? "movie" : "tv"}/${
+                  test.id
+                }`}
               >
                 <p>More Info </p>{" "}
               </Link>
@@ -64,7 +70,7 @@ export default function HomeDash({ array }: prop) {
       effect="fade"
       speed={500}
     >
-      {test}
+      {body}
     </Swiper>
   );
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 function Footer() {
   const footerList = [
@@ -62,7 +63,7 @@ function Footer() {
       </section>
       <section className="cta-holder py-2">
         <button type="button" className="floating-cta rounded-lg py-2">
-          Get started
+          <Link href={'./signin'}>Get started</Link>
         </button>
       </section>
     </>

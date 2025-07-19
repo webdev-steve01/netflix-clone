@@ -18,7 +18,7 @@ function ReadyToWatch() {
   return (
     <>
       <p className="soft-text">
-        Ready to watch? enter your email to create or restart your membership
+        Ready to tap in? <br></br> enter your email or click sign up
       </p>
       <form action="" onSubmit={e => handleRoute(e, email)} className="form form-flex flex flex-col">
         <section className="input flex flex-col gap-0">

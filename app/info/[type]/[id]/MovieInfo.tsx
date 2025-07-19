@@ -10,6 +10,8 @@ import { auth } from "@/utils/firebase";
 import { useRouter } from "next/navigation";
 import Loader from "@/components/utilities/Loader";
 import InfoNav from "../../InfoNav";
+import SearchBar from "@/components/Dashboard_components/SearchBar";
+import DashNav from "@/components/Dashboard_components/DashNav";
 
 type Props = {
   param: string;
@@ -84,7 +86,8 @@ function MovieInfo({ param, type }: Props) {
   // const ratingArray = Array(rating).fill(0);
 
   return (
-    <section>
+    <section className="bg-[#000000]">
+      <DashNav />
       {/* Banner */}
       <section
         className="text-white w-screen h-[60vh]"
@@ -103,23 +106,23 @@ function MovieInfo({ param, type }: Props) {
             height={50}
             className="rounded-lg w-[150px]"
           />
+        <h1 className="font-bold text-[1.4em]">
+          {data.name || data.title} {" "}
+          {data.number_of_seasons && (
+            <span className="text-gray-400 text-[0.8em]">
+              ({data.number_of_seasons} seasons)
+         </span>
+          )}
+        </h1>
         </section>
       </section>
 
       {/* Details */}
       <section className="p-4 text-white max-w-[1200px] flex flex-col gap-4">
-        <h1 className="font-bold text-[1.4em]">
-          {data.name || data.title}{" "}
-          {data.number_of_seasons && (
-            <span className="text-gray-400 text-[0.8em]">
-              ({data.number_of_seasons} seasons)
-            </span>
-          )}
-        </h1>
 
-        <p className="font-light mb-2">{data.overview}</p>
+        <p className="font-light mb-2 text-[0.9em]">{data.overview}</p>
 
-        <ul className="space-y-1 text-[0.95em]">
+        <ul className="space-y-1 text-[0.8em]">
           {data.release_date && <li>Release Date: {data.release_date}</li>}
           {data.first_air_date && (
             <li>First Air Date: {data.first_air_date}</li>

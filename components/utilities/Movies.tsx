@@ -28,19 +28,19 @@ function Movies() {
       );
       let post = await data.json();
       let movies: Results[] = post.results;
-      const filtered_movies: Results[] = movies?.slice(0, 10);
+      const filtered_movies: Results[] = movies?.slice(0, 15);
       setResponse(filtered_movies);
     };
     fetchData(film);
   }, [film]);
 
-  const skeletonSlides = Array.from({ length: slides || 10 }, (_, index) => (
+  const skeletonSlides = Array.from({ length: slides || 15 }, (_, index) => (
     <div
       key={`skeleton-${index}`}
       className="poster-holder skeleton animate-pulse"
     >
-      <SwiperSlide>
-        <div className="w-[120px] h-[180px] md:w-[150px] md:h-[200px] lg:w-[200px] lg:h-[260px] bg-gray-600 animate-pulse rounded-lg" />
+      <SwiperSlide style={{width: "120px"}}>
+        <div className=" md:w-[150px] md:h-[200px] lg:w-[200px] lg:h-[260px] bg-gray-600 animate-pulse rounded-lg" />
       </SwiperSlide>
     </div>
   ));
@@ -50,13 +50,13 @@ function Movies() {
       ? skeletonSlides
       : response?.map((movie: Results) => (
           <div key={movie.id} className="poster-holder film- skeleton min-h-[184.5px] md:min-h-[200px] ">
-            <SwiperSlide className="rounded-lg overflow-hidden ">
+            <SwiperSlide style={{width: "120px"}} className="rounded-lg overflow-hidden ">
               <Image
                 src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
                 alt={movie.title || movie.name || "poster"}
                 width={400}
                 height={300}
-                className="children-poster  rounded-lg skeleton swiper-slide bg-gray-600"
+                className=" rounded-lg skeleton swiper-slide bg-gray-600"
               />
             </SwiperSlide>
           </div>
@@ -102,50 +102,53 @@ function Movies() {
             <Swiper
               className="movie-holder swiper-wrapper overflow-auto bg-black]"
               modules={[Navigation, Pagination, A11y]}
-              spaceBetween={16}
-                  breakpoints={{
-            320: {
-              slidesPerView: 2,
-              spaceBetween: 8,
-            },
+              spaceBetween={15}
+              slidesPerGroup={1}
+              slidesPerView={"auto"}
+              freeMode={false}
+          //         breakpoints={{
+          //   320: {
+          //     slidesPerView: 2,
+          //     spaceBetween: 8,
+          //   },
             
-            375: {
-              slidesPerView: 3,
-              spaceBetween: 12,
-            },
-            700: {
-              slidesPerView: 4,
-              spaceBetween: 14,
-            },
-            768: {
-              slidesPerView: 5,
-              spaceBetween: 16,
-            },
-            1024: {
-              slidesPerView: 7,
-              spaceBetween: 20,
-            },
-            1280: {
-              slidesPerView: 9,
-              spaceBetween: 24,
-            },
-            1440: {
-              slidesPerView: 9,
-              spaceBetween: 28,
-            },
-            1600: {
-              slidesPerView:9,
-              spaceBetween: 32,
-            },
-          }}
+          //   375: {
+          //     slidesPerView: 3,
+          //     spaceBetween: 12,
+          //   },
+          //   700: {
+          //     slidesPerView: 4,
+          //     spaceBetween: 14,
+          //   },
+          //   768: {
+          //     slidesPerView: 5,
+          //     spaceBetween: 16,
+          //   },
+          //   1024: {
+          //     slidesPerView: 7,
+          //     spaceBetween: 20,
+          //   },
+          //   1280: {
+          //     slidesPerView: 9,
+          //     spaceBetween: 24,
+          //   },
+          //   1440: {
+          //     slidesPerView: 9,
+          //     spaceBetween: 28,
+          //   },
+          //   1600: {
+          //     slidesPerView:9,
+          //     spaceBetween: 32,
+          //   },
+          // }}
               // pagination
               // loop
               navigation={{
                 nextEl: ".switchRight",
                 prevEl: ".switchLeft",
               }}
-              onSwiper={(swipe: any) => console.log(swipe)}
-              onSlideChange={() => console.log("slide change")}
+              // onSwiper={(swipe: any) => console.log(swipe)}
+              // onSlideChange={() => console.log("slide change")}
             >
               {innerHtml}
             </Swiper>

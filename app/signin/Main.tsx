@@ -8,7 +8,7 @@ import Footer from "@/components/sections/Footer";
 
 function Main() {
   return (
-    <section className="h-full">
+    <section className="h-full bg-black">
       <section className="signup-hero">
         <section className="signup px-5">
           <div className="">

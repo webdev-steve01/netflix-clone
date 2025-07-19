@@ -40,7 +40,7 @@ export default function HomeDash({ array }: prop) {
               />
 
               <Link
-                className="rounded-lg bg-[#F7DAD9] md:text-[1.2em] font-serif text-black transition-all duration-300 hover:bg-black hover:text-white max-w-[150px] py-2 flex justify-center"
+                className="rounded-lg bg-[#B1070F] md:text-[1.2em] font-serif text-white transition-all duration-300 hover:bg-[#0E6BA8] hover:text-white max-w-[150px] py-2 flex justify-center"
                 href={`/info/${test.media_type === "movie" ? "movie" : "tv"}/${
                   test.id
                 }`}

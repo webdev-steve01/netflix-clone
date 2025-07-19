@@ -11,7 +11,7 @@ import Nav from "../components/sections/Nav";
 
 export default function Home() {
   return (
-    <div className="">
+    <div className="w-full bg-black">
       <Nav />
       <section className="hero-container">
         <section className="hero">

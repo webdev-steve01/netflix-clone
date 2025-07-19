@@ -26,7 +26,7 @@ async function DashboardNav() {
         </div>
       </section>
 
-      <section className="px-4">
+      <section className="px-4 bg-[#000000]">
         {/* <TvSeries /> */}
         <Film genre={28} genre_title="No-Brakes Action" type="movie" />
         <Film genre={16} genre_title="Something for the Kids" type="tv" />

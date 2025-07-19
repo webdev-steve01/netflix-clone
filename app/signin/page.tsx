@@ -7,7 +7,7 @@ import SignInFooter from "./SignInFooter";
 
 function page() {
   return (
-      <section className="h-full">
+      <section className="h-screen bg-black">
         <section className="signup-hero">
           <section className="signup px-5">
             <div className="">

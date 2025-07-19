@@ -9,7 +9,7 @@ type props = {
 function Cast({cast}: props) {
   return (
     <div>      {/* Cast Carousel */}
-      <section className="py-4 text-white w-[100%] m-auto max-w-[1200px] mt-10">
+      <section className="py-4 text-white w-[100%] m-auto  mt-10">
         <h2 className="text-xl font-semibold mb-4">Cast</h2>
         {cast?.length > 0 ? (
           <Swiper

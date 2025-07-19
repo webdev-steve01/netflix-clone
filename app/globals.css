@@ -17,6 +17,7 @@
 }
 html{
   background-color: #000000;
+  scroll-behavior: smooth;
 }
 .hero {
   height: 80vh;

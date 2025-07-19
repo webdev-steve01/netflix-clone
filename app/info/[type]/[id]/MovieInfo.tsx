@@ -3,14 +3,10 @@ import React, { useEffect, useState } from "react";
 import { options } from "@/utils/auth";
 import { Results } from "@/utils/interfaces";
 import Image from "next/image";
-import star from "@/public/star.svg";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "@/utils/firebase";
 import { useRouter } from "next/navigation";
 import Loader from "@/components/utilities/Loader";
 import InfoNav from "../../InfoNav";
-import SearchBar from "@/components/Dashboard_components/SearchBar";
+import { GetStaticProps } from "next";
 import DashNav from "@/components/Dashboard_components/DashNav";
 
 type Props = {
@@ -24,7 +20,7 @@ function MovieInfo({ param, type }: Props) {
   const [cast, setCast] = useState<any>();
   const [similarities, setSimilarities] = useState<Results[]>([])
   const [loading, setLoading] = useState(true);
-  const [authenticating, setAuthenticating] = useState(true);
+  // const [authenticating, setAuthenticating] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
@@ -66,24 +62,12 @@ function MovieInfo({ param, type }: Props) {
     fetchData();
   }, [param, type]);
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (!user) {
-        router.replace("/");
-      } else {
-        setAuthenticating(false);
-      }
-    });
 
-    return () => unsubscribe();
-  }, [router]);
-
-  if (loading || authenticating) return <p>Loading...</p>;
+  if (loading) return <Loader />
+;
 
   if (!data) return <div className="text-red-500">No data found.</div>;
 
-  const rating = Math.ceil(data.vote_average / 2);
-  // const ratingArray = Array(rating).fill(0);
 
   return (
     <section className="bg-[#000000]">
@@ -104,7 +88,7 @@ function MovieInfo({ param, type }: Props) {
             alt={data?.title || data?.name || "poster"}
             width={200}
             height={50}
-            className="rounded-lg w-[150px]"
+            className="rounded-lg skeleton w-[120px]"
           />
         <h1 className="font-bold text-[1.4em]">
           {data.name || data.title} {" "}
@@ -120,9 +104,9 @@ function MovieInfo({ param, type }: Props) {
       {/* Details */}
       <section className="p-4 text-white max-w-[1200px] flex flex-col gap-4">
 
-        <p className="font-light mb-2 text-[0.9em]">{data.overview}</p>
+        <p className="font-light mb-2 text-[0.9em] lg:text-[0.95em]">{data.overview}</p>
 
-        <ul className="space-y-1 text-[0.8em]">
+        <ul className="space-y-1 text-[0.em]">
           {data.release_date && <li>Release Date: {data.release_date}</li>}
           {data.first_air_date && (
             <li>First Air Date: {data.first_air_date}</li>
@@ -174,3 +158,24 @@ function MovieInfo({ param, type }: Props) {
 }
 
 export default MovieInfo;
+
+export const getStaticProps: GetStaticProps = async () => {
+  // Fetch popular movies and TV shows, but NOT people
+  const [movieRes, tvRes] = await Promise.all([
+    fetch("https://api.themoviedb.org/3/trending/movie/week?language=en-US", options),
+    fetch("https://api.themoviedb.org/3/trending/tv/week?language=en-US", options),
+  ]);
+
+  const [movieData, tvData] = await Promise.all([
+    movieRes.json(),
+    tvRes.json(),
+  ]);
+
+  return {
+    props: {
+      movies: movieData.results || [],
+      tvSeries: tvData.results || [],
+    },
+    revalidate: 86400, // revalidate every 24 hours
+  };
+};

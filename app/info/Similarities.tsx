@@ -28,15 +28,15 @@ function Similarities({ film }: Props) {
         {film.map((item, index) => (
           <SwiperSlide
             key={index}
-            style={{ width: "150px" }}
+            style={{ width: "120px" }}
             className="bg-[#111] rounded-lg overflow-hidden group cursor-pointer"
           >
             <Link href={`/info/${item.name ? "tv" : "movie"}/${item.id}`} className="block">
               <Image
                 src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
                 alt={item.title || item.name || "poster"}
-                width={150}
-                height={225}
+                width={100}
+                height={50}
                 className="w-full h-auto transition-transform duration-300 group-hover:scale-105"
               />
               <div className="p-2 text-white text-sm">

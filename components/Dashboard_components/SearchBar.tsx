@@ -49,7 +49,7 @@ function SearchBar() {
     // return controller.abort();/
   }, [debounce]);
   return (
-    <div className="flex  items-center border gap-0 p-0 w-full max-w-[600px] rounded-lg px-2 mx-4 relative">
+    <div className="flex  items-center border gap-0 p-0 w-full max-w-[600px] rounded-lg px-2  relative">
       <input
         type="text"
         onChange={(e) => setSearchItem(e.target.value)}

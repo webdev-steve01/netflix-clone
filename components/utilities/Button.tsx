@@ -18,7 +18,7 @@ function Button(props: Props) {
             href="/signin"
             className="button px-2 flex justify-center items-center py-1 rounded-lg min-w-[100px]"
           >
-            {isClicked ? <p>loading...</p> : props.text}
+            {isClicked ? <p>Loading...</p> : props.text}
           </Link>
         </motion.div>
       </AnimatePresence>

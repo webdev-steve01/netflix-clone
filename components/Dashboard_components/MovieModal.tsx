@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 import { options } from "@/utils/auth";
 import { Results } from "@/utils/interfaces";
 
+
+
 export default function MovieModal({
   movieId,
   onClose,
@@ -17,10 +19,12 @@ export default function MovieModal({
 }) {
   const [details, setDetails] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [routing, setRouting] = useState(false)
   const router = useRouter();
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
+      setLoading(true)
       const res = await fetch(
         `https://api.themoviedb.org/3/${type}/${movieId}?language=en-US`,
        options
@@ -32,6 +36,10 @@ export default function MovieModal({
 
     fetchMovieDetails();
   }, [movieId, type]);
+  const handleRoute = (details: Results) =>{
+    setRouting(true)
+  router.push(`./info/${details.name ? "tv" : "movie"}/${details.id}`)
+}
 
   useEffect(() => {
     // Disable scroll on mount
@@ -44,9 +52,8 @@ export default function MovieModal({
   }, []);
 
   const modalContent = !details || loading ? (
-    <div className="fixed inset- text-[1.2em] md:text-[1.5em] lg:text-[1.9em] bg-black/70 flex justify-center items-center z-[9999] select-none">
-      <p className="text-white">Loading...</p>
-    </div>
+   <div className="loader animate-spin w-10 h-10 border-4 border-white border-t-transparent rounded-full"></div>
+
   ) : (
     <div className="fixed text-[1.4em] inset-0 bg-black/60 flex items-center justify-center z-[9999]">
       <div className="bg-[#0C0502] text-[white] rounded-lg overflow-hidden w-[90%] max-w-md max-h-[500px] relative">
@@ -78,7 +85,7 @@ export default function MovieModal({
             <MovieButton
               text="More Info"
               isAvailable
-              onClick={() => router.push(`./info/${details.name ? "tv" : "movie"}/${details.id}`)}
+              onClick={() => handleRoute(details) }
             />
             <MovieButton
               text="Official Website"
@@ -95,7 +102,28 @@ export default function MovieModal({
           <p className="text-[0.8em] line-clamp-4">{details.overview}</p>
         </section>
       </div>
+      
+      {routing && (
+        <div className="absolute inset-0 z-50 bg-black/50 h-screen w-screen flex items-center justify-center">
+          <div className="loader">
+            <div className="bar1"></div>
+            <div className="bar2"></div>
+            <div className="bar3"></div>
+            <div className="bar4"></div>
+            <div className="bar5"></div>
+            <div className="bar6"></div>
+            <div className="bar7"></div>
+            <div className="bar8"></div>
+            <div className="bar9"></div>
+            <div className="bar10"></div>
+            <div className="bar11"></div>
+            <div className="bar12"></div>
+          </div>
+        </div>
+      )}
     </div>
+
+    
   );
 
   return typeof window !== "undefined"

@@ -1,6 +1,8 @@
 import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import Image from 'next/image'
+import next from "@/public/next.svg";
+import prev from "@/public/back-svgrepo-com.svg"
 
 type props = {
     cast: any[]
@@ -16,6 +18,7 @@ function Cast({cast}: props) {
             spaceBetween={15}
             slidesPerView={"auto"}
             className="!overflow-auto no-scroll"
+            // navigation={true}
           >
             {cast.map((member: any, index: number) => (
               <SwiperSlide

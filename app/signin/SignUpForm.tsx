@@ -115,7 +115,7 @@ function SignUpForm(props: props) {
           type="submit"
           onClick={(e) => signUp(e)}
         >
-          <p className=" m-auto">{loading ? "loading..." : "Sign up"}</p>
+          <p className=" m-auto">{loading ? "Loading..." : "Sign up"}</p>
         </button>
         <p className="text-white text-center">forgot password?</p>
         <div className="flex">

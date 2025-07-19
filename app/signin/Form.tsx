@@ -103,7 +103,7 @@ function Form() {
           className="button rounded-[5px] py-1"
           type="button"
         >
-          <p className=" m-auto">{loading ? "loading..." : "sign in"}</p>
+          <p className=" m-auto">{loading ? "Loading..." : "Sign in"}</p>
         </button>
         {/* <p className="text-white text-center">forgot password?</p> */}
         <div className="flex">

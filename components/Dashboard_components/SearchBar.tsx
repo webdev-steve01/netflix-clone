@@ -73,7 +73,7 @@ function SearchBar() {
               .map((value: Results, index: number) => (
                 <Link
                   key={index}
-                  href={`./info/${value.media_type}/${value.id}`}
+                  href={`/info/${value.media_type}/${value.id}`}
                 >
                   <div className="flex">
                     <Image

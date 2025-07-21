@@ -37,7 +37,7 @@ function Similarities({ film }: Props) {
                 alt={item.title || item.name || "poster"}
                 width={100}
                 height={50}
-                className="w-full h-auto transition-transform duration-300 group-hover:scale-105"
+                className="w-[150px] h-auto transition-transform duration-300 group-hover:scale-105"
               />
               <div className="p-2 text-white text-sm">
                 <p className="font-medium line-clamp-1">

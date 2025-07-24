@@ -1,7 +1,6 @@
 import { options } from "@/utils/auth";
 import Image from "next/image";
 import InfoNav from "../../InfoNav";
-import { GetStaticProps } from "next";
 import DashNav from "@/components/Dashboard_components/DashNav";
 
 type Props = {
@@ -10,30 +9,32 @@ type Props = {
 };
 
 async function MovieInfo({ param, type }: Props) {
-        const res = await fetch(
-          `https://api.themoviedb.org/3/${type}/${param}?language=en-US`,
-          options
-        );
-        const rev = await fetch(
-          `https://api.themoviedb.org/3/${type}/${param}/reviews?language=en-US&page=1`,
-          options
-        );
-        const sim = await fetch(`https://api.themoviedb.org/3/${type}/${param}/similar?language=en-US&page=1`, options)
-        const json = await res.json();
-        const result = await rev.json();
-        const similar = await sim.json()
-        const cast = await fetch(
-          `https://api.themoviedb.org/3/${type}/${param}/credits?language=en-US`,
-          options
-        );
-        const Cast = await cast.json();
-        console.log(Cast.cast); // ← This is your cast list
-        console.log(json);
-        console.log(result.results);
-        console.log(similar);
+  const res = await fetch(
+    `https://api.themoviedb.org/3/${type}/${param}?language=en-US`,
+    options
+  );
+  const rev = await fetch(
+    `https://api.themoviedb.org/3/${type}/${param}/reviews?language=en-US&page=1`,
+    options
+  );
+  const sim = await fetch(
+    `https://api.themoviedb.org/3/${type}/${param}/similar?language=en-US&page=1`,
+    options
+  );
+  const json = await res.json();
+  const result = await rev.json();
+  const similar = await sim.json();
+  const cast = await fetch(
+    `https://api.themoviedb.org/3/${type}/${param}/credits?language=en-US`,
+    options
+  );
+  const Cast = await cast.json();
+  console.log(Cast.cast); // ← This is your cast list
+  console.log(json);
+  console.log(result.results);
+  console.log(similar);
 
   if (!json) return <div className="text-red-500">No data found.</div>;
-
 
   return (
     <section className="bg-[#000000]">
@@ -58,21 +59,22 @@ async function MovieInfo({ param, type }: Props) {
             height={50}
             className="rounded-lg skeleton w-[120px]"
           />
-        <h1 className="font-bold text-[1.4em]">
-          {json.name || json.title} {" "}
-          {json.number_of_seasons && (
-            <span className="text-gray-400 text-[0.8em]">
-              ({json.number_of_seasons} seasons)
-         </span>
-          )}
-        </h1>
+          <h1 className="font-bold text-[1.4em]">
+            {json.name || json.title}{" "}
+            {json.number_of_seasons && (
+              <span className="text-gray-400 text-[0.8em]">
+                ({json.number_of_seasons} seasons)
+              </span>
+            )}
+          </h1>
         </section>
       </section>
 
       {/* Details */}
       <section className="p-4 text-white max-w-[1200px] flex flex-col gap-4">
-
-        <p className="font-light mb-2 text-[0.9em] lg:text-[0.95em]">{json.overview}</p>
+        <p className="font-light mb-2 text-[0.9em] lg:text-[0.95em]">
+          {json.overview}
+        </p>
 
         <ul className="space-y-1 text-[0.em]">
           {json.release_date && <li>Release Date: {json.release_date}</li>}
@@ -110,30 +112,13 @@ async function MovieInfo({ param, type }: Props) {
         </ul>
       </section>
 
-      <InfoNav cast={Cast.cast} reviews={result.results} films={similar.results} />
+      <InfoNav
+        cast={Cast.cast}
+        reviews={result.results}
+        films={similar.results}
+      />
     </section>
   );
 }
 
 export default MovieInfo;
-
-export const getStaticProps: GetStaticProps = async () => {
-  // Fetch popular movies and TV shows, but NOT people
-  const [movieRes, tvRes] = await Promise.all([
-    fetch("https://api.themoviedb.org/3/trending/movie/week?language=en-US", options),
-    fetch("https://api.themoviedb.org/3/trending/tv/week?language=en-US", options),
-  ]);
-
-  const [movieData, tvData] = await Promise.all([
-    movieRes.json(),
-    tvRes.json(),
-  ]);
-
-  return {
-    props: {
-      movies: movieData.results || [],
-      tvSeries: tvData.results || [],
-    },
-    revalidate: 86400, // revalidate every 24 hours
-  };
-};

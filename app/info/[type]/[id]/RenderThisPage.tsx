@@ -6,9 +6,11 @@ import { auth } from "@/utils/firebase";
 import dynamic from "next/dynamic";
 import Loader from "@/components/utilities/Loader";
 import { useParams } from "next/navigation";
-
 // ✅ Import Server Component safely
-const MovieInfo = dynamic(() => import("../[id]/MovieInfo"), { ssr: true, loading: () => <Loader /> });
+const MovieInfo = dynamic(() => import("../[id]/MovieInfo"), {
+  ssr: true,
+  loading: () => <Loader />,
+});
 
 function RenderThisPage() {
   const [loading, setLoading] = useState(true);

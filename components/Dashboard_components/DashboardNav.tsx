@@ -4,16 +4,23 @@ import HomeDash from "./HomeDash";
 import { options } from "@/utils/auth";
 
 async function DashboardNav() {
-  let data = await fetch(
-    "https://api.themoviedb.org/3/trending/all/week?language=en-US",
-    options
-  );
-  let posts = await data.json();
-  const filtered = posts.results.filter(
-    (item: any) => item.media_type === "movie" || item.media_type === "tv"
-  );
+  let filtered: any[] = [];
 
-  // console.log(filtered);
+  try {
+    const data = await fetch(
+      "https://api.themoviedb.org/3/trending/all/week?language=en-US",
+      {
+        ...options,
+        next: { revalidate: 3600 }, // Optional: Cache for 1 hour
+      }
+    );
+    const posts = await data.json();
+    filtered = posts.results.filter(
+      (item: any) => item.media_type === "movie" || item.media_type === "tv"
+    );
+  } catch (error) {
+    console.error("❌ Failed to fetch trending content:", error);
+  }
 
   return (
     <>
@@ -27,7 +34,6 @@ async function DashboardNav() {
       </section>
 
       <section className="px-4 bg-[#000000]">
-        {/* <TvSeries /> */}
         <Film genre={28} genre_title="No-Brakes Action" type="movie" />
         <Film genre={16} genre_title="Something for the Kids" type="tv" />
         <Film genre={35} genre_title="Comedy One-Watches" type="movie" />

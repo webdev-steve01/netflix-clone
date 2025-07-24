@@ -39,8 +39,8 @@ function Movies() {
       key={`skeleton-${index}`}
       className="poster-holder skeleton animate-pulse"
     >
-      <SwiperSlide style={{width: "120px"}}>
-        <div className=" md:w-[150px] md:h-[200px] lg:w-[200px] lg:h-[260px] bg-gray-600 animate-pulse rounded-lg" />
+      <SwiperSlide style={{ width: "120px", height: "180px" }}>
+        <div className=" md:w-[150px lg:w-[200px] lg:h-[260px] bg-gray-600 animate-pulse rounded-lg" />
       </SwiperSlide>
     </div>
   ));
@@ -49,8 +49,14 @@ function Movies() {
     response?.length === 0
       ? skeletonSlides
       : response?.map((movie: Results) => (
-          <div key={movie.id} className="poster-holder film- skeleton min-h-[184.5px] md:min-h-[200px] ">
-            <SwiperSlide style={{width: "120px"}} className="rounded-lg overflow-hidden ">
+          <div
+            key={movie.id}
+            className="poster-holder film- skeleton min-h-[184.5px] md:min-h-[200px] "
+          >
+            <SwiperSlide
+              style={{ width: "120px", height: "180px" }}
+              className="rounded-lg overflow-hidden "
+            >
               <Image
                 src={`https://image.tmdb.org/t/p/w780/${movie.poster_path}`}
                 alt={movie.title || movie.name || "poster"}
@@ -106,41 +112,41 @@ function Movies() {
               slidesPerGroup={1}
               slidesPerView={"auto"}
               freeMode={false}
-          //         breakpoints={{
-          //   320: {
-          //     slidesPerView: 2,
-          //     spaceBetween: 8,
-          //   },
-            
-          //   375: {
-          //     slidesPerView: 3,
-          //     spaceBetween: 12,
-          //   },
-          //   700: {
-          //     slidesPerView: 4,
-          //     spaceBetween: 14,
-          //   },
-          //   768: {
-          //     slidesPerView: 5,
-          //     spaceBetween: 16,
-          //   },
-          //   1024: {
-          //     slidesPerView: 7,
-          //     spaceBetween: 20,
-          //   },
-          //   1280: {
-          //     slidesPerView: 9,
-          //     spaceBetween: 24,
-          //   },
-          //   1440: {
-          //     slidesPerView: 9,
-          //     spaceBetween: 28,
-          //   },
-          //   1600: {
-          //     slidesPerView:9,
-          //     spaceBetween: 32,
-          //   },
-          // }}
+              //         breakpoints={{
+              //   320: {
+              //     slidesPerView: 2,
+              //     spaceBetween: 8,
+              //   },
+
+              //   375: {
+              //     slidesPerView: 3,
+              //     spaceBetween: 12,
+              //   },
+              //   700: {
+              //     slidesPerView: 4,
+              //     spaceBetween: 14,
+              //   },
+              //   768: {
+              //     slidesPerView: 5,
+              //     spaceBetween: 16,
+              //   },
+              //   1024: {
+              //     slidesPerView: 7,
+              //     spaceBetween: 20,
+              //   },
+              //   1280: {
+              //     slidesPerView: 9,
+              //     spaceBetween: 24,
+              //   },
+              //   1440: {
+              //     slidesPerView: 9,
+              //     spaceBetween: 28,
+              //   },
+              //   1600: {
+              //     slidesPerView:9,
+              //     spaceBetween: 32,
+              //   },
+              // }}
               // pagination
               // loop
               navigation={{

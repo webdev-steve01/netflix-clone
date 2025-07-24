@@ -3,7 +3,14 @@ import { useState } from "react";
 import React from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../utils/firebase";
-import { addDoc, collection } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  setDoc,
+  doc,
+  serverTimestamp,
+} from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 type props = {
   setPrevUser: Function;
 };
@@ -18,14 +25,23 @@ function SignUpForm(props: props) {
 
   const handleAdd = async () => {
     try {
-      await addDoc(collection(db, "users"), {
-        name: username,
-        email,
-        createdAt: new Date(),
-      });
-      console.log("document added successfully");
+      const user = getAuth().currentUser;
+      if (!user) throw new Error("User not authenticated");
+
+      await setDoc(
+        doc(db, "users", user.uid),
+        {
+          name: username,
+          email,
+          createdAt: serverTimestamp(),
+        },
+        { merge: true }
+      );
+
+      console.log("✅ User document created or merged");
     } catch (error) {
-      console.error("error adding document", error);
+      console.error("🔥 Error setting user document:", error);
+      setLoading(false);
     }
   };
 
@@ -44,6 +60,7 @@ function SignUpForm(props: props) {
         }
       })
       .catch((err) => {
+        setLoading(false);
         switch (err.code) {
           case "auth/missing-password":
             setError("Password required");

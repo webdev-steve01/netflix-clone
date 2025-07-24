@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
+// import { AuthProvider } from "@/context/AuthContext";
 import "./globals.css";
 
 // ✅ Rename `inter` to match the font name

@@ -32,6 +32,6 @@ export const genres: genre[] = [
   { genre: 10764, genre_title: "Reality & Unscripted", type: "tv" },
   { genre: 10763, genre_title: "TV News & Commentary", type: "tv" },
   { genre: 10767, genre_title: "Talk Shows & Opinions", type: "tv" },
-  { genre: 10758, genre_title: "TV Game Shows", type: "tv" },
-  { genre: 10760, genre_title: "Crime & Legal Drama", type: "tv" },
+  // { genre: 10758, genre_title: "TV Game Shows", type: "tv" },
+  // { genre: 10760, genre_title: "Crime & Legal Drama", type: "tv" },
 ];

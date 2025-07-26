@@ -19,12 +19,9 @@ async function DashboardNav() {
       (item: any) => item.media_type === "movie" || item.media_type === "tv"
     );
 
-    const genreFetch = await fetch(
-      "https://netflix-clone-rho-gray.vercel.app/api/movies",
-      {
-        next: { revalidate: 3600 },
-      }
-    );
+    const genreFetch = await fetch("http://localhost:3000/api/movies", {
+      next: { revalidate: 3600 },
+    });
     allGenres = await genreFetch.json();
   } catch (error) {
     console.error("❌ Failed to fetch dashboard content:", error);

@@ -40,7 +40,9 @@ export default function ClientList({ movies }: Props) {
     <>
       <nav className="sticky top-0 z-50 flex items-center justify-between p-4  bg-black/70 backdrop-blur">
         <div className="flex items-center gap-4">
-          <Image src={back} alt="back" width={30} height={30} />
+          <Link href={"/dashboard"}>
+            <Image src={back} alt="back" width={30} height={30} />
+          </Link>
           <h1 className="text-xl font-bold">My List</h1>
         </div>
         <button onClick={() => setDeleteMode((prev) => !prev)}>
@@ -71,28 +73,31 @@ export default function ClientList({ movies }: Props) {
         </button>
       </nav>
 
-      <div className="flex flex-wrap gap-4 p-4">
+      <div className="grid gap-6 p-4 grid-cols-3  md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7">
         {list.length > 0 ? (
           list.map((movie) => (
-            <div key={movie.id} className="flex flex-col gap-1 justify-between">
+            <div key={movie.id} className="flex flex-col items-center gap-2">
               <Link href={`/info/${movie.type}/${movie.id}`}>
-                <div className="flex items-center gap-4 overflow-hidden rounded-lg">
+                <div className="relative overflow-hidden rounded-lg w-[100px] md:w-[150px] h-[150px] md:h-[225px]">
+                  {/* Static skeleton background */}
+                  <div className="absolute z-10 inset-0 bg-zinc-800 animate-pulse rounded-lg" />
+
+                  {/* Actual poster image overlays the skeleton */}
                   <Image
                     src={`https://image.tmdb.org/t/p/w1280/${movie.poster_path}`}
                     alt={movie.title}
-                    width={100}
-                    height={150}
-                    className="rounded-lg w-[100px] md:w-[150px] hover:scale-105 transition duration-300"
+                    fill
+                    className="object-cover z-30 rounded-lg hover:scale-105 transition duration-300"
                   />
-                  {/* <p>{movie.title}</p> */}
                 </div>
               </Link>
+
               <AnimatePresence>
                 {deleteMode && (
                   <motion.button
-                    initial={{ opacity: 0, y: -20 }}
+                    initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
+                    exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2 }}
                     onClick={() => handleDelete(movie.id)}
                     className="text-red-500 hover:scale-105 transition flex items-center justify-center rounded-full"

@@ -2,6 +2,7 @@ import { options } from "@/utils/auth";
 import Image from "next/image";
 import InfoNav from "../../InfoNav";
 import DashNav from "@/components/Dashboard_components/DashNav";
+import AddToListButton from "./AddToListButton";
 
 type Props = {
   param: string;
@@ -29,12 +30,18 @@ async function MovieInfo({ param, type }: Props) {
     options
   );
   const Cast = await cast.json();
-  console.log(Cast.cast); // ← This is your cast list
-  console.log(json);
-  console.log(result.results);
-  console.log(similar);
 
   if (!json) return <div className="text-red-500">No data found.</div>;
+  const data = {
+    id: json.id,
+    title: json.title || json.name,
+    poster_path: json.poster_path,
+    type: type,
+    isAdding: (boolean: boolean) => {
+      // This function can be used to handle adding state if needed
+      console.log("Adding state:", boolean);
+    },
+  };
 
   return (
     <section className="bg-[#000000]">
@@ -59,14 +66,21 @@ async function MovieInfo({ param, type }: Props) {
             height={50}
             className="rounded-lg skeleton w-[120px]"
           />
-          <h1 className="font-bold text-[1.4em]">
-            {json.name || json.title}{" "}
-            {json.number_of_seasons && (
-              <span className="text-gray-400 text-[0.8em]">
-                ({json.number_of_seasons} seasons)
-              </span>
-            )}
-          </h1>
+          <div>
+            <h1 className="font-bold text-[1.4em]">
+              {json.name || json.title}{" "}
+              {json.number_of_seasons && (
+                <span className="text-gray-400 text-[0.8em]">
+                  ({json.number_of_seasons} seasons)
+                </span>
+              )}
+            </h1>
+            <AddToListButton
+              movie={data}
+              baseText="Add to List"
+              resultingText="In List"
+            />
+          </div>
         </section>
       </section>
 

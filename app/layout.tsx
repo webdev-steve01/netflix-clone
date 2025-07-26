@@ -12,7 +12,7 @@ const openSans = Open_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "NewFlix",
+  title: "NewFlicks",
   description: "Keep track of latest movies",
 };
 
@@ -24,11 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={openSans.className}>
       <head>
-        <link
-          rel="shortcut icon"
-          href="/netflix-svgrepo-com.svg"
-          type="image/x-icon"
-        />
+        <link rel="shortcut icon" href="/movie.svg" type="image/x-icon" />
       </head>
       <body>
         <main className="">{children}</main>

@@ -17,12 +17,15 @@ const SignUpHero = () => {
       <h1 className="text-white font-bold text-2xl">
         {prevUser ? "sign in" : "sign up"}
       </h1>
-      {prevUser? <Form />: <SignUpForm setPrevUser={setPrevUser} />}
+      {prevUser ? <Form /> : <SignUpForm setPrevUser={setPrevUser} />}
       <section className="link">
         <p className="text-[#b3b3b3]">
-          {prevUser ? "New to netflix?": "Already have an account?"}
-          <span onClick={handleUser} className="text-white font-bold cursor-pointer px-1">
-            {prevUser? "sign up now":"Sign in"}
+          {prevUser ? "New to newflicks?" : "Already have an account?"}
+          <span
+            onClick={handleUser}
+            className="text-white font-bold cursor-pointer px-1"
+          >
+            {prevUser ? "sign up now" : "Sign in"}
           </span>
         </p>
       </section>

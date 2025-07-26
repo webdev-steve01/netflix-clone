@@ -385,7 +385,7 @@ select {
   }
 }
 
-.netflix-overlay {
+.newflicks-overlay {
   background: linear-gradient(
     to bottom,
     hsla(0, 0%, 0%, 0.5),
@@ -393,7 +393,7 @@ select {
     hsla(0, 0%, 0%, 1)
   );
 }
-.netflix-overlay-bright {
+.newflicks-overlay-bright {
   background: linear-gradient(
     to bottom,
     rgba(53, 56, 57, 0.5),

@@ -1,4 +1,4 @@
-import Logo from "@/public/netflix-2-logo-svgrepo-com.svg";
+import Logo from "@/public/movie.svg";
 import Image from "next/image";
 import Button from "../utilities/Button";
 
@@ -6,11 +6,17 @@ export default function Nav() {
   return (
     <>
       <nav className="nav bottom-1 py-[2em]">
-        <section className="nav-image">
-          <Image className="img" src={Logo} alt="netflix" />
+        <section className="w-50">
+          <Image
+            className=""
+            width={50}
+            height={50}
+            src={Logo}
+            alt="newflicks"
+          />
         </section>
         <section className="nav-button">
-          <Button text="sign up" />
+          <Button text="Sign up" />
         </section>
       </nav>
     </>

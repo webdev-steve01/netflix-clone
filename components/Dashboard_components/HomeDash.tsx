@@ -29,7 +29,7 @@ export default function HomeDash({ array }: prop) {
             backgroundRepeat: "no-repeat",
           }}
         >
-          <div className="h-full netflix-overlay px-4  flex gap-[4em] items-end">
+          <div className="h-full newflicks-overlay px-4  flex gap-[4em] items-end">
             <div className="flex gap-6 flex-col py-2 m-0">
               <Image
                 src={`https://image.tmdb.org/t/p/w1280/${test.poster_path}`}

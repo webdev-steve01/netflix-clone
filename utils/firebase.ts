@@ -8,15 +8,15 @@ import { getFirestore } from "firebase/firestore";
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBn8ejTuO0pkS5uYMrylqWQNCIxJVqqgDI",
-  authDomain: "netflix-6bba7.firebaseapp.com",
-  projectId: "netflix-6bba7",
-  storageBucket: "netflix-6bba7.appspot.com",
+  authDomain: "newflicks-6bba7.firebaseapp.com",
+  projectId: "newflicks-6bba7",
+  storageBucket: "newflicks-6bba7.appspot.com",
   messagingSenderId: "826739565010",
   appId: "1:826739565010:web:1867ef6bb5dd4c8f28680b",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app)
-const db = getFirestore(app)
-export {app, auth, db}
+const auth = getAuth(app);
+const db = getFirestore(app);
+export { app, auth, db };

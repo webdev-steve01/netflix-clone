@@ -54,7 +54,7 @@ export default function ClientList({ movies }: Props) {
                 animate={{ opacity: 1, scale: 1, rotate: 0 }}
                 exit={{ opacity: 0, scale: 0.8, rotate: 90 }}
                 transition={{ duration: 0.3 }}
-                className="rounded-full bg-[#911710]"
+                className="rounded-full bg-[#911710 ]"
               >
                 <Image src={cancel} alt="cancel" width={30} height={30} />
               </motion.div>

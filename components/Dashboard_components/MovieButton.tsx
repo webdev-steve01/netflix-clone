@@ -12,12 +12,13 @@ function MovieButton({
 }) {
   const [isHovered, setIsHovered] = useState(false);
 
-  const baseStyles = "rounded-md text-start px-4 py-1 transition-all duration-200 ease-in-out bg-gradient-to-r";
+  const baseStyles =
+    "rounded-md text-start px-4 py-1 transition-all duration-200 ease-in-out bg-gradient-to-r";
 
   const gradient = isAvailable
     ? isHovered
-      ? "from-[#911710] to-transparent"
-      : "from-[#911710]/50 to-transparent"
+      ? "from-[#911710 ] to-transparent"
+      : "from-[#911710 ]/50 to-transparent"
     : "from-gray-500 to-transparent";
 
   const interaction = isAvailable

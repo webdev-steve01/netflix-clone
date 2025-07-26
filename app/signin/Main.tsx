@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import logo from "@/public/netflix-2-logo-svgrepo-com.svg";
+import logo from "@/public/newflicks-2-logo-svgrepo-com.svg";
 import Image from "next/image";
 import SignUpHero from "./SignUpHero";
 import SignInFooter from "./SignInFooter";

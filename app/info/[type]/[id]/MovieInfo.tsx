@@ -67,19 +67,23 @@ async function MovieInfo({ param, type }: Props) {
             className="rounded-lg skeleton w-[120px]"
           />
           <div>
-            <h1 className="font-bold text-[1.4em]">
-              {json.name || json.title}{" "}
-              {json.number_of_seasons && (
-                <span className="text-gray-400 text-[0.8em]">
-                  ({json.number_of_seasons} seasons)
-                </span>
-              )}
-            </h1>
-            <AddToListButton
-              movie={data}
-              baseText="Add to List"
-              resultingText="In List"
-            />
+            <div className="">
+              <h1 className="font-bold text-[1.4em]">
+                {json.name || json.title}
+              </h1>
+              <p>
+                {json.number_of_seasons && (
+                  <span className="text-gray-400 text-[0.8em]">
+                    ({json.number_of_seasons} seasons)
+                  </span>
+                )}
+              </p>
+              <AddToListButton
+                movie={data}
+                baseText="Add to List"
+                resultingText="In List"
+              />
+            </div>
           </div>
         </section>
       </section>

@@ -40,7 +40,7 @@ function Movies() {
       className="poster-holder skeleton animate-pulse"
     >
       <SwiperSlide style={{ width: "120px", height: "180px" }}>
-        <div className=" md:w-[150px lg:w-[200px] lg:h-[260px] bg-gray-600 animate-pulse rounded-lg" />
+        <div className="lg:w-[200px] lg:h-[260px] bg-gray-600 animate-pulse rounded-lg" />
       </SwiperSlide>
     </div>
   ));

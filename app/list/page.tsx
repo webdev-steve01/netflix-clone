@@ -1,9 +1,8 @@
-import React from 'react'
+import Render from "@/components/list _components/Render";
+import React from "react";
 
 function page() {
-  return (
-    <div className='text-white'>list goes here</div>
-  )
+  return <Render />;
 }
 
-export default page
+export default page;

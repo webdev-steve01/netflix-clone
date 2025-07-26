@@ -1,10 +1,11 @@
-import React from 'react'
+import React from "react";
 type props = {
-    reviews: any[]
-}
-function Reviews({reviews} : props) {
+  reviews: any[];
+};
+function Reviews({ reviews }: props) {
   return (
-    <div>{/* Reviews */}
+    <div>
+      {/* Reviews */}
       <section className="py-4 text-white max-w-[1200px] mx-auto mt-10">
         <h2 className="text-xl font-semibold mb-4">User Reviews</h2>
         {reviews?.length > 0 ? (
@@ -41,8 +42,9 @@ function Reviews({reviews} : props) {
         ) : (
           <p className="text-sm text-gray-400">No reviews yet.</p>
         )}
-      </section></div>
-  )
+      </section>
+    </div>
+  );
 }
 
-export default Reviews
+export default Reviews;

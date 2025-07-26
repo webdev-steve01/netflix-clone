@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { useState } from "react";
 import Link from "next/link";
 import { Results } from "@/utils/interfaces";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -7,20 +8,19 @@ import { Autoplay, EffectFade, Mousewheel } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
-import { useRouter } from "next/navigation";
 
 interface prop {
   array: Results[];
 }
 
 export default function HomeDash({ array }: prop) {
-  const router = useRouter();
+  const [isChanging, setIsChanging] = useState(true);
+  // const router = useRouter();
   const body = array.map((test: Results, index: number) => {
-    // console.log(test.media_type, test.name || test.title)
     return (
       <SwiperSlide key={index} className="p-0 m-0">
         <section
-        key={index}
+          key={index}
           className="w-[100vw] h-[80vh] "
           style={{
             background: `url(https://image.tmdb.org/t/p/w1280/${test.backdrop_path})`,
@@ -44,6 +44,7 @@ export default function HomeDash({ array }: prop) {
                 href={`/info/${test.media_type === "movie" ? "movie" : "tv"}/${
                   test.id
                 }`}
+                onClick={() => setIsChanging(false)}
               >
                 <p>More Info </p>{" "}
               </Link>
@@ -65,7 +66,7 @@ export default function HomeDash({ array }: prop) {
   return (
     <Swiper
       modules={[Autoplay, EffectFade, Mousewheel]}
-      autoplay={{ delay: 9000 }}
+      autoplay={isChanging ? { delay: 9000 } : false}
       loop
       effect="fade"
       speed={500}

@@ -5,12 +5,17 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/utils/firebase";
 import dynamic from "next/dynamic";
 import Loader from "@/components/utilities/Loader";
+import { useAuth } from "@/context/AuthContext";
 
 // ✅ Import Server Component safely
-const DashboardNav = dynamic(() => import("@/components/Dashboard_components/DashboardNav"), { ssr: false, loading: () => <Loader /> });
+const DashboardNav = dynamic(
+  () => import("@/components/Dashboard_components/DashboardNav"),
+  { ssr: false, loading: () => <Loader /> }
+);
 
 function RenderedPage() {
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(true);
+  // const { userId, loading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
@@ -25,7 +30,7 @@ function RenderedPage() {
     return () => unsubscribe();
   }, [router]);
 
-  return loading ? (
+  return isLoading ? (
     <p className="text-white">Checking authentication...</p>
   ) : (
     <DashboardNav />

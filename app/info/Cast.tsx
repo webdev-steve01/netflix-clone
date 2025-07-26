@@ -1,16 +1,16 @@
-import React from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import Image from 'next/image'
-import next from "@/public/next.svg";
-import prev from "@/public/back-svgrepo-com.svg"
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import Image from "next/image";
 
 type props = {
-    cast: any[]
-}
+  cast: any[];
+};
 
-function Cast({cast}: props) {
+function Cast({ cast }: props) {
   return (
-    <div>      {/* Cast Carousel */}
+    <div>
+      {" "}
+      {/* Cast Carousel */}
       <section className="py-4 text-white w-[100%] m-auto  mt-10">
         <h2 className="text-xl font-semibold mb-4">Cast</h2>
         {cast?.length > 0 ? (
@@ -23,7 +23,7 @@ function Cast({cast}: props) {
             {cast.map((member: any, index: number) => (
               <SwiperSlide
                 key={index}
-                className="!w-[120px] bg-[#1c1c1c] rounded-lg text-center text-sm p-2"
+                className="!w-[120px] bg-[#9116108a] rounded-lg text-center text-sm p-2"
               >
                 <Image
                   src={
@@ -36,8 +36,12 @@ function Cast({cast}: props) {
                   height={150}
                   className="rounded-lg mx-auto mb-2 object-cover h-[150px] w-[100px]"
                 />
-                <p className="font-semibold">{member.name}</p>
-                <p className="text-xs text-gray-400">{member.character}</p>
+                <p className="font-semibold h-[20px] text-ellipsis overflow-hidden ">
+                  {member.name}
+                </p>
+                <p className="text-xs h-[20px] text-ellipse overflow-hidden text-gray-400">
+                  {member.character}
+                </p>
               </SwiperSlide>
             ))}
           </Swiper>
@@ -47,10 +51,8 @@ function Cast({cast}: props) {
           </p>
         )}
       </section>
-
-      
-</div>
-  )
+    </div>
+  );
 }
 
-export default Cast
+export default Cast;

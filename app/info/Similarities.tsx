@@ -13,8 +13,7 @@ type Props = {
 };
 
 function Similarities({ film }: Props) {
-
-    if(!film || film.length === 0) return <p>No related movies</p>
+  if (!film || film.length === 0) return <p>No related movies</p>;
   return (
     <section className="px-4 py-6">
       <h2 className="text-white text-2xl font-semibold mb-4">More Like This</h2>
@@ -31,13 +30,16 @@ function Similarities({ film }: Props) {
             style={{ width: "120px" }}
             className="bg-[#111] rounded-lg overflow-hidden group cursor-pointer"
           >
-            <Link href={`/info/${item.name ? "tv" : "movie"}/${item.id}`} className="block">
+            <Link
+              href={`/info/${item.name ? "tv" : "movie"}/${item.id}`}
+              className="block"
+            >
               <Image
                 src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
                 alt={item.title || item.name || "poster"}
                 width={100}
-                height={50}
-                className="w-[150px] h-auto transition-transform duration-300 group-hover:scale-105"
+                height={100}
+                className="w-[150px] h-[180px] transition-transform duration-300 group-hover:scale-105"
               />
               <div className="p-2 text-white text-sm">
                 <p className="font-medium line-clamp-1">

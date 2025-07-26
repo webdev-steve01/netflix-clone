@@ -1,6 +1,12 @@
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { db, auth } from "./firebase";
-import { getDocs, collection } from "firebase/firestore";
+import {
+  getDocs,
+  collection,
+  query,
+  orderBy,
+  deleteDoc,
+} from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 // import { db } from "@/lib/firebase"; // make sure this points to your initialized Firestore
 
@@ -40,6 +46,13 @@ type MinimalMovie = {
   isAdding: (boolean: boolean) => void;
 };
 
+type Movie = {
+  id: number;
+  title: string;
+  poster_path?: string;
+  type: string;
+};
+
 export async function addToList({
   id,
   title,
@@ -69,4 +82,33 @@ export async function addToList({
     }); // merge makes it idempotent
 
   return "added";
+}
+
+export async function fetchUserList(): Promise<Movie[]> {
+  const user = auth.currentUser;
+  if (!user) throw new Error("Not authenticated");
+
+  const listRef = collection(db, `users/${user.uid}/list`);
+  const q = query(listRef, orderBy("addedAt", "desc")); // Sort newest first
+  const querySnapshot = await getDocs(q);
+
+  const list: Movie[] = querySnapshot.docs.map((doc) => {
+    const data = doc.data();
+    return {
+      id: data.movieId,
+      title: data.title,
+      poster_path: data.poster_path,
+      type: data.type,
+    };
+  });
+
+  return list;
+}
+
+export async function deleteItemFromList(id: number | string): Promise<void> {
+  const user = auth.currentUser;
+  if (!user) throw new Error("Not authenticated");
+
+  const ref = doc(db, `users/${user.uid}/list/${id}`);
+  await deleteDoc(ref);
 }

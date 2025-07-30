@@ -20,7 +20,7 @@ async function DashboardNav() {
     );
 
     const genreFetch = await fetch(
-      "https://newflicks-clone-rho-gray.vercel.app/api/movies",
+      "https://netflix-clone-rho-gray.vercel.app/api/movies",
       {
         next: { revalidate: 3600 },
       }

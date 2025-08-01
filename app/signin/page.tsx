@@ -14,7 +14,7 @@ function page() {
             <section className="p-2">
               <Image src={logo} width={50} alt="" />
             </section>
-            <section className="h-[90vh] grid items-center">
+            <section className="h-[70vh] grid items-center">
               <SignUpHero />
             </section>
           </div>

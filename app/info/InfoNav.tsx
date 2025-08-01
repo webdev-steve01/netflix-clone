@@ -26,7 +26,7 @@ function InfoNav({ cast, reviews, films }: props) {
           Cast
         </p>
         <p
-          className={` lg:p-2 w-full hover:bg-[#911710 ] transition-all duration-300 ${
+          className={` lg:p-2 w-full hover:bg-[#911710] transition-all duration-300 ${
             page === "Reviews" && "bg-[#911710]"
           }`}
           onClick={() => setPage("Reviews")}

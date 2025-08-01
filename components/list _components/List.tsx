@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import Loader from "../utilities/Loader";
 // import { Movie } from "@/types"; // or define locally
 type Movie = {
   id: number;
@@ -14,6 +15,9 @@ type ListProps = {
 };
 
 export default function List({ movies }: ListProps) {
+  if (!movies) {
+    return <Loader />;
+  }
   return (
     <section className="text-white">
       <ClientList movies={movies} />

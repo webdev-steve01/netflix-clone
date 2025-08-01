@@ -18,8 +18,8 @@ function InfoNav({ cast, reviews, films }: props) {
     <div className="px-4">
       <div className="text-white font-semibold text-[0.8em] *:p-2 border border-[#911710 ] w-full items-center flex lg:w-[700px] m-auto text-center gap-0 rounded-lg overflow-hidden">
         <p
-          className={` lg:p-2 w-full hover:bg-[#911710 ] transition-all duration-300 ${
-            page === "Cast" && "bg-[#911710 ]"
+          className={` lg:p-2 w-full hover:bg-[#911710] transition-all duration-300 ${
+            page === "Cast" && "bg-[#911710]"
           }`}
           onClick={() => setPage("Cast")}
         >
@@ -27,14 +27,14 @@ function InfoNav({ cast, reviews, films }: props) {
         </p>
         <p
           className={` lg:p-2 w-full hover:bg-[#911710 ] transition-all duration-300 ${
-            page === "Reviews" && "bg-[#911710 ]"
+            page === "Reviews" && "bg-[#911710]"
           }`}
           onClick={() => setPage("Reviews")}
         >
           Reviews
         </p>
         <p
-          className={` lg:p-2 w-full hover:bg-[#911710 ] transition-all duration-300 ${
+          className={` lg:p-2 w-full hover:bg-[#911710] transition-all duration-300 ${
             page === "Trailers" && "bg-[#911710 ]"
           }`}
           onClick={() => setPage("Trailers")}
@@ -42,7 +42,7 @@ function InfoNav({ cast, reviews, films }: props) {
           Trailers
         </p>
         <p
-          className={` lg:p-2  w-full hover:bg-[#911710 ] transition-all duration-300 ${
+          className={` lg:p-2  w-full hover:bg-[#911710] transition-all duration-300 ${
             page === "Similarities" && "bg-[#911710 ]"
           }`}
           onClick={() => setPage("Similarities")}

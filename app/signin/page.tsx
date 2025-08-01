@@ -11,10 +11,12 @@ function page() {
       <section className="signup-hero">
         <section className="signup px-5">
           <div className="">
-            <section className="px-2">
-              <Image src={logo} width={100} alt="" />
+            <section className="p-2">
+              <Image src={logo} width={50} alt="" />
             </section>
-            <SignUpHero />
+            <section className="h-[90vh] grid items-center">
+              <SignUpHero />
+            </section>
           </div>
         </section>
       </section>

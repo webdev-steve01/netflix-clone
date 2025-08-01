@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import logo from "@/public/newflicks-2-logo-svgrepo-com.svg";
+
 import Image from "next/image";
 import SignUpHero from "./SignUpHero";
 import SignInFooter from "./SignInFooter";
@@ -12,9 +12,7 @@ function Main() {
       <section className="signup-hero">
         <section className="signup px-5">
           <div className="">
-            <section className="px-2">
-              <Image src={logo} width={100} alt="" />
-            </section>
+            <section className="px-2"></section>
             <SignUpHero />
           </div>
         </section>

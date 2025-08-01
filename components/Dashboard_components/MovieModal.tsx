@@ -7,7 +7,7 @@ import { db, auth } from "@/utils/firebase";
 import { useRouter } from "next/navigation";
 import { options } from "@/utils/auth";
 import { Results } from "@/utils/interfaces";
-import { addToList, testGetUserList } from "@/utils/AddToList";
+import { addToList } from "@/utils/AddToList";
 
 export default function MovieModal({
   movieId,

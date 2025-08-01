@@ -17,8 +17,8 @@ function MovieButton({
 
   const gradient = isAvailable
     ? isHovered
-      ? "from-[#911710 ] to-transparent"
-      : "from-[#911710 ]/50 to-transparent"
+      ? "from-[#911710] to-transparent"
+      : "from-[rgba(145,23,16,0.5)] to-transparent"
     : "from-gray-500 to-transparent";
 
   const interaction = isAvailable

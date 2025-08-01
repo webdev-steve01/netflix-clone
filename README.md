@@ -1,68 +1,85 @@
-## Movie Catalogue App
+# Newflicks – Movie Catalogue App
 
-A full-featured movie catalogue application built with Next.js, Firebase, TypeScript, and Tailwind CSS. This project is focused on performance, clean architecture, and great user experience.
+A full-featured movie catalogue application built with **Next.js**, **Firebase**, **TypeScript**, and **Tailwind CSS**. This project is designed for performance, clean architecture, and a great user experience.
 
-## Core Features
+## Features
 
-Landing Page – Clean and engaging introduction to the app
-
-Authentication – User sign-up and login powered by Firebase Auth
-
-Dashboard – Displays movies fetched server-side via Next.js API routes, grouped by genre
-
-Movie Info Page – Detailed information about each movie
-
-User List Page – Allows users to manage their personal movie list
+- **Landing Page:** Clean and engaging introduction to the app.
+- **Authentication:** User sign-up and login powered by Firebase Auth.
+- **Dashboard:** Displays trending movies and TV shows, grouped by genre.
+- **Movie Info Page:** Detailed information about each movie or TV show.
+- **User List Page:** Allows users to manage their personal movie list.
+- **Search:** Find movies and TV shows quickly.
+- **Responsive Design:** Works great on desktop and mobile.
 
 ## Optimization Highlights
 
-This project was built with performance and efficiency in mind:
+- 🚀 Most data fetching is handled server-side using Next.js API routes.
+- 🔁 All movie genres are pre-fetched server-side via `/api/movies` to reduce client-side overhead.
+- 🧠 Dynamic imports for heavy components to reduce initial bundle size.
+- 💡 Minimal use of client-side components where possible.
+- 📦 Server functions are organized and efficiently utilized to minimize response time.
 
-🚀 Most data fetching is handled on the server using Next.js API routes
+## Tech Stack
 
-🔁 All movie genres are pre-fetched server-side via /api/movies to reduce client-side overhead
-
-🧠 Dynamic imports for heavy components to reduce initial bundle size
-
-💡 Minimal use of client-side components where possible
-
-📦 Server functions are organized and efficiently utilized to minimize response time
-
-## External Libraries & Tools Used
-
-Firebase – Authentication and real-time database
-
-Swiper – Responsive carousels for browsing movies
-
-Framer Motion – Smooth animations between pages and elements
-
-pnpm – Used for managing and testing packages
-
-styled-components – Used for reusable loaders and styled UI elements
+- **Next.js** (App Router)
+- **React** & **TypeScript**
+- **Firebase** (Authentication & Firestore)
+- **Tailwind CSS** (Styling)
+- **Swiper** (Carousels)
+- **Framer Motion** (Animations)
+- **styled-components** (Reusable UI elements)
 
 ## Getting Started
 
-To run the project locally:
+### 1. Clone the repository
 
-Clone the repository
+```sh
+git clone https://github.com/your-username/newflicks-clone.git
+cd newflicks-clone
+```
 
-Install dependencies:
+### 2. Install dependencies
 
+```sh
 npm install
+# or
+pnpm install
+```
 
-Start the development server:
+### 3. Set up environment variables
 
+Create a `.env` file in the root directory and add your Firebase and TMDB credentials:
+
+```
+NEXT_PUBLIC_TMDB_BEARER_TOKEN=your_tmdb_token
+NEXT_PUBLIC_FIREBASE_API_KEY=your_firebase_api_key
+# ...other Firebase config variables
+```
+
+### 4. Start the development server
+
+```sh
 npm run dev
+```
 
-Open your browser and visit:
-http://localhost:3000
+Open your browser and visit [http://localhost:3000](http://localhost:3000).
 
-📌 Notes
-This project is built using Next.js App Router and takes full advantage of server components where possible.
+## Folder Structure
 
-Authentication is secured with Firebase, while user data (e.g., movie lists) is stored in Firebase's Firestore.
+- `/app` – Next.js app directory (pages, layouts, API routes)
+- `/components` – Reusable UI components
+- `/context` – React context providers
+- `/hooks` – Custom React hooks
+- `/public` – Static assets (images, icons)
+- `/utils` – Utility functions and interfaces
 
-Movie data is fetched from TMDB using a proxy API route for better control and caching.
+## Notes
 
-📄 License
-This project is open-source and available under the MIT License.
+- This project uses the Next.js App Router and server components where possible.
+- Authentication is secured with Firebase, and user data (e.g., movie lists) is stored in Firestore.
+- Movie data is fetched from TMDB using a proxy API route for better control and caching.
+
+---
+
+**Newflicks** – Built with ❤️ by Osesojeh S. Sylvester-Paul.

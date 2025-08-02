@@ -8,7 +8,7 @@ type TrailerProps = {
 function Trailers({ trailer }: TrailerProps) {
   console.log(trailer);
   return (
-    <div className="text-white flex flex-col gap-8 py-4">
+    <div className="text-white flex flex-col gap-8 py-6">
       {trailer.map((item, index) => {
         return (
           <div key={index}>

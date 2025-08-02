@@ -23,7 +23,7 @@ function Cast({ cast }: props) {
             {cast.map((member: any, index: number) => (
               <SwiperSlide
                 key={index}
-                className="!w-[120px] bg-[#9116108a] rounded-lg text-center text-sm p-2"
+                className="!w-[120px] bg-[#111] rounded-lg text-center text-sm p-2"
               >
                 <Image
                   src={

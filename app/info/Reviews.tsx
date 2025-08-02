@@ -6,7 +6,7 @@ function Reviews({ reviews }: props) {
   return (
     <div>
       {/* Reviews */}
-      <section className="py-4 text-white max-w-[1200px] mx-auto mt-10">
+      <section className="py-4 text-white mx-auto mt-10">
         <h2 className="text-xl font-semibold mb-4">User Reviews</h2>
         {reviews?.length > 0 ? (
           <ul className="space-y-6">
@@ -23,7 +23,7 @@ function Reviews({ reviews }: props) {
                     {new Date(review.created_at).toLocaleDateString()}
                   </span>
                 </div>
-                <p className="text-sm leading-relaxed text-gray-100">
+                <p className="text-sm leading-relaxed max-w-[1200px] text-gray-100">
                   {review.content.length > 500
                     ? review.content.slice(0, 500) + "..."
                     : review.content}

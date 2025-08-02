@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Results } from "@/utils/interfaces";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Mousewheel } from "swiper/modules";
+import { useRouter } from "next/navigation";
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
@@ -15,7 +16,7 @@ interface prop {
 
 export default function HomeDash({ array }: prop) {
   const [isChanging, setIsChanging] = useState(true);
-  // const router = useRouter();
+  const router = useRouter();
   const body = array.map((test: Results, index: number) => {
     return (
       <SwiperSlide key={index} className="p-0 m-0">
@@ -39,15 +40,20 @@ export default function HomeDash({ array }: prop) {
                 className="rounded-lg w-[150px] hidden lg:block 0px]"
               />
 
-              <Link
+              <button
                 className="rounded-lg bg-[#B1070F] md:text-[1.2em] font-serif text-white transition-all duration-300 hover:bg-[#0E6BA8] hover:text-white max-w-[150px] py-2 flex justify-center"
-                href={`/info/${test.media_type === "movie" ? "movie" : "tv"}/${
-                  test.id
-                }`}
-                onClick={() => setIsChanging(false)}
+                onClick={(e) => {
+                  e.preventDefault(); // stop default <Link> behavior
+                  setIsChanging(false); // stop autoplay
+                  router.push(
+                    `/info/${test.media_type === "movie" ? "movie" : "tv"}/${
+                      test.id
+                    }`
+                  );
+                }}
               >
                 <p>More Info </p>{" "}
-              </Link>
+              </button>
               <article className="max-w-[700px] max-h-[200px] lg:text-[1.2em] m-0 overflow-hidden gap-2">
                 <h1 className="text-[1.2em] m-0  font-semibold">
                   {test.title || test.name}

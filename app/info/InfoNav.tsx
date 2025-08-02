@@ -4,13 +4,15 @@ import Cast from "./Cast";
 import Reviews from "./Reviews";
 import Similarities from "./Similarities";
 import { Results } from "@/utils/interfaces";
+import Trailers from "./Trailers";
 
 type props = {
   cast: any[];
   reviews: any[];
   films: Results[];
+  trailer: any[];
 };
-function InfoNav({ cast, reviews, films }: props) {
+function InfoNav({ cast, reviews, films, trailer }: props) {
   const [page, setPage] = useState<
     "Cast" | "Reviews" | "Trailers" | "Similarities"
   >("Cast");
@@ -58,7 +60,7 @@ function InfoNav({ cast, reviews, films }: props) {
       ) : page === "Similarities" ? (
         <Similarities film={films} />
       ) : (
-        ""
+        <Trailers trailer={trailer} />
       )}
     </div>
   );

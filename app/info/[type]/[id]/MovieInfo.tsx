@@ -22,6 +22,14 @@ async function MovieInfo({ param, type }: Props) {
     `https://api.themoviedb.org/3/${type}/${param}/similar?language=en-US&page=1`,
     options
   );
+  const trail = await fetch(
+    `https://api.themoviedb.org/3/${type}/${param}/videos?language=en-US`,
+    options
+  );
+  const newData = await trail.json();
+  const trailers = newData.results.filter(
+    (video: any) => video.type === "Trailer" && video.site === "YouTube"
+  );
   const json = await res.json();
   const result = await rev.json();
   const similar = await sim.json();
@@ -134,6 +142,7 @@ async function MovieInfo({ param, type }: Props) {
         cast={Cast.cast}
         reviews={result.results}
         films={similar.results}
+        trailer={trailers}
       />
     </section>
   );

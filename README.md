@@ -35,7 +35,7 @@ A full-featured movie catalogue application built with **Next.js**, **Firebase**
 ### 1. Clone the repository
 
 ```sh
-git clone https://github.com/your-username/newflicks-clone.git
+git clone https://github.com/webdev-steve01/netflix-clone
 cd newflicks-clone
 ```
 

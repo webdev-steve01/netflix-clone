@@ -8,7 +8,7 @@ function DashNav() {
       {" "}
       <section className="flex justify-between px-2 items- z-50 relative ">
         <Link href={"/list"}>
-          <div className="rounded-full p-3 bg-[#0C0502]" aria-label="my list">
+          <div className="rounded-full px-3 bg-[#0C0502]" aria-label="my list">
             <Image
               src={my_list}
               width={40}

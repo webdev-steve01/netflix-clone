@@ -15,13 +15,12 @@ interface prop {
 }
 
 export default function HomeDash({ array }: prop) {
-  const [isChanging, setIsChanging] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
   const router = useRouter();
   const body = array.map((test: Results, index: number) => {
     return (
       <SwiperSlide key={index} className="p-0 m-0">
         <section
-          key={index}
           className="w-[100vw] h-[80vh] "
           style={{
             background: `url(https://image.tmdb.org/t/p/w1280/${test.backdrop_path})`,
@@ -40,20 +39,16 @@ export default function HomeDash({ array }: prop) {
                 className="rounded-lg w-[150px] hidden lg:block 0px]"
               />
 
-              <button
+              <Link
+                href={`/info/${test.media_type}/${test.id}`}
                 className="rounded-lg bg-[#B1070F] md:text-[1.2em] font-serif text-white transition-all duration-300 hover:bg-[#0E6BA8] hover:text-white max-w-[150px] py-2 flex justify-center"
-                onClick={(e) => {
-                  e.preventDefault(); // stop default <Link> behavior
-                  setIsChanging(false); // stop autoplay
-                  router.push(
-                    `/info/${test.media_type === "movie" ? "movie" : "tv"}/${
-                      test.id
-                    }`
-                  );
+                onClick={() => {
+                  setIsPaused(true);
                 }}
               >
-                <p>More Info </p>{" "}
-              </button>
+                <p>More Info</p>
+              </Link>
+
               <article className="max-w-[700px] max-h-[200px] lg:text-[1.2em] m-0 overflow-hidden gap-2">
                 <h1 className="text-[1.2em] m-0  font-semibold">
                   {test.title || test.name}
@@ -72,7 +67,8 @@ export default function HomeDash({ array }: prop) {
   return (
     <Swiper
       modules={[Autoplay, EffectFade, Mousewheel]}
-      autoplay={isChanging ? { delay: 9000 } : false}
+      autoplay={isPaused ? false : { delay: 9000 }}
+      preventInteractionOnTransition={isPaused}
       loop
       effect="fade"
       speed={500}

@@ -12,7 +12,7 @@ function Cast({ cast }: props) {
       {" "}
       {/* Cast Carousel */}
       <section className="py-4 text-white w-[100%] m-auto  mt-10">
-        <h2 className="text-xl font-semibold mb-4">Cast</h2>
+        {/* <h2 className="text-2xl font-semibold mb-4">Cast</h2> */}
         {cast?.length > 0 ? (
           <Swiper
             spaceBetween={15}

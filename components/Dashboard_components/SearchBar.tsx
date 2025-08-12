@@ -60,7 +60,7 @@ function SearchBar() {
         className="p-0 w-full bg-transparent focus-within:outline-none"
       />
       <div>
-        <Image src={search} alt="search" width={50} height={50} />
+        <Image src={search} alt="search" width={20} height={20} />
       </div>
 
       {searchItem && (

@@ -18,7 +18,7 @@ function Similarities({ film }: Props) {
   if (!film || film.length === 0) return <p>No related movies</p>;
   return (
     <section className="py-6">
-      <h2 className="text-white text-2xl font-semibold mb-4">More Like This</h2>
+      {/* <h2 className="text-white text-2xl font-semibold mb-4">More Like This</h2> */}
       <Swiper
         modules={[Navigation]}
         spaceBetween={20}

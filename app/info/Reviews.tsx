@@ -7,7 +7,7 @@ function Reviews({ reviews }: props) {
     <div>
       {/* Reviews */}
       <section className="py-4 text-white mx-auto mt-10">
-        <h2 className="text-xl font-semibold mb-4">User Reviews</h2>
+        {/* <h2 className="text-2xl font-semibold mb-4">User Reviews</h2> */}
         {reviews?.length > 0 ? (
           <ul className="space-y-6">
             {reviews.map((review: any) => (

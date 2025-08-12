@@ -12,7 +12,7 @@ const openSans = Open_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "NewFlicks",
+  title: "fylm",
   description: "Keep track of latest movies",
 };
 

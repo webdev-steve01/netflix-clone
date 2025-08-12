@@ -1,4 +1,4 @@
-# Newflicks – Movie Catalogue App
+# fylm – Movie Catalogue App
 
 A full-featured movie catalogue application built with **Next.js**, **Firebase**, **TypeScript**, and **Tailwind CSS**. This project is designed for performance, clean architecture, and a great user experience.
 
@@ -36,7 +36,7 @@ A full-featured movie catalogue application built with **Next.js**, **Firebase**
 
 ```sh
 git clone https://github.com/webdev-steve01/netflix-clone
-cd newflicks-clone
+cd fylm-clone
 ```
 
 ### 2. Install dependencies
@@ -82,4 +82,4 @@ Open your browser and visit [http://localhost:3000](http://localhost:3000).
 
 ---
 
-**Newflicks** – Built with ❤️ by Osesojeh S. Sylvester-Paul.
+**fylm** – Built with ❤️ by Osesojeh S. Sylvester-Paul.

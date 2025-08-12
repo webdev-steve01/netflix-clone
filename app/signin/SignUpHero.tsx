@@ -20,7 +20,7 @@ const SignUpHero = () => {
       {prevUser ? <Form /> : <SignUpForm setPrevUser={setPrevUser} />}
       <section className="link">
         <p className="text-[#b3b3b3]">
-          {prevUser ? "New to newflicks?" : "Already have an account?"}
+          {prevUser ? "New to fylm?" : "Already have an account?"}
           <span
             onClick={handleUser}
             className="text-white font-bold cursor-pointer px-1"

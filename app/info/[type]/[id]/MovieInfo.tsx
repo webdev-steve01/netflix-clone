@@ -79,7 +79,7 @@ async function MovieInfo({ param, type }: Props) {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <section className="newflicks-overlay h-full w-full flex items-end px-4">
+        <section className="fylm-overlay h-full w-full flex items-end px-4">
           <Image
             src={`https://image.tmdb.org/t/p/w1280/${json.poster_path}`}
             alt={json?.title || json?.name || "poster"}

@@ -7,13 +7,7 @@ export default function Nav() {
     <>
       <nav className="nav bottom-1 py-[2em]">
         <section className="w-50">
-          <Image
-            className=""
-            width={50}
-            height={50}
-            src={Logo}
-            alt="newflicks"
-          />
+          <Image className="" width={50} height={50} src={Logo} alt="fylm" />
         </section>
         <section className="nav-button">
           <Button text="Sign up" />

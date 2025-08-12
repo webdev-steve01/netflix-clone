@@ -17,7 +17,7 @@ function Footer() {
     "Contact Us",
     "Speed Test",
     "Legal Notices",
-    "Only on Newflicks",
+    "Only on fylm",
   ];
 
   const list = footerList.map((list, i) => {
@@ -46,7 +46,7 @@ function Footer() {
           <p className="footer-link">Account</p>
           <p className="footer-link">Ways to watch</p>
           <p className="footer-link">Corporate Information</p>
-          <p className="footer-link">Only on Newflicks</p>
+          <p className="footer-link">Only on fylm</p>
           <p className="footer-link">Media Center</p>
           <p className="footer-link">Terms of use</p>
           <p className="footer-link">Contact Us</p>
@@ -63,7 +63,7 @@ function Footer() {
             <option value="English">English</option>
           </select>
         </section>
-        <p className="credit py-6 text-sm">Newflicks Nigeria</p>
+        <p className="credit py-6 text-sm">fylm Nigeria</p>
       </section>
       <section className="cta-holder py-2">
         <button type="button" className="floating-cta rounded-lg py-2">

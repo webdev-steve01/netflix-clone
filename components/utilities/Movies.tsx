@@ -11,7 +11,6 @@ import "swiper/css";
 
 // import styles bundle
 import "swiper/css/bundle";
-import Script from "next/script";
 import { Results } from "@/utils/interfaces";
 function Movies() {
   const [film, setFilm] = useState("movie");
@@ -35,14 +34,13 @@ function Movies() {
   }, [film]);
 
   const skeletonSlides = Array.from({ length: slides || 15 }, (_, index) => (
-    <div
-      key={`skeleton-${index}`}
-      className="poster-holder skeleton animate-pulse"
+    <SwiperSlide
+      className="skeleton"
+      key={index}
+      style={{ width: "120px", height: "180px" }}
     >
-      <SwiperSlide style={{ width: "120px", height: "180px" }}>
-        <div className="lg:w-[200px] lg:h-[260px] bg-gray-600 animate-pulse rounded-lg" />
-      </SwiperSlide>
-    </div>
+      <div className="lg:w-[200px] lg:h-[260px animate-pulse rounded-lg" />
+    </SwiperSlide>
   ));
 
   const innerHtml =

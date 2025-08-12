@@ -6,9 +6,9 @@ function DashNav() {
   return (
     <nav className="absolute top-10px w-screen p-2">
       {" "}
-      <section className="flex justify-between px-2 items- z-50 relative ">
+      <section className="flex justify-between py-1 px-2 items- z-50 relative ">
         <Link href={"/list"}>
-          <div className="rounded-full px-3 bg-[#0C0502]" aria-label="my list">
+          <div className="rounded-full p-2 bg-[#0C0502]" aria-label="my list">
             <Image
               src={my_list}
               width={40}

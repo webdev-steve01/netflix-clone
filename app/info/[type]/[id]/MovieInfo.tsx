@@ -1,8 +1,10 @@
 import { options } from "@/utils/auth";
 import Image from "next/image";
 import InfoNav from "../../InfoNav";
-import DashNav from "@/components/Dashboard_components/DashNav";
+import back from "@/public/list-back.svg";
 import AddToListButton from "./AddToListButton";
+import my_list from "@/public/list-heart-svgrepo-com.svg";
+import Link from "next/link";
 
 type Props = {
   param: string;
@@ -53,8 +55,19 @@ async function MovieInfo({ param, type }: Props) {
 
   return (
     <section className="bg-[#000000]">
-      <div className="text-white">
-        <DashNav />
+      <div className="text-white bg-transparent flex justify-between absolute w-full items-center p-2">
+        <Link href={"/dashboard"}>
+          <Image src={back} width={50} height={30} alt="back" />
+        </Link>
+        <div className="rounded-full p-2 bg-[#0C0502]" aria-label="my list">
+          <Image
+            src={my_list}
+            width={30}
+            height={30}
+            alt="my-list"
+            className=" top-[50px] left-[10px]"
+          />
+        </div>
       </div>
       {/* Banner */}
       <section

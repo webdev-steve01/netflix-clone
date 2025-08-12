@@ -18,9 +18,9 @@ function InfoNav({ cast, reviews, films, trailer }: props) {
   >("Cast");
   return (
     <div className="px-4">
-      <div className="text-white font-semibold text-[0.8em] *:p-2 border border-[#911710 ] w-full items-center flex lg:w-[700px] m-auto text-center gap-0 rounded-lg overflow-hidden">
+      <div className="text-white font-semibold text-[0.8em] *:p-2 *:m-0 border border-[#911710] w-full items-center flex lg:w-[700px] m-auto text-center gap-0 rounded-lg overflow-hidden">
         <p
-          className={` lg:p-2 w-full hover:bg-[#911710] transition-all duration-300 ${
+          className={`m-0 lg:p-2 w-full hover:bg-[#911710] transition-all duration-300 ${
             page === "Cast" && "bg-[#911710]"
           }`}
           onClick={() => setPage("Cast")}

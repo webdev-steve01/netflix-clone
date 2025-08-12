@@ -1,6 +1,4 @@
 "use client";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectFade, Mousewheel, Navigation } from "swiper/modules";
 import { useEffect, useState } from "react";
 import next from "@/public/caret-right-sm-svgrepo-com.svg";
 import back from "@/public/caret-left-sm-svgrepo-com.svg";
@@ -24,7 +22,7 @@ function TvSeries() {
     vote_average: number;
     vote_count: 137;
   };
-  
+
   const options = {
     method: "GET",
     headers: {

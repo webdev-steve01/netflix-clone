@@ -341,9 +341,6 @@ select {
   margin: 1em 0;
   /* transform: scale(1); */
 }
-.backdrop {
-  /* background-color: #0f0f0f; */
-}
 .backdrop::-webkit-scrollbar {
   width: 0px;
 }
@@ -388,11 +385,13 @@ select {
 .fylm-overlay {
   background: linear-gradient(
     to bottom,
-    hsla(0, 0%, 0%, 0.5),
-    hsla(0, 0%, 0%, 0.2),
-    hsla(0, 0%, 0%, 1)
+    hsla(0, 0%, 0%, 0.5) 0%,
+    hsla(0, 0%, 0%, 0.2) 95%,
+    hsla(0, 0%, 0%, 1) 99%,
+    hsla(0, 0%, 0%, 1) 100%
   );
 }
+
 .fylm-overlay-bright {
   background: linear-gradient(
     to bottom,

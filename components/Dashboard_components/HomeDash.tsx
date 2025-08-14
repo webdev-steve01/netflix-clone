@@ -21,7 +21,7 @@ export default function HomeDash({ array }: prop) {
     return (
       <SwiperSlide key={index} className="p-0 m-0">
         <section
-          className="w-[100vw] h-[80vh] "
+          className="w-[100vw] h-screen "
           style={{
             background: `url(https://image.tmdb.org/t/p/w1280/${test.backdrop_path})`,
             backgroundSize: "cover",
@@ -29,7 +29,7 @@ export default function HomeDash({ array }: prop) {
             backgroundRepeat: "no-repeat",
           }}
         >
-          <div className="h-full fylm-overlay px-4  flex gap-[4em] items-end">
+          <div className="h-full fylm-overlay px-4 py-[2em] flex gap-[4em] items-end">
             <div className="flex gap-6 flex-col py-2 m-0">
               <Image
                 src={`https://image.tmdb.org/t/p/w1280/${test.poster_path}`}
@@ -53,7 +53,7 @@ export default function HomeDash({ array }: prop) {
                 <h1 className="text-[1.2em] m-0  font-semibold">
                   {test.title || test.name}
                 </h1>
-                <p className="text-ellipsis text-[0.9em]/5 lg:text-[0.9em]/8 w-[90%] line-clamp-3 ">
+                <p className="text-ellipsis text-[0.9em]/5 lg:text-[0.9em]/8 w-[90%] line-clamp-4 ">
                   {test.overview}
                 </p>
               </article>

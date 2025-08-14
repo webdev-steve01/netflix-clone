@@ -30,7 +30,7 @@ async function DashboardNav() {
   return (
     <>
       <DashNav />
-      <section className="header h-[80vh]">
+      <section className="header h-screen">
         <div className="backdrop overflow-auto">
           <div className=" text-white test flex flex-shrink-0">
             <HomeDash array={filtered} />

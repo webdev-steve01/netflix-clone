@@ -21,7 +21,7 @@ function RenderedPage() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (!user) {
-        router.replace("/");
+        router.replace("/signin");
       } else {
         setLoading(false);
       }

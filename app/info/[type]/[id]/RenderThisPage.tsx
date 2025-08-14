@@ -5,17 +5,20 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/utils/firebase";
 import dynamic from "next/dynamic";
 import Loader from "@/components/utilities/Loader";
-import { useParams } from "next/navigation";
-// ✅ Import Server Component safely
+
+type prop = {
+  type: string;
+  id: string;
+};
 const MovieInfo = dynamic(() => import("../[id]/MovieInfo"), {
   ssr: true,
   loading: () => <Loader />,
 });
 
-function RenderThisPage() {
+function RenderThisPage({ type, id }: prop) {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
-  const params = useParams();
+  // const params = useParams();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -32,7 +35,7 @@ function RenderThisPage() {
   return loading ? (
     <p className="text-white">Checking authentication...</p>
   ) : (
-    <MovieInfo type={String(params.type)} param={String(params.id)} />
+    <MovieInfo type={String(type)} param={String(id)} />
   );
 }
 

@@ -15,7 +15,7 @@ import { Results } from "@/utils/interfaces";
 function Movies() {
   const [film, setFilm] = useState("movie");
   const [response, setResponse] = useState<Results[]>([]);
-  const [slides, setSlides] = useState(0);
+  // const [slides, setSlides] = useState(0);
   const handleClick = (e: any) => {
     setFilm(e.target.value);
   };
@@ -33,7 +33,7 @@ function Movies() {
     fetchData(film);
   }, [film]);
 
-  const skeletonSlides = Array.from({ length: slides || 15 }, (_, index) => (
+  const skeletonSlides = Array.from({ length: 15 }, (_, index) => (
     <SwiperSlide
       className="skeleton"
       key={index}

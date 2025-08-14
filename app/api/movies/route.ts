@@ -1,4 +1,5 @@
 // route for aggregating all genres
+export const dynamic = "force-static"; // for caching
 import { NextResponse } from "next/server";
 import { options } from "@/utils/auth";
 import { genres } from "@/utils/genres";

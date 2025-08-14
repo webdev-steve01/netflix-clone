@@ -7,12 +7,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBn8ejTuO0pkS5uYMrylqWQNCIxJVqqgDI",
-  authDomain: "netflix-6bba7.firebaseapp.com",
-  projectId: "netflix-6bba7",
-  storageBucket: "netflix-6bba7.firebasestorage.app",
-  messagingSenderId: "826739565010",
-  appId: "1:826739565010:web:1867ef6bb5dd4c8f28680b",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
 // Initialize Firebase

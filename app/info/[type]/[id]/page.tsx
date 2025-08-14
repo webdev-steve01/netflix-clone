@@ -35,10 +35,10 @@ export async function generateStaticParams() {
   return [...movieParams, ...tvParams];
 }
 
-function MoviePage() {
+function MoviePage({ params }: { params: { type: string; id: string } }) {
   return (
     <div>
-      <RenderThisPage />
+      <RenderThisPage type={params.type} id={params.id} />
     </div>
   );
 }

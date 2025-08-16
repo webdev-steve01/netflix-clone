@@ -19,9 +19,12 @@ async function DashboardNav() {
       (item: any) => item.media_type === "movie" || item.media_type === "tv"
     );
 
-    const genreFetch = await fetch("https://fylmhouse.vercel.app/api/movies", {
-      cache: "force-cache",
-    });
+    const genreFetch = await fetch(
+      "https://netflix-clone-git-genres-page-stephen-pauls-projects.vercel.app/api/movies",
+      {
+        cache: "force-cache",
+      }
+    );
     allGenres = await genreFetch.json();
   } catch (error) {
     console.error("❌ Failed to fetch dashboard content:", error);

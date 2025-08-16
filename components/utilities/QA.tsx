@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import cancel from "@/public/cancel-close-cross-svgrepo-com.svg"
+import cancel from "@/public/cancel-close-cross-svgrepo-com.svg";
 import Image from "next/image";
-import open from '@/public/plus-svgrepo-com.svg'
+import open from "@/public/plus-svgrepo-com.svg";
 // import { close } from "inspector/promises";
 
 type props = {
@@ -10,16 +10,23 @@ type props = {
 };
 
 function QA(props: props) {
-  const [showQA, setShow] = useState(false)
+  const [showQA, setShow] = useState(false);
   return (
     <div>
-      <button className="closed flex py-3 justify-between w-full" onClick={() => setShow(!showQA)}>
+      <button
+        className="closed flex py-3 justify-between w-full"
+        onClick={() => setShow(!showQA)}
+      >
         <span>{props.question}</span>
         <span>
-          <Image width={20} height={20} alt="" src={showQA ? cancel : open}/>
+          {showQA ? (
+            <Image width={15} height={15} alt="" src={cancel} />
+          ) : (
+            <Image width={20} height={20} alt="" src={open} />
+          )}
         </span>
       </button>
-      {showQA ? <p className="closed slide py-3">{props.answer}</p>: <p></p>}
+      {showQA ? <p className="closed slide py-3">{props.answer}</p> : <p></p>}
     </div>
   );
 }

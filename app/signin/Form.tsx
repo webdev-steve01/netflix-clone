@@ -1,14 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
 import React from "react";
-import InputForm from "../../components/utilities/InputForm";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../utils/firebase";
 import { useRouter } from "next/navigation";
-import Footer from "@/components/sections/Footer";
+import { signIn } from "@/utils/auth";
 
 function Form() {
-  const [code, setCode] = useState(false);
+  // const [code, setCode] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -22,52 +19,6 @@ function Form() {
     }
   }, []);
 
-  const signIn = () => {
-    if (email === null || password === null) {
-      alert("email or password can not be empty");
-      return;
-    }
-
-    setLoading(true);
-
-    signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        router.push("../dashboard");
-      })
-      .catch((err) => {
-        console.log(err);
-        const errorCode = err.code;
-
-        switch (errorCode) {
-          case "auth/invalid-email":
-            setError("Invalid email format.");
-            break;
-          case "auth/user-disabled":
-            setError("This user account has been disabled.");
-            break;
-          case "auth/user-not-found":
-            setError("No user found with this email.");
-            break;
-          case "auth/wrong-password":
-            setError("Incorrect password.");
-            break;
-          case "auth/invalid-credential":
-            setError("Invalid email or password.");
-            break;
-          case "auth/too-many-requests":
-            setError("Too many failed attempts. Please try again later.");
-            break;
-          case "auth/network-request-failed":
-            setError("Network error. Check your internet connection.");
-            break;
-          default:
-            setError("An unexpected error occurred. Please try again.");
-        }
-
-        setLoading(false);
-      });
-  };
-
   return (
     <>
       <form action="" className="flex flex-col gap-1">
@@ -79,33 +30,26 @@ function Form() {
           name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder={
-            code
-              ? "input email to get code(currently unavailable)"
-              : "input email"
-          }
+          placeholder="input email"
         />
-        {code ? (
-          <></>
-        ) : (
-          <input
-            className="bg-[hsla(218,28%,15%,0.8)] py-3 px-2 w-full focus-within:outline-none rounded-md m-0 text-white"
-            type="password"
-            id="signInPassword"
-            name="password"
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="input password"
-          />
-        )}
+
+        <input
+          className="bg-[hsla(218,28%,15%,0.8)] py-3 px-2 w-full focus-within:outline-none rounded-md m-0 text-white"
+          type="password"
+          id="signInPassword"
+          name="password"
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="input password"
+        />
+
         <button
-          onClick={signIn}
+          onClick={() => signIn(email, password, setLoading, setError, router)}
           disabled={!email || !password}
           className="button rounded-[5px] py-1"
           type="button"
         >
           <p className=" m-auto">{loading ? "Loading..." : "Sign in"}</p>
         </button>
-        {/* <p className="text-white text-center">forgot password?</p> */}
         <div className="flex">
           <input
             className="accent-[#b3b3b3] scale-x-150 scale-y-150"

@@ -43,7 +43,6 @@ export default function Page({
     <div className="text-white">
       Genre ID: {params.genre}
       type: {params.type}
-      {/* You could also fetch movies for this genre here */}
     </div>
   );
 }

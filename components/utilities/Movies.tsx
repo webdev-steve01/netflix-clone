@@ -69,23 +69,10 @@ function Movies() {
   return (
     <>
       <section className="dropdown-flex flex flex-col gap-4">
-        <section className="input-filter text-black flex-grow flex-shrink-0">
+        <section className="max-w-[700px] text-black flex-grow flex-shrink-0">
           <section className="caret">
             <select
-              className="dropdown px-3 py-4 rounded-lg"
-              title="country"
-              name="country"
-              id="country"
-            >
-              <option value="Nigeria">Nigeria</option>
-              <option value="Global">Global</option>
-            </select>
-          </section>
-        </section>
-        <section className="input-filter text-black flex-grow flex-shrink-0">
-          <section className="caret">
-            <select
-              className="dropdown px-3 py-4 rounded-lg"
+              className="dropdown px-3 py-4 rounded-lg focus-within:outline-none"
               title="film"
               name="film"
               id="film"
